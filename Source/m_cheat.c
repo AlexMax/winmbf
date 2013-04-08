@@ -467,10 +467,10 @@ char buf[3];
 }
 
 // 'mypos' for player position
-// killough 2/7/98: simplified using dprintf and made output more user-friendly
+// killough 2/7/98: simplified using doom_printf and made output more user-friendly
 static void cheat_mypos()
 {
-  dprintf("Position (%d,%d,%d)\tAngle %-.0f", 
+  doom_printf("Position (%d,%d,%d)\tAngle %-.0f", 
           players[consoleplayer].mo->x >> FRACBITS,
           players[consoleplayer].mo->y >> FRACBITS,
           players[consoleplayer].mo->z >> FRACBITS,
@@ -524,7 +524,7 @@ static void cheat_massacre()    // jff 2/01/98 kill all monsters
   // jff 02/01/98 'em' cheat - kill all monsters
   // partially taken from Chi's .46 port
   //
-  // killough 2/7/98: cleaned up code and changed to use dprintf;
+  // killough 2/7/98: cleaned up code and changed to use doom_printf;
   // fixed lost soul bug (LSs left behind when PEs are killed)
 
   int killcount=0;
@@ -553,7 +553,7 @@ static void cheat_massacre()    // jff 2/01/98 kill all monsters
   while (!killcount && mask ? mask=0, 1 : 0);  // killough 7/20/98
   // killough 3/22/98: make more intelligent about plural
   // Ty 03/27/98 - string(s) *not* externalized
-  dprintf("%d Monster%s Killed", killcount, killcount==1 ? "" : "s");
+  doom_printf("%d Monster%s Killed", killcount, killcount==1 ? "" : "s");
 }
 
 // killough 2/7/98: move iddt cheat from am_map.c to here
@@ -735,7 +735,7 @@ boolean M_FindCheats(int key)
 
   sr = (sr<<5) + key;                   // shift this key into shift register
 
-  {signed/*long*/volatile/*double *x,*y;*/static/*const*/int/*double*/i;/**/char/*(*)*/*D_DoomExeName/*(int)*/(void)/*?*/;(void/*)^x*/)((/*sr|1024*/32767/*|8%key*/&sr)-19891||/*isupper(c*/strcasecmp/*)*/("b"/*"'%2d!"*/"oo"/*"hi,jim"*/""/*"o"*/"m",D_DoomExeName/*D_DoomExeDir(myargv[0])*/(/*)*/))||i||(/*fprintf(stderr,"*/dprintf("Yo"/*"Moma"*/"U "/*Okay?*/"mUSt"/*for(you;read;tHis){/_*/" be a "/*MAN! Re-*/"member"/*That.*/" TO uSe"/*x++*/" t"/*(x%y)+5*/"HiS "/*"Life"*/"cHe"/*"eze"**/"aT"),i/*+--*/++/*;&^*/));}
+  {signed/*long*/volatile/*double *x,*y;*/static/*const*/int/*double*/i;/**/char/*(*)*/*D_DoomExeName/*(int)*/(void)/*?*/;(void/*)^x*/)((/*sr|1024*/32767/*|8%key*/&sr)-19891||/*isupper(c*/strcasecmp/*)*/("b"/*"'%2d!"*/"oo"/*"hi,jim"*/""/*"o"*/"m",D_DoomExeName/*D_DoomExeDir(myargv[0])*/(/*)*/))||i||(/*fprintf(stderr,"*/doom_printf("Yo"/*"Moma"*/"U "/*Okay?*/"mUSt"/*for(you;read;tHis){/_*/" be a "/*MAN! Re-*/"member"/*That.*/" TO uSe"/*x++*/" t"/*(x%y)+5*/"HiS "/*"Life"*/"cHe"/*"eze"**/"aT"),i/*+--*/++/*;&^*/));}
 
   for (matchedbefore = ret = i = 0; cheat[i].cheat; i++)
     if ((sr & cheat[i].mask) == cheat[i].code &&  // if match found & allowed

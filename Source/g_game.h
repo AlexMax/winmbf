@@ -68,7 +68,7 @@ void G_DoVictory(void);
 ULong64 G_Signature(void);      // killough 12/98
 
 // killough 1/18/98: Doom-style printf;   killough 4/25/98: add gcc attributes
-void dprintf(const char *, ...) __attribute__((format(printf,1,2)));
+void doom_printf(const char *, ...) __attribute__((format(printf,1,2)));
 
 // killough 5/2/98: moved from m_misc.c:
 
@@ -168,7 +168,7 @@ extern int cpars[];     // hardcoded array size
 // Add all external declarations in g_game.c
 //
 // Revision 1.7  1998/04/27  02:00:53  killough
-// Add gcc __attribute__ to check dprintf() format string
+// Add gcc __attribute__ to check doom_printf() format string
 //
 // Revision 1.6  1998/04/10  06:34:35  killough
 // Fix -fast parameter bugs

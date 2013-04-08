@@ -1276,7 +1276,7 @@ static void G_DoSaveGame(void)
   Z_CheckHeap();
 
   if (!M_WriteFile(name, savebuffer, length))
-    dprintf(errno ? strerror(errno) : "Could not save game: Error unknown");
+    doom_printf(errno ? strerror(errno) : "Could not save game: Error unknown");
   else
     players[consoleplayer].message = s_GGSAVED;  // Ty 03/27/98 - externalized
 
@@ -1498,7 +1498,7 @@ void G_Ticker(void)
 		  !(gametic&31) && ((gametic>>5)&3) == i )
 		{
 		  extern char *player_names[];
-		  dprintf("%s is turbo!", player_names[i]); // killough 9/29/98
+		  doom_printf("%s is turbo!", player_names[i]); // killough 9/29/98
 		}
 
 	      if (netgame && !netdemo && !(gametic%ticdup) )
@@ -2344,14 +2344,14 @@ boolean G_CheckDemoStatus(void)
 }
 
 // killough 1/22/98: this is a "Doom printf" for messages. I've gotten
-// tired of using players->message=... and so I've added this dprintf.
+// tired of using players->message=... and so I've added this doom_printf.
 //
 // killough 3/6/98: Made limit static to allow z_zone functions to call
 // this function, without calling realloc(), which seems to cause problems.
 
 #define MAX_MESSAGE_SIZE 1024
 
-void dprintf(const char *s, ...)
+void doom_printf(const char *s, ...)
 {
   static char msg[MAX_MESSAGE_SIZE];
   va_list v;
@@ -2497,7 +2497,7 @@ void dprintf(const char *s, ...)
 // Created separately bound automap and menu keys
 //
 // Revision 1.15  1998/03/09  07:09:20  killough
-// Avoid realloc() in dprintf(), fix savegame -nomonsters bug
+// Avoid realloc() in doom_printf(), fix savegame -nomonsters bug
 //
 // Revision 1.14  1998/03/02  11:27:45  killough
 // Forward and backward demo sync compatibility
@@ -2512,7 +2512,7 @@ void dprintf(const char *s, ...)
 // Fix Internal and v1.9 Demo sync problems
 //
 // Revision 1.10  1998/02/20  22:50:51  killough
-// Fix dprintf for multiplayer games
+// Fix doom_printf for multiplayer games
 //
 // Revision 1.9  1998/02/20  06:15:08  killough
 // Turn turbo messages on in demo playbacks
@@ -2533,7 +2533,7 @@ void dprintf(const char *s, ...)
 // Stop 'q' from ending demo recordings
 //
 // Revision 1.5  1998/02/02  13:44:45  killough
-// Fix dprintf and CheckSaveGame realloc bugs
+// Fix doom_printf and CheckSaveGame realloc bugs
 //
 // Revision 1.4  1998/01/26  19:23:18  phares
 // First rev with no ^Ms

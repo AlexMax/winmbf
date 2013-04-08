@@ -40,7 +40,7 @@ rcsid[] = "$Id: i_sound.c,v 1.15 1998/05/03 22:32:33 killough Exp $";
 #include "mmus2mid.h"   //jff 1/16/98 declarations for MUS->MIDI converter
 #include "i_sound.h"
 #include "w_wad.h"
-#include "g_game.h"     //jff 1/21/98 added to use dprintf in I_RegisterSong
+#include "g_game.h"     //jff 1/21/98 added to use doom_printf in I_RegisterSong
 #include "d_main.h"
 #include "d_io.h"
 
@@ -840,7 +840,7 @@ void I_PlaySong(int handle, int looping)
 
    if(CHECK_MUSIC(handle) && Mix_PlayMusic(music, looping ? -1 : 0) == -1)
    {
-      dprintf("I_PlaySong: Mix_PlayMusic failed\n");
+      doom_printf("I_PlaySong: Mix_PlayMusic failed\n");
       return;
    }
    
@@ -955,7 +955,7 @@ int I_RegisterSong(void *data, int size)
       if((err = mmus2mid((byte *)data, &mididata, 89, 0))) 
       {         
          // Nope, not a mus.
-         dprintf("Error loading music: %d", err);
+         doom_printf("Error loading music: %d", err);
          return 0;
       }
 
