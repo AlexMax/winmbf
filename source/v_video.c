@@ -291,25 +291,25 @@ void V_CopyRect(int srcx, int srcy, int srcscrn, int width,
 void V_DrawPatchGeneral(int x, int y, int scrn, patch_t *patch,
 			boolean flipped)
 {
-  int  w = SHORT(patch->width), col = w-1, colstop = -1, colstep = -1;
+  int  w = SwapShort(patch->width), col = w-1, colstop = -1, colstep = -1;
   
   if (!flipped)
     col = 0, colstop = w, colstep = 1;
 
-  y -= SHORT(patch->topoffset);
-  x -= SHORT(patch->leftoffset);
+  y -= SwapShort(patch->topoffset);
+  x -= SwapShort(patch->leftoffset);
 
 #ifdef RANGECHECK
   if (x<0
-      ||x+SHORT(patch->width) >SCREENWIDTH
+      ||x+SwapShort(patch->width) >SCREENWIDTH
       || y<0
-      || y+SHORT(patch->height)>SCREENHEIGHT
+      || y+SwapShort(patch->height)>SCREENHEIGHT
       || (unsigned)scrn>4)
       return;      // killough 1/19/98: commented out printfs
 #endif
 
   if (!scrn)
-    V_MarkRect (x, y, SHORT(patch->width), SHORT(patch->height));
+    V_MarkRect (x, y, SwapShort(patch->width), SwapShort(patch->height));
 
   if (hires)       // killough 11/98: hires support (well, sorta :)
     {
@@ -318,7 +318,7 @@ void V_DrawPatchGeneral(int x, int y, int scrn, patch_t *patch,
       for ( ; col != colstop ; col += colstep, desttop+=2)
 	{
 	  const column_t *column = 
-	    (const column_t *)((byte *)patch + LONG(patch->columnofs[col]));
+	    (const column_t *)((byte *)patch + SwapLong(patch->columnofs[col]));
 
 	  // step through the posts in a column
 	  while (column->topdelta != 0xff)
@@ -377,7 +377,7 @@ void V_DrawPatchGeneral(int x, int y, int scrn, patch_t *patch,
       for ( ; col != colstop ; col += colstep, desttop++)
 	{
 	  const column_t *column = 
-	    (const column_t *)((byte *)patch + LONG(patch->columnofs[col]));
+	    (const column_t *)((byte *)patch + SwapLong(patch->columnofs[col]));
 
 	  // step through the posts in a column
 	  while (column->topdelta != 0xff)
@@ -443,23 +443,23 @@ void V_DrawPatchTranslated(int x, int y, int scrn, patch_t *patch,
       return;                            // killough 2/21/98: add return
     }
 
-  y -= SHORT(patch->topoffset);
-  x -= SHORT(patch->leftoffset);
+  y -= SwapShort(patch->topoffset);
+  x -= SwapShort(patch->leftoffset);
 
 #ifdef RANGECHECK
   if (x<0
-      ||x+SHORT(patch->width) >SCREENWIDTH
+      ||x+SwapShort(patch->width) >SCREENWIDTH
       || y<0
-      || y+SHORT(patch->height)>SCREENHEIGHT
+      || y+SwapShort(patch->height)>SCREENHEIGHT
       || (unsigned)scrn>4)
     return;    // killough 1/19/98: commented out printfs
 #endif
 
   if (!scrn)
-    V_MarkRect (x, y, SHORT(patch->width), SHORT(patch->height));
+    V_MarkRect (x, y, SwapShort(patch->width), SwapShort(patch->height));
 
   col = 0;
-  w = SHORT(patch->width);
+  w = SwapShort(patch->width);
 
   if (hires)       // killough 11/98: hires support (well, sorta :)
     {
@@ -468,7 +468,7 @@ void V_DrawPatchTranslated(int x, int y, int scrn, patch_t *patch,
       for ( ; col<w ; col++, desttop+=2)
 	{
 	  const column_t *column =
-	    (const column_t *)((byte *)patch + LONG(patch->columnofs[col]));
+	    (const column_t *)((byte *)patch + SwapLong(patch->columnofs[col]));
 
 	  // step through the posts in a column
 	  while (column->topdelta != 0xff)
@@ -531,7 +531,7 @@ void V_DrawPatchTranslated(int x, int y, int scrn, patch_t *patch,
       for ( ; col<w ; col++, desttop++)
 	{
 	  const column_t *column =
-	    (const column_t *)((byte *)patch + LONG(patch->columnofs[col]));
+	    (const column_t *)((byte *)patch + SwapLong(patch->columnofs[col]));
 
 	  // step through the posts in a column
 	  while (column->topdelta != 0xff)

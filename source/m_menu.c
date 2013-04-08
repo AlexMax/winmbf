@@ -4030,7 +4030,7 @@ void M_DrawMenuString(int cx, int cy, int color)
 	  cx += SPACEWIDTH;    // space
 	  continue;
 	}
-      w = SHORT (hu_font[c]->width);
+      w = SwapShort (hu_font[c]->width);
       if (cx + w > SCREENWIDTH)
 	break;
     
@@ -4062,7 +4062,7 @@ int M_GetPixelWidth(char* ch)
 	  len += SPACEWIDTH;   // space
 	  continue;
 	}
-      len += SHORT (hu_font[c]->width);
+      len += SwapShort (hu_font[c]->width);
       len--; // adjust so everything fits
     }
   len++; // replace what you took away on the last char only
@@ -5331,7 +5331,7 @@ void M_Drawer (void)
             p++;
          *p = 0;
          M_WriteText(160 - M_StringWidth(string)/2, y, string);
-         y += SHORT(hu_font[0]->height);
+         y += SwapShort(hu_font[0]->height);
          if ((*p = c))
             p++;
       }
@@ -5490,7 +5490,7 @@ int M_StringWidth(char* string)
   int i, c, w = 0;
   for (i = 0;i < strlen(string);i++)
     w += (c = toupper(string[i]) - HU_FONTSTART) < 0 || c >= HU_FONTSIZE ?
-      4 : SHORT(hu_font[c]->width);
+      4 : SwapShort(hu_font[c]->width);
   return w;
 }
 
@@ -5500,7 +5500,7 @@ int M_StringWidth(char* string)
 
 int M_StringHeight(char* string)
 {
-  int i, h, height = h = SHORT(hu_font[0]->height);
+  int i, h, height = h = SwapShort(hu_font[0]->height);
   for (i = 0;string[i];i++)            // killough 1/31/98
     if (string[i] == '\n')
       h += height;
@@ -5541,7 +5541,7 @@ void M_WriteText (int x,int y,char* string)
 	  continue;
 	}
   
-      w = SHORT (hu_font[c]->width);
+      w = SwapShort (hu_font[c]->width);
       if (cx+w > SCREENWIDTH)
 	break;
       V_DrawPatchDirect(cx, cy, 0, hu_font[c]);

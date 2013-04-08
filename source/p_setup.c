@@ -136,8 +136,8 @@ void P_LoadVertexes (int lump)
   // internal representation as fixed.
   for (i=0; i<numvertexes; i++)
     {
-      vertexes[i].x = SHORT(((mapvertex_t *) data)[i].x)<<FRACBITS;
-      vertexes[i].y = SHORT(((mapvertex_t *) data)[i].y)<<FRACBITS;
+      vertexes[i].x = SwapShort(((mapvertex_t *) data)[i].x)<<FRACBITS;
+      vertexes[i].y = SwapShort(((mapvertex_t *) data)[i].y)<<FRACBITS;
     }
 
   // Free buffer memory.
@@ -167,15 +167,15 @@ void P_LoadSegs (int lump)
       int side, linedef;
       line_t *ldef;
 
-      li->v1 = &vertexes[SHORT(ml->v1)];
-      li->v2 = &vertexes[SHORT(ml->v2)];
+      li->v1 = &vertexes[SwapShort(ml->v1)];
+      li->v2 = &vertexes[SwapShort(ml->v2)];
 
-      li->angle = (SHORT(ml->angle))<<16;
-      li->offset = (SHORT(ml->offset))<<16;
-      linedef = SHORT(ml->linedef);
+      li->angle = (SwapShort(ml->angle))<<16;
+      li->offset = (SwapShort(ml->offset))<<16;
+      linedef = SwapShort(ml->linedef);
       ldef = &lines[linedef];
       li->linedef = ldef;
-      side = SHORT(ml->side);
+      side = SwapShort(ml->side);
       li->sidedef = &sides[ldef->sidenum[side]];
       li->frontsector = sides[ldef->sidenum[side]].sector;
 
@@ -207,8 +207,8 @@ void P_LoadSubsectors (int lump)
 
   for (i=0; i<numsubsectors; i++)
     {
-      subsectors[i].numlines  = SHORT(((mapsubsector_t *) data)[i].numsegs );
-      subsectors[i].firstline = SHORT(((mapsubsector_t *) data)[i].firstseg);
+      subsectors[i].numlines  = SwapShort(((mapsubsector_t *) data)[i].numsegs );
+      subsectors[i].firstline = SwapShort(((mapsubsector_t *) data)[i].firstseg);
     }
 
   Z_Free (data);
@@ -234,14 +234,14 @@ void P_LoadSectors (int lump)
       sector_t *ss = sectors + i;
       const mapsector_t *ms = (mapsector_t *) data + i;
 
-      ss->floorheight = SHORT(ms->floorheight)<<FRACBITS;
-      ss->ceilingheight = SHORT(ms->ceilingheight)<<FRACBITS;
+      ss->floorheight = SwapShort(ms->floorheight)<<FRACBITS;
+      ss->ceilingheight = SwapShort(ms->ceilingheight)<<FRACBITS;
       ss->floorpic = R_FlatNumForName(ms->floorpic);
       ss->ceilingpic = R_FlatNumForName(ms->ceilingpic);
-      ss->lightlevel = SHORT(ms->lightlevel);
-      ss->special = SHORT(ms->special);
-      ss->oldspecial = SHORT(ms->special);
-      ss->tag = SHORT(ms->tag);
+      ss->lightlevel = SwapShort(ms->lightlevel);
+      ss->special = SwapShort(ms->special);
+      ss->oldspecial = SwapShort(ms->special);
+      ss->tag = SwapShort(ms->tag);
       ss->thinglist = NULL;
       ss->touching_thinglist = NULL;            // phares 3/14/98
 
@@ -291,17 +291,17 @@ void P_LoadNodes (int lump)
       mapnode_t *mn = (mapnode_t *) data + i;
       int j;
 
-      no->x = SHORT(mn->x)<<FRACBITS;
-      no->y = SHORT(mn->y)<<FRACBITS;
-      no->dx = SHORT(mn->dx)<<FRACBITS;
-      no->dy = SHORT(mn->dy)<<FRACBITS;
+      no->x = SwapShort(mn->x)<<FRACBITS;
+      no->y = SwapShort(mn->y)<<FRACBITS;
+      no->dx = SwapShort(mn->dx)<<FRACBITS;
+      no->dy = SwapShort(mn->dy)<<FRACBITS;
 
       for (j=0 ; j<2 ; j++)
         {
           int k;
-          no->children[j] = SHORT(mn->children[j]);
+          no->children[j] = SwapShort(mn->children[j]);
           for (k=0 ; k<4 ; k++)
-            no->bbox[j][k] = SHORT(mn->bbox[j][k])<<FRACBITS;
+            no->bbox[j][k] = SwapShort(mn->bbox[j][k])<<FRACBITS;
         }
     }
 
@@ -341,11 +341,11 @@ void P_LoadThings (int lump)
           }
 
       // Do spawn all other stuff.
-      mt->x = SHORT(mt->x);
-      mt->y = SHORT(mt->y);
-      mt->angle = SHORT(mt->angle);
-      mt->type = SHORT(mt->type);
-      mt->options = SHORT(mt->options);
+      mt->x = SwapShort(mt->x);
+      mt->y = SwapShort(mt->y);
+      mt->angle = SwapShort(mt->angle);
+      mt->type = SwapShort(mt->type);
+      mt->options = SwapShort(mt->options);
 
       P_SpawnMapThing (mt);
     }
@@ -380,11 +380,11 @@ void P_LoadLineDefs (int lump)
       line_t *ld = lines+i;
       vertex_t *v1, *v2;
 
-      ld->flags = SHORT(mld->flags);
-      ld->special = SHORT(mld->special);
-      ld->tag = SHORT(mld->tag);
-      v1 = ld->v1 = &vertexes[SHORT(mld->v1)];
-      v2 = ld->v2 = &vertexes[SHORT(mld->v2)];
+      ld->flags = SwapShort(mld->flags);
+      ld->special = SwapShort(mld->special);
+      ld->tag = SwapShort(mld->tag);
+      v1 = ld->v1 = &vertexes[SwapShort(mld->v1)];
+      v2 = ld->v2 = &vertexes[SwapShort(mld->v2)];
       ld->dx = v2->x - v1->x;
       ld->dy = v2->y - v1->y;
 
@@ -415,8 +415,8 @@ void P_LoadLineDefs (int lump)
           ld->bbox[BOXTOP] = v1->y;
         }
 
-      ld->sidenum[0] = SHORT(mld->sidenum[0]);
-      ld->sidenum[1] = SHORT(mld->sidenum[1]);
+      ld->sidenum[0] = SwapShort(mld->sidenum[0]);
+      ld->sidenum[1] = SwapShort(mld->sidenum[1]);
 
       // killough 4/4/98: support special sidedef interpretation below
       if (ld->sidenum[0] != -1 && ld->special)
@@ -488,14 +488,14 @@ void P_LoadSideDefs2(int lump)
       register side_t *sd = sides + i;
       register sector_t *sec;
 
-      sd->textureoffset = SHORT(msd->textureoffset)<<FRACBITS;
-      sd->rowoffset = SHORT(msd->rowoffset)<<FRACBITS;
+      sd->textureoffset = SwapShort(msd->textureoffset)<<FRACBITS;
+      sd->rowoffset = SwapShort(msd->rowoffset)<<FRACBITS;
 
       // killough 4/4/98: allow sidedef texture names to be overloaded
       // killough 4/11/98: refined to allow colormaps to work as wall
       // textures if invalid as colormaps but valid as textures.
 
-      sd->sector = sec = &sectors[SHORT(msd->sector)];
+      sd->sector = sec = &sectors[SwapShort(msd->sector)];
       switch (sd->special)
         {
         case 242:                       // variable colormap via 242 linedef
@@ -718,14 +718,14 @@ void P_LoadBlockMap (int lump)
       // them. This potentially doubles the size of blockmaps allowed,
       // because Doom originally considered the offsets as always signed.
 
-      blockmaplump[0] = SHORT(wadblockmaplump[0]);
-      blockmaplump[1] = SHORT(wadblockmaplump[1]);
-      blockmaplump[2] = (long)(SHORT(wadblockmaplump[2])) & 0xffff;
-      blockmaplump[3] = (long)(SHORT(wadblockmaplump[3])) & 0xffff;
+      blockmaplump[0] = SwapShort(wadblockmaplump[0]);
+      blockmaplump[1] = SwapShort(wadblockmaplump[1]);
+      blockmaplump[2] = (long)(SwapShort(wadblockmaplump[2])) & 0xffff;
+      blockmaplump[3] = (long)(SwapShort(wadblockmaplump[3])) & 0xffff;
 
       for (i=4 ; i<count ; i++)
         {
-          short t = SHORT(wadblockmaplump[i]);          // killough 3/1/98
+          short t = SwapShort(wadblockmaplump[i]);          // killough 3/1/98
           blockmaplump[i] = t == -1 ? -1l : (long) t & 0xffff;
         }
 

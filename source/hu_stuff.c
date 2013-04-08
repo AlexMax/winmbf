@@ -61,14 +61,14 @@ int hud_graph_keys=1; //jff 3/7/98 display HUD keys as graphics
 #define HU_TITLEHEIGHT  1
 #define HU_TITLEX 0
 //jff 2/16/98 change 167 to ST_Y-1
-#define HU_TITLEY (ST_Y - 1 - SHORT(hu_font[0]->height)) 
+#define HU_TITLEY (ST_Y - 1 - SwapShort(hu_font[0]->height)) 
 
 //jff 2/16/98 add coord text widget coordinates
-#define HU_COORDX (SCREENWIDTH - 13*SHORT(hu_font2['A'-HU_FONTSTART]->width))
+#define HU_COORDX (SCREENWIDTH - 13*SwapShort(hu_font2['A'-HU_FONTSTART]->width))
 //jff 3/3/98 split coord widget into three lines in upper right of screen
-#define HU_COORDX_Y (1 + 0*SHORT(hu_font['A'-HU_FONTSTART]->height))
-#define HU_COORDY_Y (2 + 1*SHORT(hu_font['A'-HU_FONTSTART]->height))
-#define HU_COORDZ_Y (3 + 2*SHORT(hu_font['A'-HU_FONTSTART]->height))
+#define HU_COORDX_Y (1 + 0*SwapShort(hu_font['A'-HU_FONTSTART]->height))
+#define HU_COORDY_Y (2 + 1*SwapShort(hu_font['A'-HU_FONTSTART]->height))
+#define HU_COORDZ_Y (3 + 2*SwapShort(hu_font['A'-HU_FONTSTART]->height))
 
 //jff 2/16/98 add ammo, health, armor widgets, 2/22/98 less gap
 #define HU_GAPY 8
@@ -79,7 +79,7 @@ int hud_graph_keys=1; //jff 3/7/98 display HUD keys as graphics
 #define HU_MONSECY (HU_HUDY+0*HU_GAPY)
 #define HU_KEYSX   (HU_HUDX) 
 //jff 3/7/98 add offset for graphic key widget
-#define HU_KEYSGX  (HU_HUDX+4*SHORT(hu_font2['A'-HU_FONTSTART]->width))
+#define HU_KEYSGX  (HU_HUDX+4*SwapShort(hu_font2['A'-HU_FONTSTART]->width))
 #define HU_KEYSY   (HU_HUDY+1*HU_GAPY)
 #define HU_WEAPX   (HU_HUDX)
 #define HU_WEAPY   (HU_HUDY+2*HU_GAPY)
@@ -100,7 +100,7 @@ int hud_graph_keys=1; //jff 3/7/98 display HUD keys as graphics
 #define HU_MONSECX_D (HU_HUDX_LL)
 #define HU_MONSECY_D (HU_HUDY_LL+0*HU_GAPY)
 #define HU_KEYSX_D   (HU_HUDX_LL)
-#define HU_KEYSGX_D  (HU_HUDX_LL+4*SHORT(hu_font2['A'-HU_FONTSTART]->width))
+#define HU_KEYSGX_D  (HU_HUDX_LL+4*SwapShort(hu_font2['A'-HU_FONTSTART]->width))
 #define HU_KEYSY_D   (HU_HUDY_LL+1*HU_GAPY)
 #define HU_WEAPX_D   (HU_HUDX_LR)
 #define HU_WEAPY_D   (HU_HUDY_LR+0*HU_GAPY)
@@ -113,7 +113,7 @@ int hud_graph_keys=1; //jff 3/7/98 display HUD keys as graphics
 
 //#define HU_INPUTTOGGLE  't' // not used                           // phares
 #define HU_INPUTX HU_MSGX
-#define HU_INPUTY (HU_MSGY + HU_MSGHEIGHT*(SHORT(hu_font[0]->height) +1))
+#define HU_INPUTY (HU_MSGY + HU_MSGHEIGHT*(SwapShort(hu_font[0]->height) +1))
 #define HU_INPUTWIDTH 64
 #define HU_INPUTHEIGHT  1
 

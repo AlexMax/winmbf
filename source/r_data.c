@@ -197,7 +197,7 @@ static void R_GenerateComposite(int texnum)
   for (; --i >=0; patch++)
     {
       patch_t *realpatch = W_CacheLumpNum(patch->patch, PU_CACHE);
-      int x, x1 = patch->originx, x2 = x1 + SHORT(realpatch->width);
+      int x, x1 = patch->originx, x2 = x1 + SwapShort(realpatch->width);
       const int *cofs = realpatch->columnofs - x1;
 
       if (x1 < 0)
@@ -207,7 +207,7 @@ static void R_GenerateComposite(int texnum)
       for (x = x1; x < x2 ; x++)
         if (collump[x] == -1)      // Column has multiple patches?
           // killough 1/25/98, 4/9/98: Fix medusa bug.
-          R_DrawColumnInCache((column_t*)((byte*) realpatch + LONG(cofs[x])),
+          R_DrawColumnInCache((column_t*)((byte*) realpatch + SwapLong(cofs[x])),
                               block + colofs[x], patch->originy,
 			      texture->height, marks + x*texture->height);
     }
@@ -294,7 +294,7 @@ static void R_GenerateLookup(int texnum, int *const errors)
     {
       int pat = patch->patch;
       const patch_t *realpatch = W_CacheLumpNum(pat, PU_CACHE);
-      int x, x1 = patch++->originx, x2 = x1 + SHORT(realpatch->width);
+      int x, x1 = patch++->originx, x2 = x1 + SwapShort(realpatch->width);
       const int *cofs = realpatch->columnofs - x1;
       
       if (x2 > texture->width)
@@ -305,7 +305,7 @@ static void R_GenerateLookup(int texnum, int *const errors)
 	{
 	  count[x].patches++;
 	  collump[x] = pat;
-	  colofs[x] = LONG(cofs[x])+3;
+	  colofs[x] = SwapLong(cofs[x])+3;
 	}
     }
 
@@ -331,7 +331,7 @@ static void R_GenerateLookup(int texnum, int *const errors)
 	{
 	  int pat = patch->patch;
 	  const patch_t *realpatch = W_CacheLumpNum(pat, PU_CACHE);
-	  int x, x1 = patch++->originx, x2 = x1 + SHORT(realpatch->width);
+	  int x, x1 = patch++->originx, x2 = x1 + SwapShort(realpatch->width);
 	  const int *cofs = realpatch->columnofs - x1;
 	  
 	  if (x2 > texture->width)
@@ -343,7 +343,7 @@ static void R_GenerateLookup(int texnum, int *const errors)
 	    if (count[x].patches > 1)        // Only multipatched columns
 	      {
 		const column_t *col =
-		  (column_t*)((byte*) realpatch+LONG(cofs[x]));
+		  (column_t*)((byte*) realpatch+SwapLong(cofs[x]));
 		const byte *base = (const byte *) col;
 
 		// count posts
@@ -471,7 +471,7 @@ void R_InitTextures (void)
   // Load the patch names from pnames.lmp.
   name[8] = 0;
   names = W_CacheLumpName("PNAMES", PU_STATIC);
-  nummappatches = LONG(*((int *)names));
+  nummappatches = SwapLong(*((int *)names));
   name_p = names+4;
   patchlookup = malloc(nummappatches*sizeof(*patchlookup));  // killough
 
@@ -502,14 +502,14 @@ void R_InitTextures (void)
   //  TEXTURE1 for shareware, plus TEXTURE2 for commercial.
 
   maptex = maptex1 = W_CacheLumpName("TEXTURE1", PU_STATIC);
-  numtextures1 = LONG(*maptex);
+  numtextures1 = SwapLong(*maptex);
   maxoff = W_LumpLength(W_GetNumForName("TEXTURE1"));
   directory = maptex+1;
 
   if (W_CheckNumForName("TEXTURE2") != -1)
     {
       maptex2 = W_CacheLumpName("TEXTURE2", PU_STATIC);
-      numtextures2 = LONG(*maptex2);
+      numtextures2 = SwapLong(*maptex2);
       maxoff2 = W_LumpLength(W_GetNumForName("TEXTURE2"));
     }
   else
@@ -567,7 +567,7 @@ void R_InitTextures (void)
           directory = maptex+1;
         }
 
-      offset = LONG(*directory);
+      offset = SwapLong(*directory);
 
       if (offset > maxoff)
         I_Error("R_InitTextures: bad texture directory");
@@ -576,12 +576,12 @@ void R_InitTextures (void)
 
       texture = textures[i] =
         Z_Malloc(sizeof(texture_t) +
-                 sizeof(texpatch_t)*(SHORT(mtexture->patchcount)-1),
+                 sizeof(texpatch_t)*(SwapShort(mtexture->patchcount)-1),
                  PU_STATIC, 0);
 
-      texture->width = SHORT(mtexture->width);
-      texture->height = SHORT(mtexture->height);
-      texture->patchcount = SHORT(mtexture->patchcount);
+      texture->width = SwapShort(mtexture->width);
+      texture->height = SwapShort(mtexture->height);
+      texture->patchcount = SwapShort(mtexture->patchcount);
 
       memcpy(texture->name, mtexture->name, sizeof(texture->name));
       mpatch = mtexture->patches;
@@ -589,13 +589,13 @@ void R_InitTextures (void)
 
       for (j=0 ; j<texture->patchcount ; j++, mpatch++, patch++)
         {
-          patch->originx = SHORT(mpatch->originx);
-          patch->originy = SHORT(mpatch->originy);
-          patch->patch = patchlookup[SHORT(mpatch->patch)];
+          patch->originx = SwapShort(mpatch->originx);
+          patch->originy = SwapShort(mpatch->originy);
+          patch->patch = patchlookup[SwapShort(mpatch->patch)];
           if (patch->patch == -1)
             {	      // killough 8/8/98
               printf("\nR_InitTextures: Missing patch %d in texture %.8s",
-                     SHORT(mpatch->patch), texture->name); // killough 4/17/98
+                     SwapShort(mpatch->patch), texture->name); // killough 4/17/98
               ++errors;
             }
         }
@@ -704,9 +704,9 @@ void R_InitSpriteLumps(void)
         putchar ('.');
 
       patch = W_CacheLumpNum(firstspritelump+i, PU_CACHE);
-      spritewidth[i] = SHORT(patch->width)<<FRACBITS;
-      spriteoffset[i] = SHORT(patch->leftoffset)<<FRACBITS;
-      spritetopoffset[i] = SHORT(patch->topoffset)<<FRACBITS;
+      spritewidth[i] = SwapShort(patch->width)<<FRACBITS;
+      spriteoffset[i] = SwapShort(patch->leftoffset)<<FRACBITS;
+      spritetopoffset[i] = SwapShort(patch->topoffset)<<FRACBITS;
     }
 }
 

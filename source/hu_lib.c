@@ -169,7 +169,7 @@ void HUlib_drawTextLine(hu_textline_t *l, boolean drawcursor)
           else
             if (c != ' ' && c >= l->sc && c <= 127)
               {
-                int w = SHORT(l->f[c - l->sc]->width);
+                int w = SwapShort(l->f[c - l->sc]->width);
                 if (x+w > SCREENWIDTH)
                   break;
                 // killough 1/18/98 -- support multiple lines:
@@ -185,7 +185,7 @@ void HUlib_drawTextLine(hu_textline_t *l, boolean drawcursor)
 
   // draw the cursor if requested
   // killough 1/18/98 -- support multiple lines
-  if (drawcursor && x + SHORT(l->f['_' - l->sc]->width) <= SCREENWIDTH)
+  if (drawcursor && x + SwapShort(l->f['_' - l->sc]->width) <= SCREENWIDTH)
     V_DrawPatchDirect(x, y, FG, l->f['_' - l->sc]);
 }
 
@@ -211,7 +211,7 @@ void HUlib_eraseTextLine(hu_textline_t* l)
 
   if (!automapactive && viewwindowx && l->needsupdate)
     {
-      int yoffset, lh = SHORT(l->f[0]->height) + 1;
+      int yoffset, lh = SwapShort(l->f[0]->height) + 1;
       for (y=l->y,yoffset=y*SCREENWIDTH ; y<l->y+lh ; y++,yoffset+=SCREENWIDTH)
         if (y < viewwindowy || y >= viewwindowy + scaledviewheight) // killough 11/98:
           R_VideoErase(yoffset, SCREENWIDTH); // erase entire line
@@ -255,7 +255,7 @@ void HUlib_initSText(hu_stext_t *s, int x, int y, int h, patch_t **font,
   s->laston = true;
   s->cl = 0;
   for (i=0;i<h;i++)
-    HUlib_initTextLine(s->l+i, x, y - i*(SHORT(font[0]->height)+1),
+    HUlib_initTextLine(s->l+i, x, y - i*(SwapShort(font[0]->height)+1),
                        font, startchar, cr);
 }
 
@@ -528,7 +528,7 @@ static void HUlib_eraseMBg(hu_mtext_t *m)
 
   if (!automapactive && viewwindowx)
     {
-      int yoffset, lh = SHORT(m->l[0].f[0]->height) + 1;
+      int yoffset, lh = SwapShort(m->l[0].f[0]->height) + 1;
       for (y=m->y, yoffset=y*SCREENWIDTH;
            y < m->y+lh*(hud_msg_lines+2);
            y++, yoffset+=SCREENWIDTH)

@@ -169,7 +169,7 @@ void P_InitPicAnims (void)
                  animdefs[i].startname,
                  animdefs[i].endname);
 
-      lastanim->speed = LONG(animdefs[i].speed); // killough 5/5/98: add LONG()
+      lastanim->speed = SwapLong(animdefs[i].speed); // killough 5/5/98: add SwapLong()
       lastanim++;
     }
   Z_ChangeTag (animdefs,PU_CACHE); //jff 3/23/98 allow table to be freed

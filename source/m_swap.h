@@ -41,7 +41,7 @@
 #ifdef __GNUC__
 __inline__
 #endif
-static short SHORT(short x)
+static short SwapShort(short x)
 {
   return (((unsigned char *) &x)[1]<< 8) +
           ((unsigned char *) &x)[0];
@@ -52,7 +52,7 @@ static short SHORT(short x)
 #ifdef __GNUC__
 __inline__
 #endif
-static long LONG(long x)
+static long SwapLong(long x)
 {
   return (((unsigned char *) &x)[3]<<24) +
          (((unsigned char *) &x)[2]<<16) +

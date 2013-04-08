@@ -177,7 +177,7 @@ static void W_AddFile(const char *name) // killough 1/31/98: static, const
       // single lump file
       fileinfo = &singleinfo;
       singleinfo.filepos = 0;
-      singleinfo.size = LONG(W_FileLength(handle));
+      singleinfo.size = SwapLong(W_FileLength(handle));
       ExtractFileBase(filename, singleinfo.name);
       numlumps++;
     }
@@ -188,8 +188,8 @@ static void W_AddFile(const char *name) // killough 1/31/98: static, const
       if (strncmp(header.identification,"IWAD",4) &&
           strncmp(header.identification,"PWAD",4))
         I_Error("Wad file %s doesn't have IWAD or PWAD id\n", filename);
-      header.numlumps = LONG(header.numlumps);
-      header.infotableofs = LONG(header.infotableofs);
+      header.numlumps = SwapLong(header.numlumps);
+      header.infotableofs = SwapLong(header.infotableofs);
       length = header.numlumps*sizeof(filelump_t);
       fileinfo2free = fileinfo = malloc(length);    // killough
       lseek(handle, header.infotableofs, SEEK_SET);
@@ -207,8 +207,8 @@ static void W_AddFile(const char *name) // killough 1/31/98: static, const
     for (i=startlump ; i<numlumps ; i++,lump_p++, fileinfo++)
       {
         lump_p->handle = handle;                    //  killough 4/25/98
-        lump_p->position = LONG(fileinfo->filepos);
-        lump_p->size = LONG(fileinfo->size);
+        lump_p->position = SwapLong(fileinfo->filepos);
+        lump_p->size = SwapLong(fileinfo->size);
         lump_p->data = NULL;                        // killough 1/31/98
         lump_p->namespace = ns_global;              // killough 4/17/98
         strncpy (lump_p->name, fileinfo->name, 8);
@@ -529,8 +529,8 @@ void WritePredefinedLumpWad(const char *filename)
       size_t filepos = sizeof(wadinfo_t) + num_predefined_lumps * sizeof(filelump_t);
       int i;
       
-      header.numlumps     = LONG(num_predefined_lumps);
-      header.infotableofs = LONG(sizeof(header));
+      header.numlumps     = SwapLong(num_predefined_lumps);
+      header.infotableofs = SwapLong(sizeof(header));
       
       // write header
       fwrite(&header, 1, sizeof(header), file);
@@ -540,8 +540,8 @@ void WritePredefinedLumpWad(const char *filename)
       {
          filelump_t fileinfo = { 0 };
          
-         fileinfo.filepos = LONG(filepos);
-         fileinfo.size    = LONG(predefined_lumps[i].size);         
+         fileinfo.filepos = SwapLong(filepos);
+         fileinfo.size    = SwapLong(predefined_lumps[i].size);         
          strncpy(fileinfo.name, predefined_lumps[i].name, 8);
          
          fwrite(&fileinfo, 1, sizeof(fileinfo), file);

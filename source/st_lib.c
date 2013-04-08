@@ -101,8 +101,8 @@ void STlib_drawNum
   int   numdigits = n->width;
   int   num = *n->num;
 
-  int   w = SHORT(n->p[0]->width);
-  int   h = SHORT(n->p[0]->height);
+  int   w = SwapShort(n->p[0]->width);
+  int   h = SwapShort(n->p[0]->height);
   int   x = n->x;
 
   int   neg;
@@ -282,10 +282,10 @@ void STlib_updateMultIcon
   {
     if (mi->oldinum != -1)
     {
-      x = mi->x - SHORT(mi->p[mi->oldinum]->leftoffset);
-      y = mi->y - SHORT(mi->p[mi->oldinum]->topoffset);
-      w = SHORT(mi->p[mi->oldinum]->width);
-      h = SHORT(mi->p[mi->oldinum]->height);
+      x = mi->x - SwapShort(mi->p[mi->oldinum]->leftoffset);
+      y = mi->y - SwapShort(mi->p[mi->oldinum]->topoffset);
+      w = SwapShort(mi->p[mi->oldinum]->width);
+      h = SwapShort(mi->p[mi->oldinum]->height);
 
       if (y - ST_Y < 0)
         I_Error("updateMultIcon: y - ST_Y < 0");
@@ -348,10 +348,10 @@ void STlib_updateBinIcon
 
   if (*bi->on && (bi->oldval != *bi->val || refresh))
   {
-    x = bi->x - SHORT(bi->p->leftoffset);
-    y = bi->y - SHORT(bi->p->topoffset);
-    w = SHORT(bi->p->width);
-    h = SHORT(bi->p->height);
+    x = bi->x - SwapShort(bi->p->leftoffset);
+    y = bi->y - SwapShort(bi->p->topoffset);
+    w = SwapShort(bi->p->width);
+    h = SwapShort(bi->p->height);
 
     if (y - ST_Y < 0)
       I_Error("updateBinIcon: y - ST_Y < 0");

@@ -307,7 +307,7 @@ void F_TextWrite (void)
       continue;
     }
               
-    w = SHORT (hu_font[c]->width);
+    w = SwapShort (hu_font[c]->width);
     if (cx+w > SCREENWIDTH)
       break;
     V_DrawPatch(cx, cy, 0, hu_font[c]);
@@ -533,7 +533,7 @@ void F_CastPrint (char* text)
       continue;
     }
             
-    w = SHORT (hu_font[c]->width);
+    w = SwapShort (hu_font[c]->width);
     width += w;
   }
   
@@ -552,7 +552,7 @@ void F_CastPrint (char* text)
       continue;
     }
               
-    w = SHORT (hu_font[c]->width);
+    w = SwapShort (hu_font[c]->width);
     V_DrawPatch(cx, 180, 0, hu_font[c]);
     cx+=w;
   }
@@ -598,7 +598,7 @@ void F_CastDrawer (void)
 static void F_DrawPatchCol(int x, patch_t *patch, int col)
 {
   const column_t *column = 
-    (const column_t *)((byte *) patch + LONG(patch->columnofs[col]));
+    (const column_t *)((byte *) patch + SwapLong(patch->columnofs[col]));
 
   // step through the posts in a column
   if (hires)
