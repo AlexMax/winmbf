@@ -36,7 +36,9 @@
      #define PATH_MAX _MAX_PATH
   #endif
 #else
-#include <unistd.h>
+  #include <unistd.h>
+  #define TRUE 1
+  #define FALSE 0
 #endif
 
 #endif

@@ -2221,7 +2221,7 @@ typedef unsigned long dword_t;
 typedef long     long_t;
 typedef unsigned char ubyte_t;
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__GNUC__)
 #pragma pack(push, 1)
 #endif
 
@@ -2232,7 +2232,7 @@ typedef struct tagBITMAPFILEHEADER
   uint_t  bfReserved1;
   uint_t  bfReserved2;
   dword_t bfOffBits;
-} __attribute__ ((packed)) BITMAPFILEHEADER;
+} BITMAPFILEHEADER;
 
 typedef struct tagBITMAPINFOHEADER
 {
@@ -2247,9 +2247,9 @@ typedef struct tagBITMAPINFOHEADER
   long_t  biYPelsPerMeter;
   dword_t biClrUsed;
   dword_t biClrImportant;
-} __attribute__ ((packed)) BITMAPINFOHEADER;
+} BITMAPINFOHEADER;
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__GNUC__)
 #pragma pack(pop)
 #endif
 

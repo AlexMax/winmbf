@@ -69,7 +69,7 @@ typedef struct
   int         speed;
 } anim_t;
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__GNUC__)
 #pragma pack(push, 1)
 #endif
 
@@ -82,9 +82,9 @@ typedef struct
   char endname[9];           //  if false, it is a flat
   char startname[9];
   int  speed;
-} __attribute__ ((packed)) animdef_t; //jff 3/23/98 pack to read from memory
+} animdef_t; //jff 3/23/98 pack to read from memory
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__GNUC__)
 #pragma pack(pop)
 #endif
 
