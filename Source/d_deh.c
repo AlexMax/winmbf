@@ -37,6 +37,7 @@ rcsid[] = "$Id: d_deh.c,v 1.20 1998/06/01 22:30:38 thldrmn Exp $";
 #include "sounds.h"
 #include "info.h"
 #include "m_cheat.h"
+#include "m_misc.h"
 #include "p_inter.h"
 #include "g_game.h"
 #include "d_think.h"
