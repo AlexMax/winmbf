@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(WINMBF_DIR Source)
+set(WINMBF_DIR source)
 file(GLOB WINMBF_HEADERS ${WINMBF_DIR}/*.h)
 file(GLOB WINMBF_SOURCES ${WINMBF_DIR}/*.c)
 
