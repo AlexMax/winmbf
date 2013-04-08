@@ -2117,6 +2117,39 @@ int M_ReadFile(char const *name, byte **buffer)
   return 0;
 }
 
+//=============================================================================
+//
+// Portable non-standard libc functions and misc string operations
+//
+
+// haleyjd: portable strupr function
+char *M_Strupr(char *string)
+{
+   char *s = string;
+
+   while(*s)
+   {
+      char c = *s;
+      *s++ = toupper(c);
+   }
+
+   return string;
+}
+
+// haleyjd: portable strlwr function
+char *M_Strlwr(char *string)
+{
+   char *s = string;
+
+   while(*s)
+   {
+      char c = *s;
+      *s++ = tolower(c);
+   }
+
+   return string;
+}
+
 //
 // SCREEN SHOTS
 //

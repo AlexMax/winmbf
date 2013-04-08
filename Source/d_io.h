@@ -39,6 +39,12 @@
   #include <unistd.h>
   #define TRUE 1
   #define FALSE 0
+  #ifndef stricmp
+    #define stricmp strcasecmp
+  #endif
+  #ifndef strnicmp
+    #define strnicmp strncasecmp
+  #endif
 #endif
 
 #endif

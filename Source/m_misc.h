@@ -45,6 +45,12 @@ struct default_s *M_LookupDefault(const char *name);     // killough 11/98
 boolean M_ParseOption(const char *name, boolean wad);    // killough 11/98
 void M_LoadOptions(void);                                // killough 11/98
 
+// haleyjd: Portable versions of common non-standard C functions, as well as
+// some misc string routines that really don't fit anywhere else.
+
+char *M_Strupr(char *string);
+char *M_Strlwr(char *string);
+
 extern int screenshot_pcx;                               // killough 10/98
 
 // phares 4/21/98:
