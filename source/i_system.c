@@ -45,6 +45,7 @@ rcsid[] = "$Id: i_system.c,v 1.14 1998/05/03 22:33:13 killough Exp $";
 #include "w_wad.h"
 #include "v_video.h"
 #include "m_argv.h"
+#include "d_io.h"
 
 ticcmd_t *I_BaseTiccmd(void)
 {
@@ -289,13 +290,59 @@ void I_Error(const char *error, ...) // killough 3/20/98: add const
    }
 }
 
-// killough 2/22/98: Add support for ENDBOOM, which is PC-specific
-// killough 8/1/98: change back to ENDOOM
+// haleyjd: made everything optional
+int showendoom = 1;
+int endoomdelay = 350;
 
+//
+// I_EndDoom
+//
+// killough 2/22/98: Add support for ENDBOOM, which is PC-specific
+// killough 8/1/98:  change back to ENDOOM
+// haleyjd 10/09/05: ENDOOM emulation thanks to fraggle and
+//                   Chocolate DOOM!
+//
 void I_EndDoom(void)
 {
-   // haleyjd
-   puts("\nWinMBF exiting.\n");
+   unsigned char *endoom_data;
+   unsigned char *screendata;
+   int start_ms;
+   int waiting;
+   
+   // haleyjd: allow ENDOOM disable in configuration.
+   if(!showendoom)
+      return;
+   
+   endoom_data = W_CacheLumpName("ENDOOM", PU_STATIC);
+   
+   // Set up text mode screen   
+   if(!TXT_Init())
+      return;
+   
+   // Make sure the new window has the right title and icon
+   SDL_WM_SetCaption("WinMBF exiting.", NULL);
+   
+   // Write the data to the screen memory   
+   screendata = (unsigned char*)TXT_GetScreenData();
+   memcpy(screendata, endoom_data, 4000);
+   
+   // Wait for 10 seconds, or until a keypress or mouse click
+   // haleyjd: delay period specified in config (default = 350)
+   waiting = TRUE;
+   start_ms = I_GetTime();
+   
+   while(waiting && I_GetTime() < start_ms + endoomdelay)
+   {
+      TXT_UpdateScreen();
+
+      if(TXT_GetChar() > 0)
+         waiting = FALSE;
+
+      TXT_Sleep(1);
+   }
+   
+   // Shut down text mode screen   
+   TXT_Shutdown();
 }
 
 //----------------------------------------------------------------------------
