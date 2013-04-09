@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 2.8)
 
+include(CheckFunctionExists)
+
 set(WINMBF_DIR source)
 file(GLOB WINMBF_HEADERS ${WINMBF_DIR}/*.h)
 file(GLOB WINMBF_SOURCES ${WINMBF_DIR}/*.c)
 
 include_directories(${COMMON_DIR} ${CLIENT_DIR})
+
+check_function_exists(sched_setaffinity HAVE_SCHED_SETAFFINITY)
+if(HAVE_SCHED_SETAFFINITY)
+  add_definitions(-DHAVE_SCHED_SETAFFINITY)
+endif()
 
 find_package(SDL)
 if(SDL_FOUND)
