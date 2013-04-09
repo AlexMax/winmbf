@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: p_lights.c,v 1.11 1998/05/18 09:04:41 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -28,8 +26,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: p_lights.c,v 1.11 1998/05/18 09:04:41 jim Exp $";
 
 #include "doomstat.h" //jff 5/18/98
 #include "doomdef.h"

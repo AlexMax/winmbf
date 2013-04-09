@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: r_sky.c,v 1.6 1998/05/03 23:01:06 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -30,8 +28,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: r_sky.c,v 1.6 1998/05/03 23:01:06 killough Exp $";
 
 #include "r_sky.h"
 

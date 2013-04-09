@@ -1,7 +1,5 @@
 //-----------------------------------------------------------------------------
 //
-// $Id: mmus2mid.h,v 1.6 1998/05/10 23:00:48 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //

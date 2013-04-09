@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: p_mobj.c,v 1.26 1998/05/16 00:24:12 phares Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,8 +24,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: p_mobj.c,v 1.26 1998/05/16 00:24:12 phares Exp $";
 
 #include "doomdef.h"
 #include "doomstat.h"

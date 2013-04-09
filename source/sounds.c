@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: sounds.c,v 1.3 1998/05/03 22:44:25 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -28,8 +26,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: sounds.c,v 1.3 1998/05/03 22:44:25 killough Exp $";
 
 // killough 5/3/98: reformatted
 

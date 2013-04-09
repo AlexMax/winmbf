@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: r_things.c,v 1.22 1998/05/03 22:46:41 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -27,8 +25,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: r_things.c,v 1.22 1998/05/03 22:46:41 killough Exp $";
 
 #include "doomstat.h"
 #include "w_wad.h"

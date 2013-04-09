@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: m_argv.c,v 1.5 1998/05/03 22:51:40 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -25,8 +23,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: m_argv.c,v 1.5 1998/05/03 22:51:40 killough Exp $";
 
 #include "d_io.h"
 #include <string.h>

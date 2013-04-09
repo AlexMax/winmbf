@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: p_plats.c,v 1.16 1998/05/08 17:44:18 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,8 +24,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: p_plats.c,v 1.16 1998/05/08 17:44:18 jim Exp $";
 
 #include "doomstat.h"
 #include "m_random.h"

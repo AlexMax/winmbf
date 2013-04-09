@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: z_zone.c,v 1.13 1998/05/12 06:11:55 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -34,7 +32,6 @@
 // statistics and tunables.
 //-----------------------------------------------------------------------------
 
-static const char rcsid[] = "$Id: z_zone.c,v 1.13 1998/05/12 06:11:55 killough Exp $";
 
 #include "z_zone.h"
 #include "doomstat.h"

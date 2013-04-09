@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: g_game.c,v 1.59 1998/06/03 20:23:10 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -25,8 +23,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: g_game.c,v 1.59 1998/06/03 20:23:10 killough Exp $";
 
 #include <time.h>
 #include <stdarg.h>

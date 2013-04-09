@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: hu_stuff.c,v 1.27 1998/05/10 19:03:41 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -25,8 +23,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: hu_stuff.c,v 1.27 1998/05/10 19:03:41 jim Exp $";
 
 // killough 5/3/98: remove unnecessary headers
 

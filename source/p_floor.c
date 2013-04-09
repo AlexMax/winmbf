@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: p_floor.c,v 1.23 1998/05/23 10:23:16 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -27,8 +25,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: p_floor.c,v 1.23 1998/05/23 10:23:16 jim Exp $";
 
 #include "doomstat.h"
 #include "r_main.h"

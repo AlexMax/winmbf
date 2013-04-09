@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: d_items.c,v 1.4 1998/05/04 21:34:09 thldrmn Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -25,8 +23,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: d_items.c,v 1.4 1998/05/04 21:34:09 thldrmn Exp $";
 
 // We are referring to sprite numbers.
 #include "info.h"

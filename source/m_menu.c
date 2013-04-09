@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: m_menu.c,v 1.54 1998/05/28 05:27:13 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -30,8 +28,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: m_menu.c,v 1.54 1998/05/28 05:27:13 killough Exp $";
 
 #include <fcntl.h>
 #include "d_io.h" // haleyjd

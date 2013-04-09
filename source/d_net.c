@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: d_net.c,v 1.12 1998/05/21 12:12:09 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,9 +24,6 @@
 //      all OS independend parts.
 //
 //-----------------------------------------------------------------------------
-
-static const char rcsid[] =
-"$Id: d_net.c,v 1.12 1998/05/21 12:12:09 jim Exp $";
 
 #include "doomstat.h"
 #include "m_menu.h"

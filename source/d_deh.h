@@ -1,7 +1,5 @@
 //--------------------------------------------------------------------
 //
-// $Id: d_deh.h,v 1.5 1998/05/04 21:36:33 thldrmn Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //

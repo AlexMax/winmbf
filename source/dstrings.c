@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: dstrings.c,v 1.5 1998/05/04 21:34:24 thldrmn Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,8 +24,6 @@
 // 
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: dstrings.c,v 1.5 1998/05/04 21:34:24 thldrmn Exp $";
 
 #include "dstrings.h"
 

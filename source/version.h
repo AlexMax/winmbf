@@ -1,7 +1,5 @@
 //-----------------------------------------------------------------------------
 //
-// $Id: version.h,v 1.3 1998/04/20 13:29:58 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //

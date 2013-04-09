@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: p_pspr.c,v 1.13 1998/05/07 00:53:36 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -27,8 +25,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: p_pspr.c,v 1.13 1998/05/07 00:53:36 killough Exp $";
 
 #include "doomstat.h"
 #include "r_main.h"

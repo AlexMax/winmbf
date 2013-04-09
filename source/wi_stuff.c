@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: wi_stuff.c,v 1.11 1998/05/04 21:36:02 thldrmn Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -27,8 +25,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: wi_stuff.c,v 1.11 1998/05/04 21:36:02 thldrmn Exp $";
 
 #include "doomstat.h"
 #include "m_random.h"

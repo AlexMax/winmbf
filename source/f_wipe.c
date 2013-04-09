@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: f_wipe.c,v 1.3 1998/05/03 22:11:24 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,7 +24,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char rcsid[] = "$Id: f_wipe.c,v 1.3 1998/05/03 22:11:24 killough Exp $";
 
 #include "doomdef.h"
 #include "i_video.h"

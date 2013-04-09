@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: d_main.c,v 1.47 1998/05/16 09:16:51 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -29,7 +27,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char rcsid[] = "$Id: d_main.c,v 1.47 1998/05/16 09:16:51 killough Exp $";
 
 #include "d_io.h" // haleyjd
 

@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: m_random.c,v 1.6 1998/05/03 23:13:18 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -32,7 +30,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char rcsid[] = "$Id: m_random.c,v 1.6 1998/05/03 23:13:18 killough Exp $";
 
 #include "doomstat.h"
 #include "m_random.h"

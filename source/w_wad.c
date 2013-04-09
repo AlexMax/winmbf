@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: w_wad.c,v 1.20 1998/05/06 11:32:00 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,8 +24,6 @@
 //
 //-----------------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: w_wad.c,v 1.20 1998/05/06 11:32:00 jim Exp $";
 
 #include "doomstat.h"
 #include "d_io.h"

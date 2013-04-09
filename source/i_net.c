@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: i_net.c,v 1.4 1998/05/16 09:41:03 jim Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -29,8 +27,6 @@
 
 #include "z_zone.h"  /* memory allocation wrappers -- killough */
 
-static const char
-rcsid[] = "$Id: i_net.c,v 1.4 1998/05/16 09:41:03 jim Exp $";
 
 #include "doomstat.h"
 #include "i_system.h"

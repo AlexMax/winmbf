@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: d_deh.c,v 1.20 1998/06/01 22:30:38 thldrmn Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -28,8 +26,6 @@
 //
 //--------------------------------------------------------------------
 
-static const char
-rcsid[] = "$Id: d_deh.c,v 1.20 1998/06/01 22:30:38 thldrmn Exp $";
 
 // killough 5/2/98: fixed headers, removed rendunant external declarations:
 #include "doomdef.h"

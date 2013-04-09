@@ -1,8 +1,6 @@
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: f_finale.c,v 1.16 1998/05/10 23:39:25 killough Exp $
-//
 //  Copyright (C) 1999 by
 //  id Software, Chi Hoang, Lee Killough, Jim Flynn, Rand Phares, Ty Halderman
 //
@@ -26,9 +24,6 @@
 //
 //-----------------------------------------------------------------------------
 
-
-static const char
-rcsid[] = "$Id: f_finale.c,v 1.16 1998/05/10 23:39:25 killough Exp $";
 
 #include "doomstat.h"
 #include "d_event.h"
