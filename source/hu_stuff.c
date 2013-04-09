@@ -509,12 +509,15 @@ void HU_Start(void)
 		  hu_msgbg, &message_list_on);      // killough 11/98
 
   // initialize the automap's level title widget
+  // [AM] Not if doing so would access mapnames out-of-bounds...
 
-  s = gamemode != commercial ? HU_TITLE : gamemission == pack_tnt ?
-    HU_TITLET : gamemission == pack_plut ? HU_TITLEP : HU_TITLE2;
+  if (gamemap) {
+    s = gamemode != commercial ? HU_TITLE : gamemission == pack_tnt ?
+      HU_TITLET : gamemission == pack_plut ? HU_TITLEP : HU_TITLE2;
 
-  while (*s)
-    HUlib_addCharToTextLine(&w_title, *s++);
+    while (*s)
+      HUlib_addCharToTextLine(&w_title, *s++);
+  }
 
   // create the automaps coordinate widget
   // jff 3/3/98 split coord widget into three lines: x,y,z
