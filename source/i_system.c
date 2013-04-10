@@ -287,8 +287,8 @@ void I_Error(const char *error, ...) // killough 3/20/98: add const
 }
 
 // haleyjd: made everything optional
-int showendoom = 1;
-int endoomdelay = 350;
+int showendoom;
+int endoomdelay;
 
 //
 // I_EndDoom

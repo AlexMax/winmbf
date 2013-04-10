@@ -72,6 +72,8 @@ extern int leds_always_off;            // killough 3/6/98
 extern int tran_filter_pct;            // killough 2/21/98
 extern int screenblocks;
 extern int showMessages;
+extern int showendoom;
+extern int endoomdelay;
 
 #ifdef MY_SDL_VER
 extern int i_SDLJoystickNum;
@@ -1657,6 +1659,20 @@ default_t defaults[] = {
     "1 to perform aspect ratio correction"
   },
 #endif
+
+  {
+    "showendoom",
+    &showendoom, NULL,
+    1, {0, 1}, number, ss_none, wad_no,
+    "1 to show ENDOOM at exit"
+  },
+
+  {
+    "endoomdelay",
+    &endoomdelay, NULL,
+    350, {35, 3500}, number, ss_none, wad_no,
+    "Amount of time to display ENDOOM when shown"
+  },
 
   {NULL}         // last entry
 };

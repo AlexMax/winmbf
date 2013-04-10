@@ -3020,7 +3020,9 @@ enum {
   general_transpct,
   general_pcx,
   general_diskicon,
-  general_hom
+  general_hom,
+  general_endoom,
+  general_endoomdelay
 };
 
 enum {
@@ -3032,15 +3034,15 @@ enum {
 };
 
 #define G_X 250
-#define G_Y  44
-#define G_Y2 (G_Y+82)
+#define G_Y  40
+#define G_Y2 (G_Y+90)
 #define G_Y3 (G_Y+44)
 #define G_Y4 (G_Y3+52)
 #define GF_X 76
 
 setup_menu_t gen_settings1[] = { // General Settings screen1
 
-  {"Video"       ,S_SKIP|S_TITLE, m_null, G_X, G_Y - 12},
+  {"Video"       ,S_SKIP|S_TITLE, m_null, G_X, G_Y - 8},
 
   {"High Resolution", S_YESNO, m_null, G_X, G_Y + general_hires*8,
    {"hires"}, 0, 0, I_ResetScreen},
@@ -3066,7 +3068,13 @@ setup_menu_t gen_settings1[] = { // General Settings screen1
   {"Flashing HOM indicator", S_YESNO, m_null, G_X,
    G_Y + general_hom*8, {"flashing_hom"}},
 
-  {"Sound & Music", S_SKIP|S_TITLE, m_null, G_X, G_Y2 - 12},
+  {"Show ENDOOM", S_YESNO, m_null, G_X,
+   G_Y + general_endoom*8, {"showendoom"}},
+
+  {"ENDOOM delay (ms)", S_NUM, m_null, G_X,
+   G_Y + general_endoomdelay*8, {"endoomdelay"}},
+
+  {"Sound & Music", S_SKIP|S_TITLE, m_null, G_X, G_Y2 - 8},
 
   {"Sound Card", S_NUM|S_PRGWARN, m_null, G_X,
    G_Y2 + general_sndcard*8, {"sound_card"}},
@@ -3113,7 +3121,7 @@ enum {
 
 setup_menu_t gen_settings2[] = { // General Settings screen2
 
-  {"Input Devices"     ,S_SKIP|S_TITLE, m_null, G_X, G_Y - 12},
+  {"Input Devices"     ,S_SKIP|S_TITLE, m_null, G_X, G_Y - 8},
 
   {"Enable Mouse", S_YESNO, m_null, G_X,
    G_Y + general_mouse*8, {"use_mouse"}},
