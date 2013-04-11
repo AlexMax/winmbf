@@ -1663,14 +1663,14 @@ default_t defaults[] = {
   {
     "showendoom",
     &showendoom, NULL,
-    1, {0, 1}, number, ss_none, wad_no,
+    1, {0, 1}, number, ss_gen, wad_no,
     "1 to show ENDOOM at exit"
   },
 
   {
     "endoomdelay",
     &endoomdelay, NULL,
-    350, {35, 3500}, number, ss_none, wad_no,
+    350, {35, 3500}, number, ss_gen, wad_no,
     "Amount of time to display ENDOOM when shown"
   },
 
