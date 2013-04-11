@@ -13,7 +13,12 @@ set(WINMBF_DIR source)
 file(GLOB WINMBF_HEADERS ${WINMBF_DIR}/*.h)
 file(GLOB WINMBF_SOURCES ${WINMBF_DIR}/*.c)
 
-include_directories(${COMMON_DIR} ${CLIENT_DIR})
+if(APPLE)
+  file(GLOB APPLE_HEADERS ${WINMBF_DIR}/apple/*.h)
+  file(GLOB APPLE_SOURCES ${WINMBF_DIR}/apple/*.m)
+  set(WINMBF_HEADERS ${WINMBF_HEADERS} ${APPLE_HEADERS})
+  set(WINMBF_SOURCES ${WINMBF_SOURCES} ${APPLE_SOURCES})
+endif()
 
 set(TEXTSCREEN_LIBRARY "textscreen")
 set(TEXTSCREEN_DIR textscreen)
