@@ -60,6 +60,7 @@
 #include "r_main.h"
 #include "d_main.h"
 #include "d_deh.h"  // Ty 04/08/98 - Externalizations
+#include "lua_main.h"
 
 // DEHacked support - Ty 03/09/97
 // killough 10/98:
@@ -1480,6 +1481,9 @@ void D_DoomMain(void)
 
   puts("S_Init: Setting up sound.");
   S_Init(snd_SfxVolume /* *8 */, snd_MusicVolume /* *8*/ );
+
+  puts("LUA_Init: Init Lua.\n");
+  LUA_Init();
 
   puts("HU_Init: Setting up heads up display.");
   HU_Init();
