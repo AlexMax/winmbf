@@ -15687,6 +15687,9 @@ const lumpinfo_t predefined_lumps[]={
   { "CRORANGE", sizeof cr_orange,cr_orange},  // jff 4/24/98 orange color range
   { "CRYELLOW", sizeof cr_yellow,cr_yellow},  // jff 4/24/98 yellow color range
   { "MBFTEXT",  sizeof mbftext, mbftext},     // killough 11/98: mbf title text
+
+  { "L_START"}, // [AM] Default Gamescript markers
+  { "L_END"},   // [AM] Default Gamescript markers
 };
 
 // Calculate how many of them there are

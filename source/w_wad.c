@@ -420,6 +420,9 @@ void W_InitMultipleFiles(char *const *filenames)
   // killough 4/4/98: add colormap markers
   W_CoalesceMarkedResource("C_START", "C_END", ns_colormaps);
 
+  // [AM] LUA scripts!
+  W_CoalesceMarkedResource("L_START", "L_END", ns_gamescripts);
+
   // set up caching
   lumpcache = calloc(sizeof *lumpcache, numlumps); // killough
 

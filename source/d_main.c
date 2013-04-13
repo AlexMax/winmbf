@@ -1482,7 +1482,7 @@ void D_DoomMain(void)
   puts("S_Init: Setting up sound.");
   S_Init(snd_SfxVolume /* *8 */, snd_MusicVolume /* *8*/ );
 
-  puts("LUA_Init: Init Lua.\n");
+  puts("LUA_Init: Init Lua.");
   LUA_Init();
 
   puts("HU_Init: Setting up heads up display.");

@@ -26,15 +26,31 @@
 
 
 #include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
 
+#include "doomtype.h"
 #include "z_zone.h"
+
+static int LUA_Hello(lua_State* L)
+{
+	puts("Hello, world!");
+	return 0;
+}
+
+static const luaL_Reg doomlib_funcs[] =
+{
+	{"hello", LUA_Hello},
+	{NULL, NULL},
+};
 
 lua_State* lua;
 
 /**
  * lua_Alloc implementation which uses zone memory allocator.
  */
-static void* LUA_Alloc(void* ud, void* ptr, size_t osize, size_t nsize) {
+static void* LUA_Alloc(void* ud, void* ptr, size_t osize, size_t nsize)
+{
 	(void)ud; (void)osize;
 	if (nsize == 0) {
 		free(ptr);
@@ -47,17 +63,77 @@ static void* LUA_Alloc(void* ud, void* ptr, size_t osize, size_t nsize) {
 /**
  * Panic function, run if a Lua error occurs outside of a protected environment.
  */
-static int LUA_Panic(lua_State *L) {
+static int LUA_Panic(lua_State *L)
+{
 	luai_writestringerror("PANIC: unprotected error in call to Lua API (%s)\n", lua_tostring(L, -1));
 	return 0;
 }
 
-void LUA_Init() {
+/**
+ * Load game scripts from a WAD file.
+ */
+void LUA_InitScripts()
+{
+	byte* script;
+	const char* error;
+	int scriptstart, scriptend, numscripts, size, i;
+
+	scriptstart = W_GetNumForName("L_START") + 1;
+	scriptend = W_GetNumForName("L_END") - 1;
+	numscripts = scriptend - scriptstart + 1;
+
+	for (i = 0;i < numscripts;i++)
+	{
+		size = W_LumpLength(scriptstart);
+		if (size == 0)
+			continue;
+
+		script = (byte*)W_CacheLumpNum(scriptstart + i, PU_STATIC);
+		realloc(script, size + 1);
+		script[size] = 0;
+
+		if (luaL_loadstring(lua, script) != LUA_OK)
+		{
+			error = lua_tostring(lua, -1);
+			I_Error("Lua load error: %s", error);
+		}
+
+		if (lua_pcall(lua, 0, 0, 0) != LUA_OK)
+		{
+			error = lua_tostring(lua, -1);
+			I_Error("Lua runtime error: %s", error);
+		}
+	}
+}
+
+/**
+ * Load 'doom' library.
+ */
+int luaopen_doomlib(lua_State* L)
+{
+	luaL_newlib(L, doomlib_funcs);
+	return 1;
+}
+
+/**
+ * Initialize LUA scripts.
+ */
+void LUA_Init()
+{
 	lua = lua_newstate(LUA_Alloc, NULL);
 	if (lua)
 		lua_atpanic(lua, &LUA_Panic);
+
+	luaL_requiref(lua, "_G", luaopen_base, 1);
+	luaL_requiref(lua, "doom", luaopen_doomlib, 1);
+
+	LUA_InitScripts();
 }
 
-void LUA_Free() {
+/**
+ * Close LUA state.
+ */
+void LUA_Free()
+{
 	lua_close(lua);
 }
