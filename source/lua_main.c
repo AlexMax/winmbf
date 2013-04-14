@@ -24,7 +24,6 @@
 //
 //-----------------------------------------------------------------------------
 
-
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
@@ -32,15 +31,11 @@
 #include "doomtype.h"
 #include "z_zone.h"
 
-static int LUA_Hello(lua_State* L)
-{
-	puts("Hello, world!");
-	return 0;
-}
+#include "lua_events.h"
 
-static const luaL_Reg doomlib_funcs[] =
-{
-	{"hello", LUA_Hello},
+static const luaL_Reg loadedlibs[] = {
+	{"_G", luaopen_base},
+	{"events", luaopen_events},
 	{NULL, NULL},
 };
 
@@ -72,7 +67,7 @@ static int LUA_Panic(lua_State *L)
 /**
  * Load game scripts from a WAD file.
  */
-void LUA_InitScripts()
+static void LUA_InitScripts()
 {
 	byte* script;
 	const char* error;
@@ -107,25 +102,20 @@ void LUA_InitScripts()
 }
 
 /**
- * Load 'doom' library.
- */
-int luaopen_doomlib(lua_State* L)
-{
-	luaL_newlib(L, doomlib_funcs);
-	return 1;
-}
-
-/**
  * Initialize LUA scripts.
  */
 void LUA_Init()
 {
+	const luaL_Reg *lib;
+
 	lua = lua_newstate(LUA_Alloc, NULL);
 	if (lua)
 		lua_atpanic(lua, &LUA_Panic);
 
-	luaL_requiref(lua, "_G", luaopen_base, 1);
-	luaL_requiref(lua, "doom", luaopen_doomlib, 1);
+	for (lib = loadedlibs; lib->func; lib++) {
+		luaL_requiref(lua, lib->name, lib->func, 1);
+		lua_pop(lua, 1);
+	}
 
 	LUA_InitScripts();
 }

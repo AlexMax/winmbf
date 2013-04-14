@@ -40,6 +40,7 @@
 #include "p_tick.h"
 #include "p_enemy.h"
 #include "s_sound.h"
+#include "lua_events.h"
 
 //
 // MAP related Lookup tables.
@@ -991,6 +992,9 @@ void P_SetupLevel(int episode, int map, int playermask, skill_t skill)
 
   // set up world state
   P_SpawnSpecials();
+
+  // [AM] Dispatch "open" events
+  LUA_EmitEvent(SE_OPEN, lumpname);
 
   // preload graphics
   if (precache)

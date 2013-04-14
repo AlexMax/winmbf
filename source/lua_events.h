@@ -20,17 +20,26 @@
 //  02111-1307, USA.
 //
 // DESCRIPTION:
-//      Lua interface.
+//      Lua event handler.
 //
 //-----------------------------------------------------------------------------
 
-#ifndef __LUA_MAIN__
-#define __LUA_MAIN__
+#ifndef __LUA_EVENTS__
+#define __LUA_EVENTS__
 
 #include "lua.h"
 
-void LUA_Init();
+typedef enum
+{
+	SE_OPEN,
+	SE_ENTER,
+	SE_RESPAWN,
+	SE_DEATH,
+	SE_DISCONNECT,
+	MAXSEVENTS
+} scriptevent_t;
 
-extern lua_State* lua;
+int luaopen_events(lua_State* L);
+void LUA_EmitEvent(scriptevent_t event, char* lumpname);
 
 #endif
