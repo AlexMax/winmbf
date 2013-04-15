@@ -88,16 +88,10 @@ static void LUA_InitScripts()
 		script[size] = 0;
 
 		if (luaL_loadstring(lua, script) != LUA_OK)
-		{
-			error = lua_tostring(lua, -1);
-			I_Error("Lua load error: %s", error);
-		}
+			I_Error("Lua load error: %s", lua_tostring(lua, -1));
 
 		if (lua_pcall(lua, 0, 0, 0) != LUA_OK)
-		{
-			error = lua_tostring(lua, -1);
-			I_Error("Lua runtime error: %s", error);
-		}
+			I_Error("Lua runtime error: %s", lua_tostring(lua, -1));
 	}
 }
 

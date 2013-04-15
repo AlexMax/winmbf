@@ -126,7 +126,12 @@ static int eventslib_listeners(lua_State* L)
  */
 static int eventslib_emit(lua_State* L)
 {
+	int nargs, i;
+
 	luaL_checkstring(L, 1);
+
+	// Number of arguments to be passed to all event functions.
+	nargs = lua_gettop(L) - 1;
 
 	// Get the table of event types out of the registry.
 	lua_pushlightuserdata(L, (void*)&registrykey);
@@ -144,8 +149,10 @@ static int eventslib_emit(lua_State* L)
 	lua_pushnil(L);
 	while (lua_next(L, -2) != 0)
 	{
-		lua_pcall(L, 0, 1, 0);
-		lua_pop(L, 1);
+		for (i = 1;i <= nargs;i++)
+			lua_pushvalue(L, 1 + i);
+		if (lua_pcall(L, nargs, 0, 0) != LUA_OK)
+			I_Error("Lua runtime error: %s", lua_tostring(lua, -1));
 	}
 
 	return 0;
@@ -161,16 +168,32 @@ static const luaL_Reg eventslib[] =
 	{NULL, NULL},
 };
 
+/**
+ * Load the events library.
+ */
 int luaopen_events(lua_State* L)
 {
 	luaL_newlib(L, eventslib);
 	return 1;
 }
 
+/**
+ * Emit an event of a given type.
+ * 
+ * @param event    Type of event to emit.
+ * @param lumpname Map lump to emit the event for.
+ */
 void LUA_EmitEvent(scriptevent_t event, char* lumpname)
 {
+	// Call events.emit() for a specific class of events, passing the
+	// map lump in as its first argument to every event function and
+	// discarding the results of them.
 	lua_getglobal(lua, "events");
 	lua_getfield(lua, -1, "emit");
 	lua_pushstring(lua, scripteventnames[event]);
-	lua_pcall(lua, 1, 0, 0);
+	lua_pushstring(lua, lumpname);
+	lua_pcall(lua, 2, 0, 0);
+
+	// Balance the stack.
+	lua_pop(lua, 1);
 }
