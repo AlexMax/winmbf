@@ -32,10 +32,12 @@
 #include "z_zone.h"
 
 #include "lua_events.h"
+#include "lua_mobj.h"
 
 static const luaL_Reg loadedlibs[] = {
 	{"_G", luaopen_base},
 	{"events", luaopen_events},
+	{"mobj", luaopen_mobj},
 	{NULL, NULL},
 };
 
