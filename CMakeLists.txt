@@ -3,19 +3,27 @@ cmake_minimum_required(VERSION 2.8)
 project(WinMBF)
 
 include(CheckFunctionExists)
+include(CheckIncludeFiles)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 check_function_exists(sched_setaffinity HAVE_SCHED_SETAFFINITY)
-if(HAVE_SCHED_SETAFFINITY)
-  add_definitions(-DHAVE_SCHED_SETAFFINITY)
-endif()
+check_include_files(malloc.h HAVE_MALLOC_H)
 
 set(WINMBF_DIR source)
 file(GLOB WINMBF_HEADERS ${WINMBF_DIR}/*.h)
 file(GLOB WINMBF_SOURCES ${WINMBF_DIR}/*.c)
 
-include_directories(${COMMON_DIR} ${CLIENT_DIR})
+configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+set(WINMBF_HEADERS ${WINMBF_HEADERS} ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+
+if(APPLE)
+  file(GLOB APPLE_HEADERS ${WINMBF_DIR}/apple/*.h)
+  file(GLOB APPLE_SOURCES ${WINMBF_DIR}/apple/*.m)
+  set(WINMBF_HEADERS ${WINMBF_HEADERS} ${APPLE_HEADERS})
+  set(WINMBF_SOURCES ${WINMBF_SOURCES} ${APPLE_SOURCES})
+endif()
 
 set(TEXTSCREEN_LIBRARY "textscreen")
 set(TEXTSCREEN_DIR textscreen)

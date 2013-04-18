@@ -21,13 +21,17 @@
 //
 //-----------------------------------------------------------------------------
 
+#include "config.h"
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifdef HAVE_MALLOC_H
 #include <malloc.h>
+#endif
 #ifdef DJGPP // proff: I don't use allegro in windows
 #include <allegro.h>
 #endif // DJGPP

@@ -24,6 +24,7 @@
 //
 //-----------------------------------------------------------------------------
 
+#include "config.h"
 
 #include "SDL.h" // haleyjd
 
@@ -175,6 +176,11 @@ int main(int argc, char **argv)
    else if(M_CheckParm("-gdi") > 0 || getenv("SDL_VIDEODRIVER") == NULL)
       putenv("SDL_VIDEODRIVER=windib");
 #endif
+
+   // [AM] Don't create an SDL window.  Still draws and blits to a
+   //      dummy buffer, though.
+   if (M_CheckParm("-novideo"))
+      putenv("SDL_VIDEODRIVER=dummy");
 
    // haleyjd: init SDL
    if(SDL_Init(INIT_FLAGS) == -1)
