@@ -81,7 +81,7 @@ static void LUA_InitScripts()
 
 	for (i = 0;i < numscripts;i++)
 	{
-		size = W_LumpLength(scriptstart);
+		size = W_LumpLength(scriptstart + i);
 		if (size == 0)
 			continue;
 
