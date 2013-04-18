@@ -31,185 +31,134 @@
 
 static int mobjlib_spawn(lua_State* L)
 {
+	mobjinfo_t* mobj;
 	double x, y, z;
-	mobjtype_t type;
-	mobj_t* mobj;
 
-	x = luaL_checknumber(L, 1);
-	y = luaL_checknumber(L, 2);
-	z = luaL_checknumber(L, 3);
-	type = luaL_checkinteger(L, 4);
+	mobj = luaL_checkudata(L, 1, "Doom.mobj");
 
-	mobj = P_SpawnMobj(x * FRACUNIT, y * FRACUNIT, z * FRACUNIT, type);
+	x = luaL_checknumber(L, 2);
+	y = luaL_checknumber(L, 3);
+	z = luaL_checknumber(L, 4);
 
-	lua_pushlightuserdata(L, mobj);
-	return 1;
-}
-
-static int mobjlib_remove(lua_State* L)
-{
 	return 0;
 }
 
-static const luaL_Reg mobjlib[] =
+static const luaL_Reg mobjlib_methods[] =
 {
 	{"spawn", mobjlib_spawn},
-	{"remove", mobjlib_remove},
 	{NULL, NULL},
 };
 
-#define LUA_ENUM(L, name, val) \
-        lua_pushlstring(L, #name, sizeof(#name)-1); \
-        lua_pushnumber(L, val); \
-        lua_settable(L, -3);
+static int mobjlib_new(lua_State* L)
+{
+	int success, doomednum, spawnhealth, reactiontime, painchance, speed, mass, damage;
+	double radius, height;
+	mobjinfo_t* mobj;
+
+	// We must have a constructor table with appropriate types.
+	// [AM] TODO: Support subclassing and empty.
+	luaL_checktype(L, 1, LUA_TTABLE);
+
+	// doomednum
+	lua_getfield(L, -1, "doomednum");
+	doomednum = lua_tointegerx(L, -1, &success);
+	if (!success)
+		doomednum = -1; // default
+	lua_pop(L, 1);
+
+	// spawnhealth
+	lua_getfield(L, -1, "spawnhealth");
+	spawnhealth = lua_tointegerx(L, -1, &success);
+	if (!success)
+		spawnhealth = 1000; // default
+	lua_pop(L, 1);
+
+	// reactiontime
+	lua_getfield(L, -1, "reactiontime");
+	reactiontime = lua_tointegerx(L, -1, &success);
+	if (!success)
+		reactiontime = 8; // default
+	lua_pop(L, 1);
+
+	// painchance
+	lua_getfield(L, -1, "painchance");
+	painchance = lua_tointegerx(L, -1, &success);
+	if (!success)
+		painchance = 0; // default
+	lua_pop(L, 1);
+
+	// speed
+	lua_getfield(L, -1, "speed");
+	speed = lua_tointegerx(L, -1, &success);
+	if (!success)
+		speed = 0; // default
+	lua_pop(L, 1);
+
+	// radius
+	lua_getfield(L, -1, "radius");
+	radius = lua_tonumberx(L, -1, &success);
+	if (!success)
+		radius = 20.0; // default
+	lua_pop(L, 1);
+
+	// height
+	lua_getfield(L, -1, "height");
+	height = lua_tonumberx(L, -1, &success);
+	if (!success)
+		height = 16.0; // default
+	lua_pop(L, 1);
+
+	// mass
+	lua_getfield(L, -1, "mass");
+	mass = lua_tointegerx(L, -1, &success);
+	if (!success)
+		mass = 100; // default
+	lua_pop(L, 1);
+
+	// damage
+	lua_getfield(L, -1, "damage");
+	damage = lua_tointegerx(L, -1, &success);
+	if (!success)
+		damage = 0; // default
+	lua_pop(L, 1);
+
+	mobj = lua_newuserdata(L, sizeof(mobjinfo_t));
+	mobj->doomednum = doomednum;
+	mobj->spawnhealth = spawnhealth;
+	mobj->reactiontime = reactiontime;
+	mobj->painchance = painchance;
+	mobj->speed = speed;
+	mobj->radius = (int)(radius * (double)FRACUNIT);
+	mobj->height = (int)(height * (double)FRACUNIT);
+	mobj->mass = mass;
+	mobj->damage = damage;
+
+	luaL_getmetatable(L, "Doom.mobj");
+	lua_setmetatable(L, -2);
+
+	return 1;
+}
+
+static const luaL_Reg mobjlib_functions[] =
+{
+	{"new", mobjlib_new},
+	{NULL, NULL},
+};
 
 /**
  * Load the mobj library
  */
 int luaopen_mobj(lua_State* L)
 {
-	luaL_newlib(L, mobjlib);
+	// Userdata metatables
+	luaL_newmetatable(L, "Doom.mobj");
 
-	// Default mobj types, eventually define these elsewhere.
-	LUA_ENUM(L, MT_PLAYER, MT_PLAYER);
-	LUA_ENUM(L, MT_POSSESSED, MT_POSSESSED);
-	LUA_ENUM(L, MT_SHOTGUY, MT_SHOTGUY);
-	LUA_ENUM(L, MT_VILE, MT_VILE);
-	LUA_ENUM(L, MT_FIRE, MT_FIRE);
-	LUA_ENUM(L, MT_UNDEAD, MT_UNDEAD);
-	LUA_ENUM(L, MT_TRACER, MT_TRACER);
-	LUA_ENUM(L, MT_SMOKE, MT_SMOKE);
-	LUA_ENUM(L, MT_FATSO, MT_FATSO);
-	LUA_ENUM(L, MT_FATSHOT, MT_FATSHOT);
-	LUA_ENUM(L, MT_CHAINGUY, MT_CHAINGUY);
-	LUA_ENUM(L, MT_TROOP, MT_TROOP);
-	LUA_ENUM(L, MT_SERGEANT, MT_SERGEANT);
-	LUA_ENUM(L, MT_SHADOWS, MT_SHADOWS);
-	LUA_ENUM(L, MT_HEAD, MT_HEAD);
-	LUA_ENUM(L, MT_BRUISER, MT_BRUISER);
-	LUA_ENUM(L, MT_BRUISERSHOT, MT_BRUISERSHOT);
-	LUA_ENUM(L, MT_KNIGHT, MT_KNIGHT);
-	LUA_ENUM(L, MT_SKULL, MT_SKULL);
-	LUA_ENUM(L, MT_SPIDER, MT_SPIDER);
-	LUA_ENUM(L, MT_BABY, MT_BABY);
-	LUA_ENUM(L, MT_CYBORG, MT_CYBORG);
-	LUA_ENUM(L, MT_PAIN, MT_PAIN);
-	LUA_ENUM(L, MT_WOLFSS, MT_WOLFSS);
-	LUA_ENUM(L, MT_KEEN, MT_KEEN);
-	LUA_ENUM(L, MT_BOSSBRAIN, MT_BOSSBRAIN);
-	LUA_ENUM(L, MT_BOSSSPIT, MT_BOSSSPIT);
-	LUA_ENUM(L, MT_BOSSTARGET, MT_BOSSTARGET);
-	LUA_ENUM(L, MT_SPAWNSHOT, MT_SPAWNSHOT);
-	LUA_ENUM(L, MT_SPAWNFIRE, MT_SPAWNFIRE);
-	LUA_ENUM(L, MT_BARREL, MT_BARREL);
-	LUA_ENUM(L, MT_TROOPSHOT, MT_TROOPSHOT);
-	LUA_ENUM(L, MT_HEADSHOT, MT_HEADSHOT);
-	LUA_ENUM(L, MT_ROCKET, MT_ROCKET);
-	LUA_ENUM(L, MT_PLASMA, MT_PLASMA);
-	LUA_ENUM(L, MT_BFG, MT_BFG);
-	LUA_ENUM(L, MT_ARACHPLAZ, MT_ARACHPLAZ);
-	LUA_ENUM(L, MT_PUFF, MT_PUFF);
-	LUA_ENUM(L, MT_BLOOD, MT_BLOOD);
-	LUA_ENUM(L, MT_TFOG, MT_TFOG);
-	LUA_ENUM(L, MT_IFOG, MT_IFOG);
-	LUA_ENUM(L, MT_TELEPORTMAN, MT_TELEPORTMAN);
-	LUA_ENUM(L, MT_EXTRABFG, MT_EXTRABFG);
-	LUA_ENUM(L, MT_MISC0, MT_MISC0);
-	LUA_ENUM(L, MT_MISC1, MT_MISC1);
-	LUA_ENUM(L, MT_MISC2, MT_MISC2);
-	LUA_ENUM(L, MT_MISC3, MT_MISC3);
-	LUA_ENUM(L, MT_MISC4, MT_MISC4);
-	LUA_ENUM(L, MT_MISC5, MT_MISC5);
-	LUA_ENUM(L, MT_MISC6, MT_MISC6);
-	LUA_ENUM(L, MT_MISC7, MT_MISC7);
-	LUA_ENUM(L, MT_MISC8, MT_MISC8);
-	LUA_ENUM(L, MT_MISC9, MT_MISC9);
-	LUA_ENUM(L, MT_MISC10, MT_MISC10);
-	LUA_ENUM(L, MT_MISC11, MT_MISC11);
-	LUA_ENUM(L, MT_MISC12, MT_MISC12);
-	LUA_ENUM(L, MT_INV, MT_INV);
-	LUA_ENUM(L, MT_MISC13, MT_MISC13);
-	LUA_ENUM(L, MT_INS, MT_INS);
-	LUA_ENUM(L, MT_MISC14, MT_MISC14);
-	LUA_ENUM(L, MT_MISC15, MT_MISC15);
-	LUA_ENUM(L, MT_MISC16, MT_MISC16);
-	LUA_ENUM(L, MT_MEGA, MT_MEGA);
-	LUA_ENUM(L, MT_CLIP, MT_CLIP);
-	LUA_ENUM(L, MT_MISC17, MT_MISC17);
-	LUA_ENUM(L, MT_MISC18, MT_MISC18);
-	LUA_ENUM(L, MT_MISC19, MT_MISC19);
-	LUA_ENUM(L, MT_MISC20, MT_MISC20);
-	LUA_ENUM(L, MT_MISC21, MT_MISC21);
-	LUA_ENUM(L, MT_MISC22, MT_MISC22);
-	LUA_ENUM(L, MT_MISC23, MT_MISC23);
-	LUA_ENUM(L, MT_MISC24, MT_MISC24);
-	LUA_ENUM(L, MT_MISC25, MT_MISC25);
-	LUA_ENUM(L, MT_CHAINGUN, MT_CHAINGUN);
-	LUA_ENUM(L, MT_MISC26, MT_MISC26);
-	LUA_ENUM(L, MT_MISC27, MT_MISC27);
-	LUA_ENUM(L, MT_MISC28, MT_MISC28);
-	LUA_ENUM(L, MT_SHOTGUN, MT_SHOTGUN);
-	LUA_ENUM(L, MT_SUPERSHOTGUN, MT_SUPERSHOTGUN);
-	LUA_ENUM(L, MT_MISC29, MT_MISC29);
-	LUA_ENUM(L, MT_MISC30, MT_MISC30);
-	LUA_ENUM(L, MT_MISC31, MT_MISC31);
-	LUA_ENUM(L, MT_MISC32, MT_MISC32);
-	LUA_ENUM(L, MT_MISC33, MT_MISC33);
-	LUA_ENUM(L, MT_MISC34, MT_MISC34);
-	LUA_ENUM(L, MT_MISC35, MT_MISC35);
-	LUA_ENUM(L, MT_MISC36, MT_MISC36);
-	LUA_ENUM(L, MT_MISC37, MT_MISC37);
-	LUA_ENUM(L, MT_MISC38, MT_MISC38);
-	LUA_ENUM(L, MT_MISC39, MT_MISC39);
-	LUA_ENUM(L, MT_MISC40, MT_MISC40);
-	LUA_ENUM(L, MT_MISC41, MT_MISC41);
-	LUA_ENUM(L, MT_MISC42, MT_MISC42);
-	LUA_ENUM(L, MT_MISC43, MT_MISC43);
-	LUA_ENUM(L, MT_MISC44, MT_MISC44);
-	LUA_ENUM(L, MT_MISC45, MT_MISC45);
-	LUA_ENUM(L, MT_MISC46, MT_MISC46);
-	LUA_ENUM(L, MT_MISC47, MT_MISC47);
-	LUA_ENUM(L, MT_MISC48, MT_MISC48);
-	LUA_ENUM(L, MT_MISC49, MT_MISC49);
-	LUA_ENUM(L, MT_MISC50, MT_MISC50);
-	LUA_ENUM(L, MT_MISC51, MT_MISC51);
-	LUA_ENUM(L, MT_MISC52, MT_MISC52);
-	LUA_ENUM(L, MT_MISC53, MT_MISC53);
-	LUA_ENUM(L, MT_MISC54, MT_MISC54);
-	LUA_ENUM(L, MT_MISC55, MT_MISC55);
-	LUA_ENUM(L, MT_MISC56, MT_MISC56);
-	LUA_ENUM(L, MT_MISC57, MT_MISC57);
-	LUA_ENUM(L, MT_MISC58, MT_MISC58);
-	LUA_ENUM(L, MT_MISC59, MT_MISC59);
-	LUA_ENUM(L, MT_MISC60, MT_MISC60);
-	LUA_ENUM(L, MT_MISC61, MT_MISC61);
-	LUA_ENUM(L, MT_MISC62, MT_MISC62);
-	LUA_ENUM(L, MT_MISC63, MT_MISC63);
-	LUA_ENUM(L, MT_MISC64, MT_MISC64);
-	LUA_ENUM(L, MT_MISC65, MT_MISC65);
-	LUA_ENUM(L, MT_MISC66, MT_MISC66);
-	LUA_ENUM(L, MT_MISC67, MT_MISC67);
-	LUA_ENUM(L, MT_MISC68, MT_MISC68);
-	LUA_ENUM(L, MT_MISC69, MT_MISC69);
-	LUA_ENUM(L, MT_MISC70, MT_MISC70);
-	LUA_ENUM(L, MT_MISC71, MT_MISC71);
-	LUA_ENUM(L, MT_MISC72, MT_MISC72);
-	LUA_ENUM(L, MT_MISC73, MT_MISC73);
-	LUA_ENUM(L, MT_MISC74, MT_MISC74);
-	LUA_ENUM(L, MT_MISC75, MT_MISC75);
-	LUA_ENUM(L, MT_MISC76, MT_MISC76);
-	LUA_ENUM(L, MT_MISC77, MT_MISC77);
-	LUA_ENUM(L, MT_MISC78, MT_MISC78);
-	LUA_ENUM(L, MT_MISC79, MT_MISC79);
-	LUA_ENUM(L, MT_MISC80, MT_MISC80);
-	LUA_ENUM(L, MT_MISC81, MT_MISC81);
-	LUA_ENUM(L, MT_MISC82, MT_MISC82);
-	LUA_ENUM(L, MT_MISC83, MT_MISC83);
-	LUA_ENUM(L, MT_MISC84, MT_MISC84);
-	LUA_ENUM(L, MT_MISC85, MT_MISC85);
-	LUA_ENUM(L, MT_MISC86, MT_MISC86);
-	LUA_ENUM(L, MT_PUSH, MT_PUSH);
-	LUA_ENUM(L, MT_PULL, MT_PULL);
+	// Library methods
+	lua_pushvalue(L, -1);
+	lua_setfield(L, -2, "__index");
+	luaL_setfuncs(L, mobjlib_methods, 0);
 
+	// Library functions
+	luaL_newlib(L, mobjlib_functions);
 	return 1;
 }
