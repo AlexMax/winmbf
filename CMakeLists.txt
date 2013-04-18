@@ -26,10 +26,40 @@ include_directories(${TEXTSCREEN_DIR})
 add_library(${TEXTSCREEN_LIBRARY} STATIC ${TEXTSCREEN_SOURCES} ${TEXTSCREEN_HEADERS})
 message(STATUS "Textscreen will be statically linked.")
 
+set(LUA_LIBRARY "lua52")
+set(LUA_DIR lua/src)
+set(LUA_CORE
+  lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c lfunc.c lgc.c llex.c
+  lmem.c lobject.c lopcodes.c lparser.c lstate.c lstring.c ltable.c
+  ltm.c lundump.c lvm.c lzio.c
+)
+set(LUA_LIB
+  lauxlib.c lbaselib.c lbitlib.c lcorolib.c ldblib.c liolib.c
+  lmathlib.c loslib.c lstrlib.c ltablib.c loadlib.c linit.c
+)
+foreach(LUA_SOURCE IN LISTS LUA_CORE LUA_LIB)
+  set(LUA_SOURCES ${LUA_SOURCES} ${LUA_DIR}/${LUA_SOURCE})
+endforeach()
+
+include_directories(${LUA_DIR})
+if(WIN32)
+  add_library(${LUA_LIBRARY} SHARED ${LUA_SOURCES} ${LUA_HEADERS})
+  set_property(TARGET ${LUA_LIBRARY} PROPERTY COMPILE_DEFINITIONS LUA_BUILD_AS_DLL)
+  message(STATUS "Lua will be dynamically linked.")
+else()
+  add_library(${LUA_LIBRARY} STATIC ${LUA_SOURCES} ${LUA_HEADERS})
+  if(APPLE)
+    set_property(TARGET ${LUA_LIBRARY} PROPERTY COMPILE_DEFINITIONS LUA_USE_MACOSX)
+  else()
+    set_property(TARGET ${LUA_LIBRARY} PROPERTY COMPILE_DEFINITIONS LUA_USE_LINUX)
+  endif()
+  message(STATUS "Lua will be statically linked.")
+endif()
+set_property(TARGET ${LUA_LIBRARY} PROPERTY COMPILE_DEFINITIONS LUA_COMPAT_ALL)
+
 find_package(SDL REQUIRED)
 find_package(SDL_mixer REQUIRED)
 find_package(SDL_net REQUIRED)
-find_package(Lua52 REQUIRED)
 
 include_directories(${SDL_INCLUDE_DIR})
 include_directories(${SDLMIXER_INCLUDE_DIR})
@@ -45,4 +75,4 @@ if(MSVC)
 endif()
 target_link_libraries(winmbf ${SDLMIXER_LIBRARY})
 target_link_libraries(winmbf ${SDLNET_LIBRARY})
-target_link_libraries(winmbf ${LUA_LIBRARIES})
+target_link_libraries(winmbf ${LUA_LIBRARY})
