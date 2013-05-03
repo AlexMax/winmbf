@@ -37,10 +37,6 @@
 #include "doomstat.h"
 #include "m_argv.h"
 
-#ifdef DJGPP
-#include <dpmi.h>
-#endif
-
 // Uncomment this to see real-time memory allocation
 // statistics, to and enable extra debugging features
 //#define INSTRUMENTED
@@ -200,9 +196,6 @@ static void Z_Close(void)
 
 void Z_Init(void)
 {
-#ifdef DJGPP
-  size_t size = _go32_dpmi_remaining_physical_memory();    // Get free RAM
-#else
   extern int myargc;
   extern char **myargv;
   // haleyjd: -heapsize support
@@ -215,7 +208,6 @@ void Z_Init(void)
      mb_size = atoi(myargv[p]);
      size = (size_t)(mb_size * 1024 * 1024);
   }
-#endif
 
   if (size < MIN_RAM)         // If less than MIN_RAM, assume MIN_RAM anyway
     size = MIN_RAM;

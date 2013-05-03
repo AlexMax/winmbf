@@ -90,8 +90,6 @@ byte    *dc_source;      // first pixel in a column (possibly virtual)
 //  be used. It has also been used with Wolfenstein 3D.
 // 
 
-#ifndef DJGPP     // killough 2/15/98
-
 void R_DrawColumn (void) 
 { 
   int              count; 
@@ -174,8 +172,6 @@ void R_DrawColumn (void)
   }
 } 
 
-#endif
-
 // Here is the version of R_DrawColumn that deals with translucent  // phares
 // textures and sprites. It's identical to R_DrawColumn except      //    |
 // for the spot where the color index is stuffed into *dest. At     //    V
@@ -187,8 +183,6 @@ void R_DrawColumn (void)
 // Since we're concerned about performance, the 'translucent or
 // opaque' decision is made outside this routine, not down where the
 // actual code differences are.
-
-#ifndef DJGPP                       // killough 2/21/98: converted to x86 asm
 
 void R_DrawTLColumn (void)                                           
 { 
@@ -273,8 +267,6 @@ void R_DrawTLColumn (void)
       }
   }
 } 
-
-#endif  // killough 2/21/98: converted to x86 asm
 
 //
 // Spectre/Invisibility.
@@ -573,8 +565,6 @@ fixed_t ds_ystep;
 // start of a 64*64 tile image 
 byte *ds_source;        
 
-#ifndef DJGPP      // killough 2/15/98
-
 void R_DrawSpan (void) 
 { 
   register unsigned position;
@@ -642,8 +632,6 @@ void R_DrawSpan (void)
       count--;
     } 
 } 
-
-#endif
 
 //
 // R_InitBuffer 

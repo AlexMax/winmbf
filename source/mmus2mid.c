@@ -32,9 +32,6 @@
 #ifdef HAVE_MALLOC_H
 #include <malloc.h>
 #endif
-#ifdef DJGPP // proff: I don't use allegro in windows
-#include <allegro.h>
-#endif // DJGPP
 #include "mmus2mid.h"
 
 //#define STANDALONE  /* uncomment this to make MMUS2MID.EXE */
