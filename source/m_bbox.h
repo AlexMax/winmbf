@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,12 +16,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
 //    Nil.
-//    
+//
 //-----------------------------------------------------------------------------
 
 
@@ -45,7 +45,7 @@ enum
 
 void M_ClearBox(fixed_t* box);
 
-void M_AddToBox(fixed_t* box,fixed_t x,fixed_t y);
+void M_AddToBox(fixed_t* box, fixed_t x, fixed_t y);
 
 #endif
 

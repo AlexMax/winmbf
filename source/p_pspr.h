@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -64,21 +64,21 @@ typedef enum
 
 typedef struct
 {
-  state_t *state;       // a NULL state means not active
+  state_t* state;       // a NULL state means not active
   int     tics;
   fixed_t sx;
   fixed_t sy;
 } pspdef_t;
 
-extern int weapon_preferences[2][NUMWEAPONS+1];      // killough 5/2/98
+extern int weapon_preferences[2][NUMWEAPONS + 1];    // killough 5/2/98
 int P_WeaponPreferred(int w1, int w2);
 
 struct player_s;
-int P_SwitchWeapon(struct player_s *player);
-boolean P_CheckAmmo(struct player_s *player);
-void P_SetupPsprites(struct player_s *curplayer);
-void P_MovePsprites(struct player_s *curplayer);
-void P_DropWeapon(struct player_s *player);
+int P_SwitchWeapon(struct player_s* player);
+boolean P_CheckAmmo(struct player_s* player);
+void P_SetupPsprites(struct player_s* curplayer);
+void P_MovePsprites(struct player_s* curplayer);
+void P_DropWeapon(struct player_s* player);
 
 #endif
 

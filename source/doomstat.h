@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -86,7 +86,8 @@ extern int demo_insurance, default_demo_insurance;      // killough 4/5/98
 // -------------------------------------------
 // killough 10/98: compatibility vector
 
-enum {
+enum
+{
   comp_telefrag,
   comp_dropoff,
   comp_vile,
@@ -106,7 +107,7 @@ enum {
   comp_stairs,
   comp_infcheat,
   comp_zerotags,
-  COMP_TOTAL=32  // Some extra room for additional variables
+  COMP_TOTAL = 32 // Some extra room for additional variables
 };
 
 extern int comp[COMP_TOTAL], default_comp[COMP_TOTAL];
@@ -240,10 +241,10 @@ extern  player_t  players[MAXPLAYERS];
 // Alive? Disconnected?
 extern  boolean    playeringame[];
 
-extern  mapthing_t *deathmatchstarts;     // killough
+extern  mapthing_t* deathmatchstarts;     // killough
 extern  size_t     num_deathmatchstarts; // killough
 
-extern  mapthing_t *deathmatch_p;
+extern  mapthing_t* deathmatch_p;
 
 // Player spawn spots.
 extern  mapthing_t playerstarts[];
@@ -262,7 +263,7 @@ extern int maxammo[];
 
 // File handling stuff.
 extern  char    basedefault[];
-extern  FILE   *debugfile;
+extern  FILE*   debugfile;
 
 // if true, load all graphics at level load
 extern  boolean precache;
@@ -285,8 +286,8 @@ extern  int             bodyqueslot;
 extern int    skyflatnum;
 
 // Netgame stuff (buffers and pointers, i.e. indices).
-extern  doomcom_t  *doomcom;
-extern  doomdata_t *netbuffer;  // This points inside doomcom.
+extern  doomcom_t*  doomcom;
+extern  doomdata_t* netbuffer;  // This points inside doomcom.
 
 extern  ticcmd_t   localcmds[];
 extern  int        rndindex;

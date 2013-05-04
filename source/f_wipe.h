@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -31,17 +31,18 @@
 // SCREEN WIPE PACKAGE
 //
 
-enum {
+enum
+{
   // simple gradual pixel change for 8-bit only
   wipe_ColorXForm,
   wipe_Melt,        // weird screen melt
   wipe_NUMWIPES
 };
 
-int wipe_ScreenWipe (int wipeno,
-                     int x, int y, int width, int height, int ticks);
+int wipe_ScreenWipe(int wipeno,
+                    int x, int y, int width, int height, int ticks);
 int wipe_StartScreen(int x, int y, int width, int height);
-int wipe_EndScreen  (int x, int y, int width, int height);
+int wipe_EndScreen(int x, int y, int width, int height);
 
 #endif
 

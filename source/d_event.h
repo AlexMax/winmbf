@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,12 +16,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
 //
-//    
+//
 //-----------------------------------------------------------------------------
 
 
@@ -54,7 +54,7 @@ typedef struct
   int       data3;    // mouse/joystick y move
 } event_t;
 
- 
+
 typedef enum
 {
   ga_nothing,
@@ -85,14 +85,14 @@ typedef enum
   // Flag: game events, not really buttons.
   BT_SPECIAL      = 128,
   //  BT_SPECIALMASK  = 3,   killough 9/29/98: unused now
-    
+
   // Flag, weapon change pending.
   // If true, the next 4 bits hold weapon num.
   BT_CHANGE       = 4,
 
   // The 4bit weapon mask and shift, convenience.
-//BT_WEAPONMASK   = (8+16+32),
-  BT_WEAPONMASK   = (8+16+32+64), // extended to pick up SSG        // phares
+  //BT_WEAPONMASK   = (8+16+32),
+  BT_WEAPONMASK   = (8 + 16 + 32 + 64), // extended to pick up SSG        // phares
   BT_WEAPONSHIFT  = 3,
 
   // Pause the game.
@@ -101,10 +101,10 @@ typedef enum
   // Save the game at each console.
   BTS_SAVEGAME    = 2,
 
-  // Savegame slot numbers occupy the second byte of buttons.    
-  BTS_SAVEMASK    = (4+8+16),
+  // Savegame slot numbers occupy the second byte of buttons.
+  BTS_SAVEMASK    = (4 + 8 + 16),
   BTS_SAVESHIFT   = 2,
-  
+
 } buttoncode_t;
 
 

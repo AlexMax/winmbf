@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //-----------------------------------------------------------------------------
@@ -35,38 +35,38 @@
 // killough 5/2/98: number of bytes reserved for saving options
 #define GAME_OPTION_SIZE 64
 
-boolean G_Responder(event_t *ev);
+boolean G_Responder(event_t* ev);
 boolean G_CheckDemoStatus(void);
 boolean G_CheckDemoStatus(void);
 void G_DeathMatchSpawnPlayer(int playernum);
 void G_InitNew(skill_t skill, int episode, int map);
 void G_DeferedInitNew(skill_t skill, int episode, int map);
-void G_DeferedPlayDemo(char *demo);
-void G_LoadGame(char *name, int slot, boolean is_command); // killough 5/15/98
+void G_DeferedPlayDemo(char* demo);
+void G_LoadGame(char* name, int slot, boolean is_command); // killough 5/15/98
 void G_ForcedLoadGame(void);           // killough 5/15/98: forced loadgames
-void G_SaveGame(int slot, char *description); // Called by M_Responder.
-void G_RecordDemo(char *name);              // Only called by startup code.
+void G_SaveGame(int slot, char* description); // Called by M_Responder.
+void G_RecordDemo(char* name);              // Only called by startup code.
 void G_BeginRecording(void);
-void G_PlayDemo(char *name);
+void G_PlayDemo(char* name);
 void G_ExitLevel(void);
 void G_SecretExitLevel(void);
 void G_WorldDone(void);
 void G_Ticker(void);
 void G_ScreenShot(void);
 void G_ReloadDefaults(void);     // killough 3/1/98: loads game defaults
-void G_SaveGameName(char *,int); // killough 3/22/98: sets savegame filename
+void G_SaveGameName(char*, int); // killough 3/22/98: sets savegame filename
 void G_SetFastParms(int);        // killough 4/10/98: sets -fast parameters
 void G_DoNewGame(void);
 void G_DoReborn(int playernum);
-byte *G_ReadOptions(byte *demo_p);         // killough 3/1/98
-byte *G_WriteOptions(byte *demo_p);        // killough 3/1/98
+byte* G_ReadOptions(byte* demo_p);         // killough 3/1/98
+byte* G_WriteOptions(byte* demo_p);        // killough 3/1/98
 void G_PlayerReborn(int player);
 void G_InitNew(skill_t skill, int episode, int map);
 void G_DoVictory(void);
 ULong64 G_Signature(void);      // killough 12/98
 
 // killough 1/18/98: Doom-style printf;   killough 4/25/98: add gcc attributes
-void doom_printf(const char *, ...) __attribute__((format(printf,1,2)));
+void doom_printf(const char*, ...) __attribute__((format(printf, 1, 2)));
 
 // killough 5/2/98: moved from m_misc.c:
 
@@ -122,7 +122,7 @@ extern int  key_weapon5;
 extern int  key_weapon6;
 extern int  key_weapon7;
 extern int  key_weapon8;
-extern int  key_weapon9;                                            
+extern int  key_weapon9;
 extern int  destination_keys[MAXPLAYERS];
 extern int  key_map_right;
 extern int  key_map_left;

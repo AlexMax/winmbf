@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:  definitions, declarations and prototypes for specials
@@ -63,7 +63,7 @@
 // killough 2/14/98: redefine in terms of MAXPLAYERS
 #define MAXBUTTONS    (MAXPLAYERS*4)
 
-// 1 second, in ticks. 
+// 1 second, in ticks.
 #define BUTTONTIME  TICRATE
 
 // p_lights
@@ -84,7 +84,7 @@
 #define PUSH_MASK       0x200
 #define PUSH_SHIFT      9
 
-//jff 02/04/98 Define masks, shifts, for fields in 
+//jff 02/04/98 Define masks, shifts, for fields in
 // generalized linedef types
 
 #define GenFloorBase          0x6000
@@ -113,7 +113,7 @@
 #define FloorDirectionShift        6
 #define FloorModelShift            5
 #define FloorSpeedShift            3
-                               
+
 // define masks and shifts for the ceiling type fields
 
 #define CeilingCrush          0x1000
@@ -352,7 +352,7 @@ typedef enum
   raiseToNearestAndChange,
   blazeDWUS,
   genLift,      //jff added to support generalized Plat types
-  genPerpetual, 
+  genPerpetual,
   toggleUpDn,   //jff 3/14/98 added to support instant toggle type
 
 } plattype_e;
@@ -412,16 +412,16 @@ typedef enum
 {
   // lower floor to highest surrounding floor
   lowerFloor,
-  
+
   // lower floor to lowest surrounding floor
   lowerFloorToLowest,
-  
+
   // lower floor to highest surrounding floor VERY FAST
   turboLower,
-  
+
   // raise floor to lowest surrounding CEILING
   raiseFloor,
-  
+
   // raise floor to next highest surrounding floor
   raiseFloorToNearest,
 
@@ -436,7 +436,7 @@ typedef enum
 
   // raise floor to shortest height texture around it
   raiseToTexture,
-  
+
   // lower floor to lowest surrounding floor
   //  and change floorpic
   lowerAndChange,
@@ -450,7 +450,7 @@ typedef enum
   raiseFloorCrush,
 
   // raise to next highest floor, turbo-speed
-  raiseFloorTurbo,       
+  raiseFloorTurbo,
   donutRaise,
   raiseFloor512,
 
@@ -469,7 +469,7 @@ typedef enum
 {
   build8, // slowly build by 8
   turbo16 // quickly build by 16
-    
+
 } stair_e;
 
 typedef enum
@@ -488,9 +488,9 @@ typedef enum
 // texture type enum
 typedef enum
 {
-    top,
-    middle,
-    bottom
+  top,
+  middle,
+  bottom
 
 } bwhere_e;
 
@@ -529,11 +529,11 @@ typedef struct
 
 typedef struct
 {
-  line_t *line;
+  line_t* line;
   bwhere_e where;
   int   btexture;
   int   btimer;
-  mobj_t *soundorg;
+  mobj_t* soundorg;
 
 } button_t;
 
@@ -542,7 +542,7 @@ typedef struct
 typedef struct
 {
   thinker_t thinker;
-  sector_t *sector;
+  sector_t* sector;
   int count;
   int maxlight;
   int minlight;
@@ -551,7 +551,7 @@ typedef struct
 typedef struct
 {
   thinker_t thinker;
-  sector_t *sector;
+  sector_t* sector;
   int count;
   int maxlight;
   int minlight;
@@ -562,7 +562,7 @@ typedef struct
 typedef struct
 {
   thinker_t thinker;
-  sector_t *sector;
+  sector_t* sector;
   int count;
   int minlight;
   int maxlight;
@@ -573,7 +573,7 @@ typedef struct
 typedef struct
 {
   thinker_t thinker;
-  sector_t *sector;
+  sector_t* sector;
   int minlight;
   int maxlight;
   int direction;
@@ -585,7 +585,7 @@ typedef struct
 typedef struct
 {
   thinker_t thinker;
-  sector_t *sector;
+  sector_t* sector;
   fixed_t speed;
   fixed_t low;
   fixed_t high;
@@ -596,14 +596,15 @@ typedef struct
   boolean crush;
   int tag;
   plattype_e type;
-  struct platlist *list;   // killough
+  struct platlist* list;   // killough
 } plat_t;
 
 // New limit-free plat structure -- killough
 
-typedef struct platlist {
-  plat_t *plat; 
-  struct platlist *next,**prev;
+typedef struct platlist
+{
+  plat_t* plat;
+  struct platlist* next, ** prev;
 } platlist_t;
 
 // p_ceilng
@@ -612,21 +613,21 @@ typedef struct
 {
   thinker_t thinker;
   vldoor_e type;
-  sector_t *sector;
+  sector_t* sector;
   fixed_t topheight;
   fixed_t speed;
 
   // 1 = up, 0 = waiting at top, -1 = down
   int direction;
-  
+
   // tics to wait at the top
   int topwait;
   // (keep in case a door going down is reset)
   // when it reaches 0, start going down
   int topcountdown;
-  
+
   //jff 1/31/98 keep track of line door is triggered by
-  line_t *line;
+  line_t* line;
 
   int lighttag; //killough 10/98: sector tag for gradual lighting effects
 } vldoor_t;
@@ -637,7 +638,7 @@ typedef struct
 {
   thinker_t thinker;
   ceiling_e type;
-  sector_t *sector;
+  sector_t* sector;
   fixed_t bottomheight;
   fixed_t topheight;
   fixed_t speed;
@@ -653,14 +654,15 @@ typedef struct
   int direction;
 
   // ID
-  int tag;                   
+  int tag;
   int olddirection;
-  struct ceilinglist *list;   // jff 2/22/98 copied from killough's plats
+  struct ceilinglist* list;   // jff 2/22/98 copied from killough's plats
 } ceiling_t;
 
-typedef struct ceilinglist {
-  ceiling_t *ceiling; 
-  struct ceilinglist *next,**prev;
+typedef struct ceilinglist
+{
+  ceiling_t* ceiling;
+  struct ceilinglist* next, ** prev;
 } ceilinglist_t;
 
 // p_floor
@@ -670,7 +672,7 @@ typedef struct
   thinker_t thinker;
   floor_e type;
   boolean crush;
-  sector_t *sector;
+  sector_t* sector;
   int direction;
   int newspecial;
   int oldspecial;   //jff 3/14/98 add to fix bug in change transfers
@@ -683,7 +685,7 @@ typedef struct
 {
   thinker_t thinker;
   elevator_e type;
-  sector_t *sector;
+  sector_t* sector;
   int direction;
   fixed_t floordestheight;
   fixed_t ceilingdestheight;
@@ -694,7 +696,8 @@ typedef struct
 
 // killough 3/7/98: Add generalized scroll effects
 
-typedef struct {
+typedef struct
+{
   thinker_t thinker;   // Thinker structure for scrolling
   fixed_t dx, dy;      // (dx,dy) scroll speeds
   int affectee;        // Number of affected sidedef, sector, tag, or whatever
@@ -714,7 +717,8 @@ typedef struct {
 
 // phares 3/12/98: added new model of friction for ice/sludge effects
 
-typedef struct {
+typedef struct
+{
   thinker_t thinker;   // Thinker structure for friction
   int friction;        // friction value (E800 = normal)
   int movefactor;      // inertia factor when adding to momentum
@@ -723,7 +727,8 @@ typedef struct {
 
 // phares 3/20/98: added new model of Pushers for push/pull effects
 
-typedef struct {
+typedef struct
+{
   thinker_t thinker;   // Thinker structure for Pusher
   enum
   {
@@ -732,7 +737,7 @@ typedef struct {
     p_wind,
     p_current,
   } type;
-  mobj_t *source;      // Point source if point pusher
+  mobj_t* source;      // Point source if point pusher
   int x_mag;           // X Strength
   int y_mag;           // Y Strength
   int magnitude;       // Vector strength for point pusher
@@ -757,9 +762,9 @@ extern  int levelTimeCount;
 // list of retriggerable buttons active
 extern button_t buttonlist[MAXBUTTONS];
 
-extern platlist_t *activeplats;        // killough 2/14/98
+extern platlist_t* activeplats;        // killough 2/14/98
 
-extern ceilinglist_t *activeceilings;  // jff 2/22/98
+extern ceilinglist_t* activeceilings;  // jff 2/22/98
 
 ////////////////////////////////////////////////////////////////
 //
@@ -769,53 +774,57 @@ extern ceilinglist_t *activeceilings;  // jff 2/22/98
 
 int twoSided(int sector, int line);
 
-sector_t *getSector(int currentSector, int line, int side);
+sector_t* getSector(int currentSector, int line, int side);
 
-side_t *getSide(int currentSector, int line, int side);
+side_t* getSide(int currentSector, int line, int side);
 
-fixed_t P_FindLowestFloorSurrounding(sector_t *sec);
+fixed_t P_FindLowestFloorSurrounding(sector_t* sec);
 
-fixed_t P_FindHighestFloorSurrounding(sector_t *sec);
+fixed_t P_FindHighestFloorSurrounding(sector_t* sec);
 
-fixed_t P_FindNextHighestFloor(sector_t *sec, int currentheight);
+fixed_t P_FindNextHighestFloor(sector_t* sec, int currentheight);
 
-fixed_t P_FindNextLowestFloor(sector_t *sec, int currentheight);
+fixed_t P_FindNextLowestFloor(sector_t* sec, int currentheight);
 
-fixed_t P_FindLowestCeilingSurrounding(sector_t *sec); // jff 2/04/98
+fixed_t P_FindLowestCeilingSurrounding(sector_t* sec); // jff 2/04/98
 
-fixed_t P_FindHighestCeilingSurrounding(sector_t *sec); // jff 2/04/98
+fixed_t P_FindHighestCeilingSurrounding(sector_t* sec); // jff 2/04/98
 
-fixed_t P_FindNextLowestCeiling(sector_t *sec, int currentheight); // jff 2/04/98
+fixed_t P_FindNextLowestCeiling(sector_t* sec,
+                                int currentheight); // jff 2/04/98
 
-fixed_t P_FindNextHighestCeiling(sector_t *sec, int currentheight); // jff 2/04/98
+fixed_t P_FindNextHighestCeiling(sector_t* sec,
+                                 int currentheight); // jff 2/04/98
 
 fixed_t P_FindShortestTextureAround(int secnum); // jff 2/04/98
 
 fixed_t P_FindShortestUpperAround(int secnum); // jff 2/04/98
 
-sector_t *P_FindModelFloorSector(fixed_t floordestheight, int secnum); //jff 02/04/98
+sector_t* P_FindModelFloorSector(fixed_t floordestheight,
+                                 int secnum); //jff 02/04/98
 
-sector_t *P_FindModelCeilingSector(fixed_t ceildestheight, int secnum); //jff 02/04/98 
+sector_t* P_FindModelCeilingSector(fixed_t ceildestheight,
+                                   int secnum); //jff 02/04/98
 
-int P_FindSectorFromLineTag(const line_t *line, int start); // killough 4/17/98
+int P_FindSectorFromLineTag(const line_t* line, int start); // killough 4/17/98
 
-int P_FindLineFromLineTag(const line_t *line, int start);   // killough 4/17/98
+int P_FindLineFromLineTag(const line_t* line, int start);   // killough 4/17/98
 
-int P_FindMinSurroundingLight(sector_t *sector, int max);
+int P_FindMinSurroundingLight(sector_t* sector, int max);
 
-sector_t *getNextSector(line_t *line, sector_t *sec);
+sector_t* getNextSector(line_t* line, sector_t* sec);
 
-int P_CheckTag(line_t *line); // jff 2/27/98
+int P_CheckTag(line_t* line); // jff 2/27/98
 
-boolean P_CanUnlockGenDoor(line_t *line, player_t *player);
+boolean P_CanUnlockGenDoor(line_t* line, player_t* player);
 
-int P_SectorActive(special_e t, sector_t *s);
+int P_SectorActive(special_e t, sector_t* s);
 
-boolean P_IsSecret(sector_t *sec);
+boolean P_IsSecret(sector_t* sec);
 
-boolean P_WasSecret(sector_t *sec);
+boolean P_WasSecret(sector_t* sec);
 
-void P_ChangeSwitchTexture(line_t *line, int useAgain);
+void P_ChangeSwitchTexture(line_t* line, int useAgain);
 
 ////////////////////////////////////////////////////////////////
 //
@@ -825,44 +834,44 @@ void P_ChangeSwitchTexture(line_t *line, int useAgain);
 
 // p_lights
 
-void T_LightFlash(lightflash_t *flash);
+void T_LightFlash(lightflash_t* flash);
 
-void T_StrobeFlash(strobe_t *flash);
+void T_StrobeFlash(strobe_t* flash);
 
-void T_Glow(glow_t *g);
+void T_Glow(glow_t* g);
 
-void T_FireFlicker(fireflicker_t *flick);  // killough 10/4/98
+void T_FireFlicker(fireflicker_t* flick);  // killough 10/4/98
 
 // p_plats
 
-void T_PlatRaise(plat_t *plat);
+void T_PlatRaise(plat_t* plat);
 
 // p_doors
 
-void T_VerticalDoor(vldoor_t *door);
+void T_VerticalDoor(vldoor_t* door);
 
 // p_ceilng
 
-void T_MoveCeiling(ceiling_t *ceiling);
+void T_MoveCeiling(ceiling_t* ceiling);
 
 // p_floor
 
-result_e T_MovePlane(sector_t *sector, fixed_t speed, fixed_t dest,
-		     boolean crush, int floorOrCeiling, int direction);
+result_e T_MovePlane(sector_t* sector, fixed_t speed, fixed_t dest,
+                     boolean crush, int floorOrCeiling, int direction);
 
-void T_MoveFloor(floormove_t *floor);
+void T_MoveFloor(floormove_t* floor);
 
-void T_MoveElevator(elevator_t *elevator);
+void T_MoveElevator(elevator_t* elevator);
 
 // p_spec
 
-void T_Scroll(scroll_t *);      // killough 3/7/98: scroll effect thinker
+void T_Scroll(scroll_t*);       // killough 3/7/98: scroll effect thinker
 
-void T_Friction(friction_t *);  // phares 3/12/98: friction thinker
+void T_Friction(friction_t*);   // phares 3/12/98: friction thinker
 
-void T_Pusher(pusher_t *);      // phares 3/20/98: Push thinker
+void T_Pusher(pusher_t*);       // phares 3/20/98: Push thinker
 
-void T_FireFlicker(fireflicker_t *);  // killough 10/4/98
+void T_FireFlicker(fireflicker_t*);   // killough 10/4/98
 
 ////////////////////////////////////////////////////////////////
 //
@@ -872,74 +881,74 @@ void T_FireFlicker(fireflicker_t *);  // killough 10/4/98
 
 // p_telept
 
-int EV_Teleport(line_t *line, int side, mobj_t *thing);
+int EV_Teleport(line_t* line, int side, mobj_t* thing);
 
 // killough 2/14/98: Add silent teleporter
-int EV_SilentTeleport(line_t *line, int side, mobj_t *thing);
+int EV_SilentTeleport(line_t* line, int side, mobj_t* thing);
 
 // killough 1/31/98: Add silent line teleporter
-int EV_SilentLineTeleport(line_t *line, int side, 
-			  mobj_t *thing, boolean reverse);
+int EV_SilentLineTeleport(line_t* line, int side,
+                          mobj_t* thing, boolean reverse);
 
 // p_floor
 
-int EV_DoElevator(line_t *line, elevator_e elevtype);
+int EV_DoElevator(line_t* line, elevator_e elevtype);
 
-int EV_BuildStairs(line_t *line, stair_e type);
+int EV_BuildStairs(line_t* line, stair_e type);
 
-int EV_DoFloor(line_t *line, floor_e floortype);
+int EV_DoFloor(line_t* line, floor_e floortype);
 
 // p_ceilng
 
-int EV_DoCeiling(line_t *line, ceiling_e type);
+int EV_DoCeiling(line_t* line, ceiling_e type);
 
-int EV_CeilingCrushStop(line_t *line);
+int EV_CeilingCrushStop(line_t* line);
 
 // p_doors
 
-int EV_VerticalDoor(line_t *line, mobj_t *thing);
+int EV_VerticalDoor(line_t* line, mobj_t* thing);
 
-int EV_DoDoor(line_t *line, vldoor_e type);
+int EV_DoDoor(line_t* line, vldoor_e type);
 
-int EV_DoLockedDoor(line_t *line, vldoor_e type, mobj_t *thing);
+int EV_DoLockedDoor(line_t* line, vldoor_e type, mobj_t* thing);
 
 // p_lights
 
-int EV_StartLightStrobing(line_t *line);
+int EV_StartLightStrobing(line_t* line);
 
-int EV_TurnTagLightsOff(line_t *line);
+int EV_TurnTagLightsOff(line_t* line);
 
-int EV_LightTurnOn(line_t *line, int bright);
+int EV_LightTurnOn(line_t* line, int bright);
 
-int EV_LightTurnOnPartway(line_t *line, fixed_t level);  // killough 10/10/98
+int EV_LightTurnOnPartway(line_t* line, fixed_t level);  // killough 10/10/98
 
 // p_floor
 
-int EV_DoChange(line_t *line, change_e changetype);
+int EV_DoChange(line_t* line, change_e changetype);
 
-int EV_DoDonut(line_t *line);
+int EV_DoDonut(line_t* line);
 
 // p_plats
 
-int EV_DoPlat(line_t *line, plattype_e type, int amount);
+int EV_DoPlat(line_t* line, plattype_e type, int amount);
 
-int EV_StopPlat(line_t *line);
+int EV_StopPlat(line_t* line);
 
 // p_genlin
 
-int EV_DoGenFloor(line_t *line);
+int EV_DoGenFloor(line_t* line);
 
-int EV_DoGenCeiling(line_t *line);
+int EV_DoGenCeiling(line_t* line);
 
-int EV_DoGenLift(line_t *line);
+int EV_DoGenLift(line_t* line);
 
-int EV_DoGenStairs(line_t *line);
+int EV_DoGenStairs(line_t* line);
 
-int EV_DoGenCrusher(line_t *line);
+int EV_DoGenCrusher(line_t* line);
 
-int EV_DoGenDoor(line_t *line);
+int EV_DoGenDoor(line_t* line);
 
-int EV_DoGenLockedDoor(line_t *line);
+int EV_DoGenLockedDoor(line_t* line);
 
 ////////////////////////////////////////////////////////////////
 //
@@ -959,29 +968,29 @@ void P_SpawnSpecials(void);
 void P_UpdateSpecials(void);
 
 // when needed
-boolean P_UseSpecialLine(mobj_t *thing, line_t *line, int side);
+boolean P_UseSpecialLine(mobj_t* thing, line_t* line, int side);
 
-void P_ShootSpecialLine(mobj_t *thing, line_t *line);
+void P_ShootSpecialLine(mobj_t* thing, line_t* line);
 
-void P_CrossSpecialLine(line_t *, int side, mobj_t *thing); // killough 11/98
+void P_CrossSpecialLine(line_t*, int side, mobj_t* thing);  // killough 11/98
 
-void P_PlayerInSpecialSector(player_t *player);
+void P_PlayerInSpecialSector(player_t* player);
 
 // p_lights
 
-void P_SpawnFireFlicker(sector_t *sector);
+void P_SpawnFireFlicker(sector_t* sector);
 
-void P_SpawnLightFlash(sector_t *sector);
+void P_SpawnLightFlash(sector_t* sector);
 
-void P_SpawnStrobeFlash(sector_t *sector, int fastOrSlow, int inSync);
+void P_SpawnStrobeFlash(sector_t* sector, int fastOrSlow, int inSync);
 
-void P_SpawnGlowingLight(sector_t *sector);
+void P_SpawnGlowingLight(sector_t* sector);
 
 // p_plats
 
-void P_AddActivePlat(plat_t *plat);
+void P_AddActivePlat(plat_t* plat);
 
-void P_RemoveActivePlat(plat_t *plat);
+void P_RemoveActivePlat(plat_t* plat);
 
 void P_RemoveAllActivePlats(void);    // killough
 
@@ -989,23 +998,23 @@ void P_ActivateInStasis(int tag);
 
 // p_doors
 
-void P_SpawnDoorCloseIn30(sector_t *sec);
+void P_SpawnDoorCloseIn30(sector_t* sec);
 
-void P_SpawnDoorRaiseIn5Mins(sector_t *sec, int secnum);
+void P_SpawnDoorRaiseIn5Mins(sector_t* sec, int secnum);
 
 // p_ceilng
 
-void P_RemoveActiveCeiling(ceiling_t *ceiling);  //jff 2/22/98
+void P_RemoveActiveCeiling(ceiling_t* ceiling);  //jff 2/22/98
 
 void P_RemoveAllActiveCeilings(void);                //jff 2/22/98
 
-void P_AddActiveCeiling(ceiling_t *c);
+void P_AddActiveCeiling(ceiling_t* c);
 
-void P_RemoveActiveCeiling(ceiling_t *c);
+void P_RemoveActiveCeiling(ceiling_t* c);
 
-int P_ActivateInStasisCeiling(line_t *line); 
+int P_ActivateInStasisCeiling(line_t* line);
 
-mobj_t *P_GetPushThing(int);                                // phares 3/23/98
+mobj_t* P_GetPushThing(int);                                // phares 3/23/98
 
 #endif
 

@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -28,7 +28,7 @@
 #include <string.h>
 
 int    myargc;
-char **myargv;
+char** myargv;
 
 //
 // M_CheckParm
@@ -38,10 +38,10 @@ char **myargv;
 // or 0 if not present
 //
 
-int M_CheckParm(const char *check)
+int M_CheckParm(const char* check)
 {
   int i;
-  for (i=1; i<myargc; i++)
+  for (i = 1; i < myargc; i++)
     if (!strcasecmp(check, myargv[i]))
       return i;
   return 0;

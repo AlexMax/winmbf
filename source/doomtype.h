@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -41,11 +41,11 @@ typedef unsigned char byte;
 
 // haleyjd: 64-bit integer type
 #if defined(_MSC_VER)   // MSVC
-  #define __LONG64_TYPE__ __int64
+#define __LONG64_TYPE__ __int64
 #elif defined(__GNUC__) // GNU C
-  #define __LONG64_TYPE__ long long
+#define __LONG64_TYPE__ long long
 #else
-  #error Need a 64-bit integer type for this platform!
+#error Need a 64-bit integer type for this platform!
 #endif
 
 typedef unsigned __LONG64_TYPE__ ULong64;

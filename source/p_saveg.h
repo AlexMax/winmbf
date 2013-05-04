@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -46,7 +46,7 @@ void P_UnArchiveRNG(void);
 void P_ArchiveMap(void);
 void P_UnArchiveMap(void);
 
-extern byte *save_p;
+extern byte* save_p;
 void CheckSaveGame(size_t);              // killough
 
 #endif

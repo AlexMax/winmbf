@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -41,8 +41,8 @@ __inline__
 #endif
 static short SwapShort(short x)
 {
-  return (((unsigned char *) &x)[1]<< 8) +
-          ((unsigned char *) &x)[0];
+  return (((unsigned char*) &x)[1] << 8) +
+         ((unsigned char*) &x)[0];
 }
 
 // Swapping 32bit.
@@ -52,11 +52,11 @@ __inline__
 #endif
 static long SwapLong(long x)
 {
-  return (((unsigned char *) &x)[3]<<24) +
-         (((unsigned char *) &x)[2]<<16) +
-         (((unsigned char *) &x)[1]<< 8) +
-          ((unsigned char *) &x)[0];
-} 
+  return (((unsigned char*) &x)[3] << 24) +
+         (((unsigned char*) &x)[2] << 16) +
+         (((unsigned char*) &x)[1] << 8) +
+         ((unsigned char*) &x)[0];
+}
 
 #endif
 

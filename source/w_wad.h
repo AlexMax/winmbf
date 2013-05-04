@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -64,14 +64,15 @@ typedef struct
 
   char  name[8];
   int   size;
-  const void *data;     // killough 1/31/98: points to predefined lump data
+  const void* data;     // killough 1/31/98: points to predefined lump data
 
   // killough 1/31/98: hash table fields, used for ultra-fast hash table lookup
   int index, next;
 
   // killough 4/17/98: namespace tags, to prevent conflicts between resources
-  enum {
-    ns_global=0,
+  enum
+  {
+    ns_global = 0,
     ns_sprites,
     ns_flats,
     ns_colormaps
@@ -85,33 +86,33 @@ typedef struct
 extern const size_t num_predefined_lumps;
 extern const lumpinfo_t predefined_lumps[];
 
-extern void       **lumpcache;
-extern lumpinfo_t *lumpinfo;
+extern void**       lumpcache;
+extern lumpinfo_t* lumpinfo;
 extern int        numlumps;
 
-void W_InitMultipleFiles(char *const*filenames);
+void W_InitMultipleFiles(char* const* filenames);
 
 // killough 4/17/98: if W_CheckNumForName() called with only
 // one argument, pass ns_global as the default namespace
 
 #define W_CheckNumForName(name) (W_CheckNumForName)(name, ns_global)
-int     (W_CheckNumForName)(const char* name, int);   // killough 4/17/98
-int     W_GetNumForName (const char* name);
-int     W_LumpLength (int lump);
-void    W_ReadLump (int lump, void *dest);
-void*   W_CacheLumpNum (int lump, int tag);
+int (W_CheckNumForName)(const char* name, int);       // killough 4/17/98
+int     W_GetNumForName(const char* name);
+int     W_LumpLength(int lump);
+void    W_ReadLump(int lump, void* dest);
+void*   W_CacheLumpNum(int lump, int tag);
 
 #define W_CacheLumpName(name,tag) W_CacheLumpNum (W_GetNumForName(name),(tag))
 
-void NormalizeSlashes(char *);                    // killough 11/98
-char *AddDefaultExtension(char *, const char *);  // killough 1/18/98
-void ExtractFileBase(const char *, char *);       // killough
-unsigned W_LumpNameHash(const char *s);           // killough 1/31/98
+void NormalizeSlashes(char*);                     // killough 11/98
+char* AddDefaultExtension(char*, const char*);    // killough 1/18/98
+void ExtractFileBase(const char*, char*);         // killough
+unsigned W_LumpNameHash(const char* s);           // killough 1/31/98
 
 void I_BeginRead(void), I_EndRead(void); // killough 10/98
 
 // Function to write all predefined lumps to a PWAD if requested
-extern void WritePredefinedLumpWad(const char *filename); // jff 5/6/98
+extern void WritePredefinedLumpWad(const char* filename); // jff 5/6/98
 
 #endif
 

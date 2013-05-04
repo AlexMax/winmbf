@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,12 +16,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
 //
-//    
+//
 //-----------------------------------------------------------------------------
 
 
@@ -52,7 +52,8 @@
 // indicated by the #'s, because they're critical for preserving demo
 // sync. Do not remove entries simply because they become unused later.
 
-typedef enum {
+typedef enum
+{
   pr_skullfly,                // #1
   pr_damage,                  // #2
   pr_crush,                   // #3
@@ -122,7 +123,8 @@ typedef enum {
 } pr_class_t;
 
 // The random number generator's state.
-typedef struct {
+typedef struct
+{
   unsigned long seed[NUMPRCLASS];      // Each block's random seed
   int rndindex, prndindex;             // For compatibility support
 } rng_t;

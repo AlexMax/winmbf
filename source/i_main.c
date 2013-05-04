@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -47,7 +47,7 @@ static void LockCPUAffinity(void)
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-typedef BOOL (WINAPI *SetAffinityFunc)(HANDLE hProcess, DWORD mask);
+typedef BOOL (WINAPI* SetAffinityFunc)(HANDLE hProcess, DWORD mask);
 
 // This is a bit more complicated than it really needs to be.  We really
 // just need to call the SetProcessAffinityMask function, but that
@@ -57,37 +57,38 @@ typedef BOOL (WINAPI *SetAffinityFunc)(HANDLE hProcess, DWORD mask);
 
 static void LockCPUAffinity(void)
 {
-    HMODULE kernel32_dll;
-    SetAffinityFunc SetAffinity;
+  HMODULE kernel32_dll;
+  SetAffinityFunc SetAffinity;
 
-    // Find the kernel interface DLL.
+  // Find the kernel interface DLL.
 
-    kernel32_dll = LoadLibrary("kernel32.dll");
+  kernel32_dll = LoadLibrary("kernel32.dll");
 
-    if (kernel32_dll == NULL)
+  if (kernel32_dll == NULL)
+  {
+    // This should never happen...
+
+    fprintf(stderr, "Failed to load kernel32.dll\n");
+    return;
+  }
+
+  // Find the SetProcessAffinityMask function.
+
+  SetAffinity = (SetAffinityFunc)GetProcAddress(kernel32_dll,
+                "SetProcessAffinityMask");
+
+  // If the function was not found, we are on an old (Win9x) system
+  // that doesn't have this function.  That's no problem, because
+  // those systems don't support SMP anyway.
+
+  if (SetAffinity != NULL)
+  {
+    if (!SetAffinity(GetCurrentProcess(), 1))
     {
-        // This should never happen...
-
-        fprintf(stderr, "Failed to load kernel32.dll\n");
-        return;
+      fprintf(stderr, "Failed to set process affinity (%d)\n",
+              (int) GetLastError());
     }
-
-    // Find the SetProcessAffinityMask function.
-
-    SetAffinity = (SetAffinityFunc)GetProcAddress(kernel32_dll, "SetProcessAffinityMask");
-
-    // If the function was not found, we are on an old (Win9x) system
-    // that doesn't have this function.  That's no problem, because
-    // those systems don't support SMP anyway.
-
-    if (SetAffinity != NULL)
-    {
-        if (!SetAffinity(GetCurrentProcess(), 1))
-        {
-            fprintf(stderr, "Failed to set process affinity (%d)\n",
-                            (int) GetLastError());
-        }
-    }
+  }
 }
 
 #elif defined(HAVE_SCHED_SETAFFINITY)
@@ -100,15 +101,15 @@ static void LockCPUAffinity(void)
 static void LockCPUAffinity(void)
 {
 #ifdef CPU_SET
-    cpu_set_t set;
+  cpu_set_t set;
 
-    CPU_ZERO(&set);
-    CPU_SET(0, &set);
+  CPU_ZERO(&set);
+  CPU_SET(0, &set);
 
-    sched_setaffinity(getpid(), sizeof(set), &set);
+  sched_setaffinity(getpid(), sizeof(set), &set);
 #else
-    unsigned long mask = 1;
-    sched_setaffinity(getpid(), sizeof(mask), &mask);
+  unsigned long mask = 1;
+  sched_setaffinity(getpid(), sizeof(mask), &mask);
 #endif
 }
 
@@ -119,9 +120,9 @@ static void LockCPUAffinity(void)
 
 static void LockCPUAffinity(void)
 {
-    fprintf(stderr, 
-    "WARNING: No known way to set processor affinity on this platform.\n"
-    "         You may experience crashes due to SDL_mixer.\n");
+  fprintf(stderr,
+          "WARNING: No known way to set processor affinity on this platform.\n"
+          "         You may experience crashes due to SDL_mixer.\n");
 }
 
 #endif
@@ -137,86 +138,87 @@ void I_Quit(void);
 #define INIT_FLAGS BASE_INIT_FLAGS
 #endif
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-   myargc = argc;
-   myargv = argv;
+  myargc = argc;
+  myargv = argv;
 
-   // Only schedule on a single core, if we have multiple
-   // cores.  This is to work around a bug in SDL_mixer.
+  // Only schedule on a single core, if we have multiple
+  // cores.  This is to work around a bug in SDL_mixer.
 
-   LockCPUAffinity();
+  LockCPUAffinity();
 
-   // SoM: From CHOCODOOM Thank you fraggle!!
+  // SoM: From CHOCODOOM Thank you fraggle!!
 #ifdef _WIN32
-   putenv("SDL_VIDEO_WINDOW_POS=center") ;
-   putenv("SDL_VIDEO_CENTERED=1") ;
+  putenv("SDL_VIDEO_WINDOW_POS=center") ;
+  putenv("SDL_VIDEO_CENTERED=1") ;
 
-   // Allow -gdi as a shortcut for using the windib driver.
-   
-   //!
-   // @category video 
-   // @platform windows
-   //
-   // Use the Windows GDI driver instead of DirectX.
-   //
-   
-   // From the SDL 1.2.10 release notes: 
-   //
-   // > The "windib" video driver is the default now, to prevent 
-   // > problems with certain laptops, 64-bit Windows, and Windows 
-   // > Vista. 
-   //
-   // The hell with that.
-   
-   // SoM: the gdi interface is much faster for windowed modes which are more
-   // commonly used. Thus, GDI is default.
-   if(M_CheckParm("-directx"))
-      putenv("SDL_VIDEODRIVER=directx");
-   else if(M_CheckParm("-gdi") > 0 || getenv("SDL_VIDEODRIVER") == NULL)
-      putenv("SDL_VIDEODRIVER=windib");
+  // Allow -gdi as a shortcut for using the windib driver.
+
+  //!
+  // @category video
+  // @platform windows
+  //
+  // Use the Windows GDI driver instead of DirectX.
+  //
+
+  // From the SDL 1.2.10 release notes:
+  //
+  // > The "windib" video driver is the default now, to prevent
+  // > problems with certain laptops, 64-bit Windows, and Windows
+  // > Vista.
+  //
+  // The hell with that.
+
+  // SoM: the gdi interface is much faster for windowed modes which are more
+  // commonly used. Thus, GDI is default.
+  if (M_CheckParm("-directx"))
+    putenv("SDL_VIDEODRIVER=directx");
+  else if (M_CheckParm("-gdi") > 0 || getenv("SDL_VIDEODRIVER") == NULL)
+    putenv("SDL_VIDEODRIVER=windib");
 #endif
 
-   // [AM] Don't create an SDL window.  Still draws and blits to a
-   //      dummy buffer, though.
-   if (M_CheckParm("-novideo"))
-      putenv("SDL_VIDEODRIVER=dummy");
+  // [AM] Don't create an SDL window.  Still draws and blits to a
+  //      dummy buffer, though.
+  if (M_CheckParm("-novideo"))
+    putenv("SDL_VIDEODRIVER=dummy");
 
-   // haleyjd: init SDL
-   if(SDL_Init(INIT_FLAGS) == -1)
-   {
-      puts("Failed to initialize SDL library.\n");
-      return -1;
-   }
-      
-   // haleyjd: set key repeat properties
-   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY/2, SDL_DEFAULT_REPEAT_INTERVAL*4);
+  // haleyjd: init SDL
+  if (SDL_Init(INIT_FLAGS) == -1)
+  {
+    puts("Failed to initialize SDL library.\n");
+    return -1;
+  }
 
-   /*
-     killough 1/98:
-   
-     This fixes some problems with exit handling
-     during abnormal situations.
-    
-     The old code called I_Quit() to end program,
-     while now I_Quit() is installed as an exit
-     handler and exit() is called to exit, either
-     normally or abnormally. Seg faults are caught
-     and the error handler is used, to prevent
-     being left in graphics mode or having very
-     loud SFX noise because the sound card is
-     left in an unstable state.
-   */
-   
-   Z_Init();                  // 1/18/98 killough: start up memory stuff first
-   atexit(I_Quit);
-   
-   // 2/2/98 Stan
-   // Must call this here.  It's required by both netgames and i_video.c.
-   
-   D_DoomMain();
-   
-   return 0;
+  // haleyjd: set key repeat properties
+  SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY / 2,
+                      SDL_DEFAULT_REPEAT_INTERVAL * 4);
+
+  /*
+    killough 1/98:
+
+    This fixes some problems with exit handling
+    during abnormal situations.
+
+    The old code called I_Quit() to end program,
+    while now I_Quit() is installed as an exit
+    handler and exit() is called to exit, either
+    normally or abnormally. Seg faults are caught
+    and the error handler is used, to prevent
+    being left in graphics mode or having very
+    loud SFX noise because the sound card is
+    left in an unstable state.
+  */
+
+  Z_Init();                  // 1/18/98 killough: start up memory stuff first
+  atexit(I_Quit);
+
+  // 2/2/98 Stan
+  // Must call this here.  It's required by both netgames and i_video.c.
+
+  D_DoomMain();
+
+  return 0;
 }
 
 

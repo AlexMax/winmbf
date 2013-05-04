@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -34,19 +34,19 @@
 // determines the hardware configuration
 // and sets up the video mode
 
-void I_InitGraphics (void);
+void I_InitGraphics(void);
 void I_ShutdownGraphics(void);
 
 // Takes full 8 bit values.
-void I_SetPalette (byte* palette);
+void I_SetPalette(byte* palette);
 
-void I_UpdateNoBlit (void);
-void I_FinishUpdate (void);
+void I_UpdateNoBlit(void);
+void I_FinishUpdate(void);
 
 // Wait for vertical retrace or pause a bit.
 void I_WaitVBL(int count);
 
-void I_ReadScreen (byte* scr);
+void I_ReadScreen(byte* scr);
 
 int I_DoomCode2ScanCode(int);   // killough
 int I_ScanCode2DoomCode(int);   // killough

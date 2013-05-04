@@ -1,0 +1,11 @@
+align-pointer=type
+align-reference=name
+convert-tabs
+indent=spaces=2
+indent-col1-comments
+max-code-length=80
+min-conditional-indent=0
+pad-header
+pad-oper
+style=ansi
+unpad-paren

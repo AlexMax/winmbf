@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -46,21 +46,21 @@
 
 //jff 2/16/98 palette color ranges for translation
 //jff 2/18/98 conversion to palette lookups for speed
-//jff 4/24/98 now pointers to lumps loaded 
-extern char *cr_brick;
-extern char *cr_tan;
-extern char *cr_gray;
-extern char *cr_green;
-extern char *cr_brown;
-extern char *cr_gold;
-extern char *cr_red;
-extern char *cr_blue;
-extern char *cr_blue_status; //killough 2/28/98
-extern char *cr_orange;
-extern char *cr_yellow;
+//jff 4/24/98 now pointers to lumps loaded
+extern char* cr_brick;
+extern char* cr_tan;
+extern char* cr_gray;
+extern char* cr_green;
+extern char* cr_brown;
+extern char* cr_gold;
+extern char* cr_red;
+extern char* cr_blue;
+extern char* cr_blue_status; //killough 2/28/98
+extern char* cr_orange;
+extern char* cr_yellow;
 
 // array of pointers to color translation tables
-extern char *colrngs[];
+extern char* colrngs[];
 
 // symbolic indices into color translation table pointer array
 typedef enum
@@ -81,7 +81,7 @@ typedef enum
 
 #define CR_DEFAULT CR_RED   /* default value for out of range colors */
 
-extern byte *screens[5];
+extern byte* screens[5];
 extern int  dirtybox[4];
 extern byte gammatable[5][256];
 extern int  usegamma, hires;        // killough 11/98
@@ -90,30 +90,31 @@ extern int  usegamma, hires;        // killough 11/98
 void V_InitColorTranslation(void);
 
 // Allocates buffer screens, call before R_Init.
-void V_Init (void);
+void V_Init(void);
 
 void V_CopyRect(int srcx,  int srcy,  int srcscrn, int width, int height,
-		int destx, int desty, int destscrn);
+                int destx, int desty, int destscrn);
 
 // killough 11/98: Consolidated V_DrawPatch and V_DrawPatchFlipped
 
-void V_DrawPatchGeneral(int x,int y,int scrn,patch_t *patch, boolean flipped);
+void V_DrawPatchGeneral(int x, int y, int scrn, patch_t* patch,
+                        boolean flipped);
 
 #define V_DrawPatch(x,y,s,p)        V_DrawPatchGeneral(x,y,s,p,false)
 #define V_DrawPatchFlipped(x,y,s,p) V_DrawPatchGeneral(x,y,s,p,true)
 
 #define V_DrawPatchDirect V_DrawPatch       /* killough 5/2/98 */
 
-void V_DrawPatchTranslated(int x, int y, int scrn, patch_t *patch, char *outr,
+void V_DrawPatchTranslated(int x, int y, int scrn, patch_t* patch, char* outr,
                            int cm);
 
 // Draw a linear block of pixels into the view buffer.
 
-void V_DrawBlock(int x, int y, int scrn, int width, int height, byte *src);
+void V_DrawBlock(int x, int y, int scrn, int width, int height, byte* src);
 
 // Reads a linear block of pixels into the view buffer.
 
-void V_GetBlock(int x, int y, int scrn, int width, int height, byte *dest);
+void V_GetBlock(int x, int y, int scrn, int width, int height, byte* dest);
 
 #define V_MarkRect(x,y,width,height)  /* killough 11/98: unused */
 

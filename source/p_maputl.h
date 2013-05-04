@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -40,38 +40,41 @@
 #define PT_ADDTHINGS    2
 #define PT_EARLYOUT     4
 
-typedef struct {
+typedef struct
+{
   fixed_t     x;
   fixed_t     y;
   fixed_t     dx;
   fixed_t     dy;
 } divline_t;
 
-typedef struct {
+typedef struct
+{
   fixed_t     frac;           // along trace line
   boolean     isaline;
-  union {
+  union
+  {
     mobj_t* thing;
     line_t* line;
   } d;
 } intercept_t;
 
-typedef boolean (*traverser_t)(intercept_t *in);
+typedef boolean(*traverser_t)(intercept_t* in);
 
-fixed_t P_AproxDistance (fixed_t dx, fixed_t dy);
-int     P_PointOnLineSide (fixed_t x, fixed_t y, line_t *line);
-int     P_PointOnDivlineSide (fixed_t x, fixed_t y, divline_t *line);
-void    P_MakeDivline (line_t *li, divline_t *dl);
-fixed_t P_InterceptVector (divline_t *v2, divline_t *v1);
-int     P_BoxOnLineSide (fixed_t *tmbox, line_t *ld);
-void    P_LineOpening (line_t *linedef);
-void    P_UnsetThingPosition(mobj_t *thing);
-void    P_SetThingPosition(mobj_t *thing);
-boolean P_BlockLinesIterator (int x, int y, boolean func(line_t *));
-boolean P_BlockThingsIterator(int x, int y, boolean func(mobj_t *));
-boolean ThingIsOnLine(mobj_t *t, line_t *l);  // killough 3/15/98
+fixed_t P_AproxDistance(fixed_t dx, fixed_t dy);
+int     P_PointOnLineSide(fixed_t x, fixed_t y, line_t* line);
+int     P_PointOnDivlineSide(fixed_t x, fixed_t y, divline_t* line);
+void    P_MakeDivline(line_t* li, divline_t* dl);
+fixed_t P_InterceptVector(divline_t* v2, divline_t* v1);
+int     P_BoxOnLineSide(fixed_t* tmbox, line_t* ld);
+void    P_LineOpening(line_t* linedef);
+void    P_UnsetThingPosition(mobj_t* thing);
+void    P_SetThingPosition(mobj_t* thing);
+boolean P_BlockLinesIterator(int x, int y, boolean func(line_t*));
+boolean P_BlockThingsIterator(int x, int y, boolean func(mobj_t*));
+boolean ThingIsOnLine(mobj_t* t, line_t* l);  // killough 3/15/98
 boolean P_PathTraverse(fixed_t x1, fixed_t y1, fixed_t x2, fixed_t y2,
-                       int flags, boolean trav(intercept_t *));
+                       int flags, boolean trav(intercept_t*));
 
 extern fixed_t opentop;
 extern fixed_t openbottom;

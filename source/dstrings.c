@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,19 +16,19 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
 //   Globally defined strings.
-// 
+//
 //-----------------------------------------------------------------------------
 
 
 #include "dstrings.h"
 
 // killough 1/18/98: remove hardcoded limit, add const:
-const char *const endmsg[]=
+const char* const endmsg[] =
 {
   // DOOM1
   QUITMSG,
@@ -52,29 +52,29 @@ const char *const endmsg[]=
 
   // FinalDOOM?
 
-// Note that these ending "bad taste" strings were commented out
-// in the original id code as the #else case of an #if 1
-// Obviously they were internal playthings before the release of
-// DOOM2 and were not intended for public use.
-//
-// Following messages commented out for now. Bad taste.   // phares
+  // Note that these ending "bad taste" strings were commented out
+  // in the original id code as the #else case of an #if 1
+  // Obviously they were internal playthings before the release of
+  // DOOM2 and were not intended for public use.
+  //
+  // Following messages commented out for now. Bad taste.   // phares
 
-//  "fuck you, pussy!\nget the fuck out!",
-//  "you quit and i'll jizz\nin your cystholes!",
-//  "if you leave, i'll make\nthe lord drink my jizz.",
-//  "hey, ron! can we say\n'fuck' in the game?",
-//  "i'd leave: this is just\nmore monsters and levels.\nwhat a load.",
-//  "suck it down, asshole!\nyou're a fucking wimp!",
-//  "don't quit now! we're \nstill spending your money!",
+  //  "fuck you, pussy!\nget the fuck out!",
+  //  "you quit and i'll jizz\nin your cystholes!",
+  //  "if you leave, i'll make\nthe lord drink my jizz.",
+  //  "hey, ron! can we say\n'fuck' in the game?",
+  //  "i'd leave: this is just\nmore monsters and levels.\nwhat a load.",
+  //  "suck it down, asshole!\nyou're a fucking wimp!",
+  //  "don't quit now! we're \nstill spending your money!",
 
   // Internal debug. Different style, too.
   "THIS IS NO MESSAGE!\nPage intentionally left blank.",  // 1/15/98 killough
 };
 
 // killough 1/18/98: remove hardcoded limit and replace with var (silly hack):
-const size_t NUM_QUITMESSAGES = sizeof(endmsg)/sizeof(*endmsg) - 1;
+const size_t NUM_QUITMESSAGES = sizeof(endmsg) / sizeof(*endmsg) - 1;
 
-  
+
 //----------------------------------------------------------------------------
 //
 // $Log: dstrings.c,v $

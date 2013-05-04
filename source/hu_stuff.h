@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:  Head up display
@@ -35,7 +35,7 @@
 #define HU_FONTEND      (0x7f) /*jff 2/16/98 '_' the last font characters */
 
 // Calculate # of glyphs in font.
-#define HU_FONTSIZE     (HU_FONTEND - HU_FONTSTART + 1) 
+#define HU_FONTSIZE     (HU_FONTEND - HU_FONTSTART + 1)
 
 #define HU_BROADCAST    5
 

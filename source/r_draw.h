@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -29,7 +29,7 @@
 
 #include "r_defs.h"
 
-extern lighttable_t *dc_colormap;
+extern lighttable_t* dc_colormap;
 extern int      dc_x;
 extern int      dc_yl;
 extern int      dc_yh;
@@ -40,7 +40,7 @@ extern int      linesize;        // killough 11/98
 extern int      hires;           // killough 11/98
 
 // first pixel in a column
-extern byte     *dc_source;         
+extern byte*     dc_source;
 
 // The span blitting interface.
 // Hook in assembler or system specific BLT here.
@@ -56,7 +56,7 @@ void R_DrawTranslatedColumn(void);
 
 void R_VideoErase(unsigned ofs, int count);
 
-extern lighttable_t *ds_colormap;
+extern lighttable_t* ds_colormap;
 
 extern int     ds_y;
 extern int     ds_x1;
@@ -67,9 +67,9 @@ extern fixed_t ds_xstep;
 extern fixed_t ds_ystep;
 
 // start of a 64*64 tile image
-extern byte *ds_source;              
-extern byte *translationtables;
-extern byte *dc_translation;
+extern byte* ds_source;
+extern byte* translationtables;
+extern byte* dc_translation;
 
 // Span blitting for rows, floor/ceiling. No Spectre effect needed.
 void R_DrawSpan(void);
@@ -87,9 +87,9 @@ void R_DrawViewBorder(void);
 
 void R_DrawTLColumn(void);    // drawing translucent textures     // phares
 
-extern byte *tranmap;         // translucency filter maps 256x256  // phares 
-extern byte *main_tranmap;    // killough 4/11/98
-extern byte *ylookup[];       // killough 11/98
+extern byte* tranmap;         // translucency filter maps 256x256  // phares
+extern byte* main_tranmap;    // killough 4/11/98
+extern byte* ylookup[];       // killough 11/98
 
 #endif
 

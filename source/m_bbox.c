@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -30,25 +30,23 @@
 
 #include "m_bbox.h"
 
-void M_ClearBox (fixed_t *box)
+void M_ClearBox(fixed_t* box)
 {
   box[BOXTOP] = box[BOXRIGHT] = D_MININT;
   box[BOXBOTTOM] = box[BOXLEFT] = D_MAXINT;
 }
 
-void M_AddToBox(fixed_t* box,fixed_t x,fixed_t y)
+void M_AddToBox(fixed_t* box, fixed_t x, fixed_t y)
 {
-  if (x<box[BOXLEFT])
+  if (x < box[BOXLEFT])
     box[BOXLEFT] = x;
-  else
-    if (x>box[BOXRIGHT])
-      box[BOXRIGHT] = x;
+  else if (x > box[BOXRIGHT])
+    box[BOXRIGHT] = x;
 
-  if (y<box[BOXBOTTOM])
+  if (y < box[BOXBOTTOM])
     box[BOXBOTTOM] = y;
-  else
-    if (y>box[BOXTOP])
-      box[BOXTOP] = y;
+  else if (y > box[BOXTOP])
+    box[BOXTOP] = y;
 }
 
 //----------------------------------------------------------------------------

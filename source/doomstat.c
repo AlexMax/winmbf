@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -65,14 +65,14 @@ int  default_weapon_recoil;      // killough 3/1/98: make local to each game
 int player_bobbing;  // whether player bobs or not          // phares 2/25/98
 int default_player_bobbing;      // killough 3/1/98: make local to each game
 
-int monsters_remember=1;        // killough 3/1/98
-int default_monsters_remember=1;
+int monsters_remember = 1;      // killough 3/1/98
+int default_monsters_remember = 1;
 
-int monster_infighting=1;       // killough 7/19/98: monster<=>monster attacks
-int default_monster_infighting=1;
+int monster_infighting = 1;     // killough 7/19/98: monster<=>monster attacks
+int default_monster_infighting = 1;
 
-int monster_friction=1;       // killough 10/98: monsters affected by friction 
-int default_monster_friction=1;
+int monster_friction = 1;     // killough 10/98: monsters affected by friction
+int default_monster_friction = 1;
 
 #ifdef BETA
 // killough 7/19/98: classic Doom BFG

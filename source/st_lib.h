@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -51,11 +51,11 @@ typedef struct
   int   y;
 
   // max # of digits in number
-  int width;    
+  int width;
 
   // last number value
   int   oldnum;
-  
+
   // pointer to current value
   int*  num;
 
@@ -100,10 +100,10 @@ typedef struct
 
   // list of icons
   patch_t**   p;
-  
+
   // user data
   int     data;
-  
+
 } st_multicon_t;
 
 // Binary Icon widget
@@ -122,7 +122,7 @@ typedef struct
 
   // pointer to boolean
   //  stating whether to update icon
-  boolean*    on;  
+  boolean*    on;
 
   patch_t*    p;  // icon
   int     data;   // user data
@@ -140,64 +140,64 @@ void STlib_init(void);
 
 // Number widget routines
 void STlib_initNum
-( st_number_t* n,
-  int x,
-  int y,
-  patch_t** pl,
-  int* num,
-  boolean* on,
-  int width );
+(st_number_t* n,
+ int x,
+ int y,
+ patch_t** pl,
+ int* num,
+ boolean* on,
+ int width);
 
 void STlib_updateNum
-( st_number_t* n,
-  char *outrng,           //jff 1/16/98 add color translation to digit output
-  boolean refresh );
+(st_number_t* n,
+ char* outrng,           //jff 1/16/98 add color translation to digit output
+ boolean refresh);
 
 
 // Percent widget routines
 void STlib_initPercent
-( st_percent_t* p,
-  int x,
-  int y,
-  patch_t** pl,
-  int* num,
-  boolean* on,
-  patch_t* percent );
+(st_percent_t* p,
+ int x,
+ int y,
+ patch_t** pl,
+ int* num,
+ boolean* on,
+ patch_t* percent);
 
 
 void STlib_updatePercent
-( st_percent_t* per,
-  char *outrng,          //jff 1/16/98 add color translation to percent output
-  int refresh );
+(st_percent_t* per,
+ char* outrng,          //jff 1/16/98 add color translation to percent output
+ int refresh);
 
 
 // Multiple Icon widget routines
 void STlib_initMultIcon
-( st_multicon_t* mi,
-  int x,
-  int y,
-  patch_t**   il,
-  int* inum,
-  boolean* on );
+(st_multicon_t* mi,
+ int x,
+ int y,
+ patch_t**   il,
+ int* inum,
+ boolean* on);
 
 
 void STlib_updateMultIcon
-( st_multicon_t* mi,
-  boolean refresh );
+(st_multicon_t* mi,
+ boolean refresh);
 
 // Binary Icon widget routines
 
 void STlib_initBinIcon
-( st_binicon_t* b,
-  int x,
-  int y,
-  patch_t* i,
-  boolean* val,
-  boolean* on );
+(st_binicon_t* b,
+ int x,
+ int y,
+ patch_t* i,
+ boolean* val,
+ boolean* on);
 
 void STlib_updateBinIcon
-( st_binicon_t* bi,
-  boolean refresh );
+(st_binicon_t* bi,
+ boolean refresh);
 
 #endif
 

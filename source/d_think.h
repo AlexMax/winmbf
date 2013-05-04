@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -32,20 +32,20 @@
 // killough 11/98: convert back to C instead of C++
 typedef  void (*actionf_t)();
 
-// Historically, "think_t" is yet another function 
+// Historically, "think_t" is yet another function
 // pointer to a routine to handle an actor.
 typedef actionf_t think_t;
 
 // Doubly linked list of actors.
 typedef struct thinker_s
 {
-  struct thinker_s *prev, *next;
+  struct thinker_s* prev, *next;
   think_t function;
-  
+
   // killough 8/29/98: we maintain thinkers in several equivalence classes,
   // according to various criteria, so as to allow quicker searches.
 
-  struct thinker_s *cnext, *cprev; // Next, previous thinkers in same class
+  struct thinker_s* cnext, *cprev; // Next, previous thinkers in same class
 
   // killough 11/98: count of how many other objects reference
   // this one using pointers. Used for garbage collection.

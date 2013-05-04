@@ -13,7 +13,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 
 // haleyjd: IO crap for MSVC
@@ -22,29 +22,29 @@
 #define D_IO_INCLUDED
 
 #ifdef _MSC_VER
-  #include <direct.h>
-  #include <io.h>
-  #define F_OK 0
-  #define W_OK 2
-  #define R_OK 4
-  #define S_ISDIR(x) (((sbuf.st_mode & S_IFDIR)==S_IFDIR)?1:0)
-  #define TRUE true
-  #define FALSE false
-  #define strcasecmp _stricmp
-  #define strncasecmp _strnicmp
-  #ifndef PATH_MAX
-     #define PATH_MAX _MAX_PATH
-  #endif
+#include <direct.h>
+#include <io.h>
+#define F_OK 0
+#define W_OK 2
+#define R_OK 4
+#define S_ISDIR(x) (((sbuf.st_mode & S_IFDIR)==S_IFDIR)?1:0)
+#define TRUE true
+#define FALSE false
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+#ifndef PATH_MAX
+#define PATH_MAX _MAX_PATH
+#endif
 #else
-  #include <unistd.h>
-  #define TRUE 1
-  #define FALSE 0
-  #ifndef stricmp
-    #define stricmp strcasecmp
-  #endif
-  #ifndef strnicmp
-    #define strnicmp strncasecmp
-  #endif
+#include <unistd.h>
+#define TRUE 1
+#define FALSE 0
+#ifndef stricmp
+#define stricmp strcasecmp
+#endif
+#ifndef strnicmp
+#define strnicmp strncasecmp
+#endif
 #endif
 
 #endif

@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -29,14 +29,16 @@
 
 // killough 4/16/98: Cheat table structure
 
-extern struct cheat_s {
-  const unsigned char *cheat;
-  const char *const deh_cheat;
-  enum { 
+extern struct cheat_s
+{
+  const unsigned char* cheat;
+  const char* const deh_cheat;
+  enum
+  {
     always   = 0,
     not_dm   = 1,
     not_coop = 2,
-    not_demo = 4, 
+    not_demo = 4,
     not_menu = 8,
     not_deh  = 16,
     beta_only = 32,                  // killough 7/24/98

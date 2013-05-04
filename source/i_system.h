@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -54,7 +54,7 @@ extern int GetTime_Scale;
 // Can call D_PostEvent.
 //
 
-void I_StartFrame (void);
+void I_StartFrame(void);
 
 //
 // Called by D_DoomLoop,
@@ -62,7 +62,7 @@ void I_StartFrame (void);
 // Quick syncronous operations are performed here.
 // Can call D_PostEvent.
 
-void I_StartTic (void);
+void I_StartTic(void);
 
 // Asynchronous interrupt functions should maintain private queues
 // that are read by the synchronous functions
@@ -73,11 +73,11 @@ void I_StartTic (void);
 // This ticcmd will then be modified by the gameloop
 // for normal input.
 
-ticcmd_t* I_BaseTiccmd (void);
+ticcmd_t* I_BaseTiccmd(void);
 
 // atexit handler -- killough
 
-void I_Quit (void);
+void I_Quit(void);
 
 // Allocates from low memory under dos, just mallocs under unix
 
@@ -86,7 +86,7 @@ void I_Quit (void);
 
 // killough 3/20/98: add const
 // killough 4/25/98: add gcc attributes
-void I_Error(const char *error, ...) __attribute__((format(printf,1,2)));
+void I_Error(const char* error, ...) __attribute__((format(printf, 1, 2)));
 
 extern int mousepresent;                // killough
 
@@ -100,8 +100,9 @@ void I_EndDoom(void);         // killough 2/22/98: endgame screen
 
 #define KQSIZE 256
 
-extern struct keyboard_queue_s {
-  volatile int head,tail,queue[KQSIZE];
+extern struct keyboard_queue_s
+{
+  volatile int head, tail, queue[KQSIZE];
 } keyboard_queue;
 
 #endif

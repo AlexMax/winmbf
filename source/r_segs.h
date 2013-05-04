@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -27,7 +27,7 @@
 #ifndef __R_SEGS__
 #define __R_SEGS__
 
-void R_RenderMaskedSegRange(drawseg_t *ds, int x1, int x2);
+void R_RenderMaskedSegRange(drawseg_t* ds, int x1, int x2);
 void R_StoreWallRange(int start, int stop);
 
 #endif

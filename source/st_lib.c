@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //
@@ -48,7 +48,7 @@ patch_t*    sttminus;
 //
 void STlib_init(void)
 {
-  sttminus = (patch_t *) W_CacheLumpName("STTMINUS", PU_STATIC);
+  sttminus = (patch_t*) W_CacheLumpName("STTMINUS", PU_STATIC);
 }
 
 //
@@ -61,13 +61,13 @@ void STlib_init(void)
 // Returns nothing
 //
 void STlib_initNum
-( st_number_t* n,
-  int x,
-  int y,
-  patch_t** pl,
-  int* num,
-  boolean* on,
-  int     width )
+(st_number_t* n,
+ int x,
+ int y,
+ patch_t** pl,
+ int* num,
+ boolean* on,
+ int     width)
 {
   n->x  = x;
   n->y  = y;
@@ -80,8 +80,8 @@ void STlib_initNum
 
 //
 // STlib_drawNum()
-// 
-// A fairly efficient way to draw a number based on differences from the 
+//
+// A fairly efficient way to draw a number based on differences from the
 // old number.
 //
 // Passed a st_number_t widget, a color range for output, and a flag
@@ -89,9 +89,9 @@ void STlib_initNum
 // Returns nothing
 //
 void STlib_drawNum
-( st_number_t*  n,
-  char *outrng,        //jff 2/16/98 add color translation to digit output
-  boolean refresh )
+(st_number_t*  n,
+ char* outrng,        //jff 2/16/98 add color translation to digit output
+ boolean refresh)
 {
 
   int   numdigits = n->width;
@@ -118,12 +118,12 @@ void STlib_drawNum
   }
 
   // clear the area
-  x = n->x - numdigits*w;
+  x = n->x - numdigits * w;
 
   if (n->y - ST_Y < 0)
     I_Error("drawNum: n->y - ST_Y < 0");
 
-  V_CopyRect(x, n->y - ST_Y, BG, w*numdigits, h, x, n->y, FG);
+  V_CopyRect(x, n->y - ST_Y, BG, w * numdigits, h, x, n->y, FG);
 
   // if non-number, do not draw it
   if (num == 1994)
@@ -135,7 +135,7 @@ void STlib_drawNum
   // in the special case of 0, you draw 0
   if (!num)
     if (outrng && !sts_always_red)
-      V_DrawPatchTranslated(x - w, n->y, FG, n->p[ 0 ],outrng,0);
+      V_DrawPatchTranslated(x - w, n->y, FG, n->p[ 0 ], outrng, 0);
     else //jff 2/18/98 allow use of faster draw routine from config
       V_DrawPatch(x - w, n->y, FG, n->p[ 0 ]);
 
@@ -145,7 +145,7 @@ void STlib_drawNum
   {
     x -= w;
     if (outrng && !sts_always_red)
-      V_DrawPatchTranslated(x, n->y, FG, n->p[ num % 10 ],outrng,0);
+      V_DrawPatchTranslated(x, n->y, FG, n->p[ num % 10 ], outrng, 0);
     else //jff 2/18/98 allow use of faster draw routine from config
       V_DrawPatch(x, n->y, FG, n->p[ num % 10 ]);
     num /= 10;
@@ -155,7 +155,7 @@ void STlib_drawNum
   //jff 2/16/98 add color translation to digit output
   if (neg)
     if (outrng && !sts_always_red)
-      V_DrawPatchTranslated(x - 8, n->y, FG, sttminus,outrng,0);
+      V_DrawPatchTranslated(x - 8, n->y, FG, sttminus, outrng, 0);
     else //jff 2/18/98 allow use of faster draw routine from config
       V_DrawPatch(x - 8, n->y, FG, sttminus);
 }
@@ -169,9 +169,9 @@ void STlib_drawNum
 // Returns nothing
 //
 void STlib_updateNum
-( st_number_t*    n,
-  char *outrng, //jff 2/16/98 add color translation to digit output
-  boolean   refresh )
+(st_number_t*    n,
+ char* outrng, //jff 2/16/98 add color translation to digit output
+ boolean   refresh)
 {
   if (*n->on) STlib_drawNum(n, outrng, refresh);
 }
@@ -187,13 +187,13 @@ void STlib_updateNum
 // Returns nothing.
 //
 void STlib_initPercent
-( st_percent_t* p,
-  int x,
-  int y,
-  patch_t** pl,
-  int* num,
-  boolean* on,
-  patch_t* percent )
+(st_percent_t* p,
+ int x,
+ int y,
+ patch_t** pl,
+ int* num,
+ boolean* on,
+ patch_t* percent)
 {
   STlib_initNum(&p->n, x, y, pl, num, on, 3);
   p->p = percent;
@@ -208,9 +208,9 @@ void STlib_initPercent
 // Returns nothing
 //
 void STlib_updatePercent
-( st_percent_t*   per,
-  char *outrng,             //jff 2/16/98 add color translation to digit output
-  int refresh )
+(st_percent_t*   per,
+ char* outrng,             //jff 2/16/98 add color translation to digit output
+ int refresh)
 {
   if (refresh || *per->n.on) // killough 2/21/98: fix percents not updated;
     if (!sts_always_red)     // also support gray-only percents
@@ -225,7 +225,7 @@ void STlib_updatePercent
       );
     else   //jff 2/18/98 allow use of faster draw routine from config
       V_DrawPatch(per->n.x, per->n.y, FG, per->p);
-  
+
   STlib_updateNum(&per->n, outrng, refresh);
 }
 
@@ -240,12 +240,12 @@ void STlib_updatePercent
 // Returns nothing.
 //
 void STlib_initMultIcon
-( st_multicon_t* i,
-  int x,
-  int y,
-  patch_t** il,
-  int* inum,
-  boolean* on )
+(st_multicon_t* i,
+ int x,
+ int y,
+ patch_t** il,
+ int* inum,
+ boolean* on)
 {
   i->x  = x;
   i->y  = y;
@@ -266,8 +266,8 @@ void STlib_initMultIcon
 // Returns nothing.
 //
 void STlib_updateMultIcon
-( st_multicon_t*  mi,
-  boolean   refresh )
+(st_multicon_t*  mi,
+ boolean   refresh)
 {
   int w;
   int h;
@@ -286,7 +286,7 @@ void STlib_updateMultIcon
       if (y - ST_Y < 0)
         I_Error("updateMultIcon: y - ST_Y < 0");
 
-      V_CopyRect(x, y-ST_Y, BG, w, h, x, y, FG);
+      V_CopyRect(x, y - ST_Y, BG, w, h, x, y, FG);
     }
     if (*mi->inum != -1)  // killough 2/16/98: redraw only if != -1
       V_DrawPatch(mi->x, mi->y, FG, mi->p[*mi->inum]);
@@ -305,12 +305,12 @@ void STlib_updateMultIcon
 // Returns nothing.
 //
 void STlib_initBinIcon
-( st_binicon_t* b,
-  int x,
-  int y,
-  patch_t* i,
-  boolean* val,
-  boolean* on )
+(st_binicon_t* b,
+ int x,
+ int y,
+ patch_t* i,
+ boolean* val,
+ boolean* on)
 {
   b->x  = x;
   b->y  = y;
@@ -334,8 +334,8 @@ void STlib_initBinIcon
 // Returns nothing.
 //
 void STlib_updateBinIcon
-( st_binicon_t*   bi,
-  boolean   refresh )
+(st_binicon_t*   bi,
+ boolean   refresh)
 {
   int     x;
   int     y;
@@ -355,7 +355,7 @@ void STlib_updateBinIcon
     if (*bi->val)
       V_DrawPatch(bi->x, bi->y, FG, bi->p);
     else
-      V_CopyRect(x, y-ST_Y, BG, w, h, x, y, FG);
+      V_CopyRect(x, y - ST_Y, BG, w, h, x, y, FG);
 
     bi->oldval = *bi->val;
   }

@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //
@@ -30,16 +30,16 @@
 
 #include "d_event.h"
 
-extern char **wadfiles;       // killough 11/98
+extern char** wadfiles;       // killough 11/98
 
 // jff make startskill globally visible
 extern skill_t startskill;
 
-void D_AddFile(char *file);
+void D_AddFile(char* file);
 
-char *D_DoomExeDir(void);       // killough 2/16/98: path to executable's dir
-char *D_DoomExeName(void);      // killough 10/98: executable's name
-void NormalizeSlashes(char *);  // killough 11/98
+char* D_DoomExeDir(void);       // killough 2/16/98: path to executable's dir
+char* D_DoomExeName(void);      // killough 10/98: executable's name
+void NormalizeSlashes(char*);   // killough 11/98
 extern char basesavegame[];     // killough 2/16/98: savegame path
 
 //jff 1/24/98 make command line copies of play modes available

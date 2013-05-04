@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -51,7 +51,7 @@ typedef int fixed_t;
 
 __inline__ static fixed_t FixedMul(fixed_t a, fixed_t b)
 {
-  return (fixed_t)((Long64) a*b >> FRACBITS);
+  return (fixed_t)((Long64) a * b >> FRACBITS);
 }
 
 //
@@ -60,8 +60,8 @@ __inline__ static fixed_t FixedMul(fixed_t a, fixed_t b)
 
 __inline__ static fixed_t FixedDiv(fixed_t a, fixed_t b)
 {
-  return (abs(a)>>14) >= abs(b) ? ((a^b)>>31) ^ D_MAXINT :
-    (fixed_t)(((Long64) a << FRACBITS) / b);
+  return (abs(a) >> 14) >= abs(b) ? ((a ^ b) >> 31) ^ D_MAXINT :
+         (fixed_t)(((Long64) a << FRACBITS) / b);
 }
 
 #endif

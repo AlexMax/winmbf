@@ -15,7 +15,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //-----------------------------------------------------------------------------
@@ -27,37 +27,38 @@
 
 typedef enum
 {
-  MUSDATACOR,    // MUS data corrupt 
-  TOOMCHAN,      // Too many channels 
-  MEMALLOC,      // Memory allocation error 
-  MUSDATAMT,     // MUS file empty 
-  BADMUSCTL,     // MUS event 5 or 7 found 
-  BADSYSEVT,     // MUS system event not in 10-14 range 
-  BADCTLCHG,     // MUS control change larger than 9 
-  TRACKOVF,      // MIDI track exceeds allocation 
-  BADMIDHDR,     // bad midi header detected 
+  MUSDATACOR,    // MUS data corrupt
+  TOOMCHAN,      // Too many channels
+  MEMALLOC,      // Memory allocation error
+  MUSDATAMT,     // MUS file empty
+  BADMUSCTL,     // MUS event 5 or 7 found
+  BADSYSEVT,     // MUS system event not in 10-14 range
+  BADCTLCHG,     // MUS control change larger than 9
+  TRACKOVF,      // MIDI track exceeds allocation
+  BADMIDHDR,     // bad midi header detected
 } error_code_t;
 
-// some names for integers of various sizes, all unsigned 
-typedef unsigned char UBYTE;  // a one-byte int 
-typedef unsigned short UWORD; // a two-byte int 
+// some names for integers of various sizes, all unsigned
+typedef unsigned char UBYTE;  // a one-byte int
+typedef unsigned short UWORD; // a two-byte int
 // proff: changed from unsigned int to unsigned long to avoid warning
-typedef unsigned long ULONG;   // a four-byte int (assumes int 4 bytes) 
+typedef unsigned long ULONG;   // a four-byte int (assumes int 4 bytes)
 
-#define MIDI_TRACKS           32       
+#define MIDI_TRACKS           32
 
 typedef struct MIDI                    /* a midi file */
 {
-   int divisions;                      /* number of ticks per quarter note */
-   struct {
-      unsigned char *data;             /* MIDI message stream */
-      int len;                         /* length of the track data */
-   } track[MIDI_TRACKS]; 
+  int divisions;                      /* number of ticks per quarter note */
+  struct
+  {
+    unsigned char* data;             /* MIDI message stream */
+    int len;                         /* length of the track data */
+  } track[MIDI_TRACKS];
 } MIDI;
 
-int mmus2mid(UBYTE *mus,MIDI *mid, UWORD division, int nocomp);
-int MIDIToMidi(MIDI *mididata,UBYTE **mid,int *midlen);
-int MidiToMIDI(UBYTE *mid,MIDI *mididata);
+int mmus2mid(UBYTE* mus, MIDI* mid, UWORD division, int nocomp);
+int MIDIToMidi(MIDI* mididata, UBYTE** mid, int* midlen);
+int MidiToMIDI(UBYTE* mid, MIDI* mididata);
 
 #endif
 

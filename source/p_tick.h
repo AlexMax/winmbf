@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //-----------------------------------------------------------------------------
@@ -34,21 +34,22 @@ void P_Ticker(void);
 extern thinker_t thinkercap;  // Both the head and tail of the thinker list
 
 void P_InitThinkers(void);
-void P_AddThinker(thinker_t *thinker);
-void P_RemoveThinker(thinker_t *thinker);
-void P_RemoveThinkerDelayed(thinker_t *thinker);    // killough 4/25/98
+void P_AddThinker(thinker_t* thinker);
+void P_RemoveThinker(thinker_t* thinker);
+void P_RemoveThinkerDelayed(thinker_t* thinker);    // killough 4/25/98
 
-void P_UpdateThinker(thinker_t *thinker);   // killough 8/29/98
+void P_UpdateThinker(thinker_t* thinker);   // killough 8/29/98
 
-void P_SetTarget(mobj_t **mo, mobj_t *target);   // killough 11/98
+void P_SetTarget(mobj_t** mo, mobj_t* target);   // killough 11/98
 
 // killough 8/29/98: threads of thinkers, for more efficient searches
-typedef enum {
-   th_delete,  // haleyjd 11/09/06: giant bug fix
-   th_misc,
-   th_friends,
-   th_enemies,
-   NUMTHCLASS
+typedef enum
+{
+  th_delete,  // haleyjd 11/09/06: giant bug fix
+  th_misc,
+  th_friends,
+  th_enemies,
+  NUMTHCLASS
 } th_class;
 
 extern thinker_t thinkerclasscap[];

@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -65,15 +65,15 @@ extern int      loopcount;
 #define LIGHTZSHIFT       20
 
 // killough 3/20/98: Allow colormaps to be dynamic (e.g. underwater)
-extern lighttable_t *(*scalelight)[MAXLIGHTSCALE];
-extern lighttable_t *(*zlight)[MAXLIGHTZ];
-extern lighttable_t *fullcolormap;
+extern lighttable_t* (*scalelight)[MAXLIGHTSCALE];
+extern lighttable_t* (*zlight)[MAXLIGHTZ];
+extern lighttable_t* fullcolormap;
 extern int numcolormaps;    // killough 4/4/98: dynamic number of maps
-extern lighttable_t **colormaps;
+extern lighttable_t** colormaps;
 // killough 3/20/98, 4/4/98: end dynamic colormaps
 
 extern int          extralight;
-extern lighttable_t *fixedcolormap;
+extern lighttable_t* fixedcolormap;
 
 // Number of diminishing brightness levels.
 // There a 0-31, i.e. 32 LUT in the COLORMAP lump.
@@ -90,18 +90,18 @@ extern void (*colfunc)(void);
 // Utility functions.
 //
 
-int R_PointOnSide(fixed_t x, fixed_t y, node_t *node);
-int R_PointOnSegSide(fixed_t x, fixed_t y, seg_t *line);
+int R_PointOnSide(fixed_t x, fixed_t y, node_t* node);
+int R_PointOnSegSide(fixed_t x, fixed_t y, seg_t* line);
 angle_t R_PointToAngle(fixed_t x, fixed_t y);
 angle_t R_PointToAngle2(fixed_t x1, fixed_t y1, fixed_t x2, fixed_t y2);
 fixed_t R_ScaleFromGlobalAngle(angle_t visangle);
-subsector_t *R_PointInSubsector(fixed_t x, fixed_t y);
+subsector_t* R_PointInSubsector(fixed_t x, fixed_t y);
 
 //
 // REFRESH - the actual rendering functions.
 //
 
-void R_RenderPlayerView(player_t *player);   // Called by G_Drawer.
+void R_RenderPlayerView(player_t* player);   // Called by G_Drawer.
 void R_Init(void);                           // Called by startup code.
 void R_SetViewSize(int blocks);              // Called by M_Responder.
 

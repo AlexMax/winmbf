@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //
@@ -36,7 +36,8 @@
 // Information about all the music
 //
 
-musicinfo_t S_music[] = {
+musicinfo_t S_music[] =
+{
   { 0 },
   { "e1m1", 0 },
   { "e1m2", 0 },
@@ -110,10 +111,11 @@ musicinfo_t S_music[] = {
 //
 // Information about all the sfx
 //
-// killough 12/98: 
+// killough 12/98:
 // Reimplemented 'singularity' flag, adjusting many sounds below
 
-sfxinfo_t S_sfx[] = {
+sfxinfo_t S_sfx[] =
+{
   { 0 },  // S_sfx[0] needs to be a dummy for odd reasons.
 
   { "pistol", sg_none,   64, 0, -1, -1, 0 },
