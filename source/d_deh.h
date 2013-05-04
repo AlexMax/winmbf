@@ -801,15 +801,3 @@ extern char* startup5;
 extern char* savegamename;
 
 #endif
-
-//--------------------------------------------------------------------
-//
-// $Log: d_deh.h,v $
-// Revision 1.5  1998/05/04  21:36:33  thldrmn
-// commenting, reformatting and savegamename change
-//
-// Revision 1.4  1998/04/10  06:47:29  killough
-// Fix CVS stuff
-//
-//
-//--------------------------------------------------------------------

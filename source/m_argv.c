@@ -46,23 +46,3 @@ int M_CheckParm(const char* check)
       return i;
   return 0;
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_argv.c,v $
-// Revision 1.5  1998/05/03  22:51:40  killough
-// beautification
-//
-// Revision 1.4  1998/05/01  14:26:14  killough
-// beautification
-//
-// Revision 1.3  1998/05/01  14:23:29  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:23:40  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

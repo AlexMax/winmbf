@@ -33,18 +33,3 @@ void I_InitNetwork(void);
 void I_NetCmd(void);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: i_net.h,v $
-// Revision 1.3  1998/05/16  09:52:27  jim
-// add temporary switch for Lee/Stan's code in d_net.c
-//
-// Revision 1.2  1998/01/26  19:26:56  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

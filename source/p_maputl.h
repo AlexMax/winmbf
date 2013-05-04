@@ -83,12 +83,3 @@ extern fixed_t lowfloor;
 extern divline_t trace;
 
 #endif  // __P_MAPUTL__
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_maputl.h,v $
-// Revision 1.1  1998/05/03  22:19:26  killough
-// External declarations formerly in p_local.h
-//
-//
-//----------------------------------------------------------------------------

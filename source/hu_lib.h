@@ -271,38 +271,3 @@ void HUlib_drawIText(hu_itext_t* it);
 void HUlib_eraseIText(hu_itext_t* it);
 
 #endif
-
-
-//----------------------------------------------------------------------------
-//
-// $Log: hu_lib.h,v $
-// Revision 1.9  1998/05/11  10:13:31  jim
-// formatted/documented hu_lib
-//
-// Revision 1.8  1998/04/28  15:53:53  jim
-// Fix message list bug in small screen mode
-//
-// Revision 1.7  1998/02/26  22:58:44  jim
-// Added message review display to HUD
-//
-// Revision 1.6  1998/02/19  16:55:19  jim
-// Optimized HUD and made more configurable
-//
-// Revision 1.5  1998/02/18  00:58:58  jim
-// Addition of HUD
-//
-// Revision 1.4  1998/02/15  02:48:09  phares
-// User-defined keys
-//
-// Revision 1.3  1998/01/26  19:26:52  phares
-// First rev with no ^Ms
-//
-// Revision 1.2  1998/01/26  05:50:24  killough
-// Support more lines, and tab stops, in messages
-//
-// Revision 1.1.1.1  1998/01/19  14:02:55  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------
-

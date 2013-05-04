@@ -53,18 +53,3 @@ typedef struct thinker_s
 } thinker_t;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: d_think.h,v $
-// Revision 1.3  1998/05/04  21:34:20  thldrmn
-// commenting and reformatting
-//
-// Revision 1.2  1998/01/26  19:26:34  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

@@ -172,21 +172,3 @@ typedef struct setup_menu_s
 } setup_menu_t;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_menu.h,v $
-// Revision 1.4  1998/05/16  09:17:18  killough
-// Make loadgame checksum friendlier
-//
-// Revision 1.3  1998/05/03  21:56:53  killough
-// Add traditional_menu declaration
-//
-// Revision 1.2  1998/01/26  19:27:11  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

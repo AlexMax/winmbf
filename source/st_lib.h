@@ -200,26 +200,3 @@ void STlib_updateBinIcon
  boolean refresh);
 
 #endif
-
-
-//----------------------------------------------------------------------------
-//
-// $Log: st_lib.h,v $
-// Revision 1.5  1998/05/11  10:44:46  jim
-// formatted/documented st_lib
-//
-// Revision 1.4  1998/02/19  16:55:12  jim
-// Optimized HUD and made more configurable
-//
-// Revision 1.3  1998/02/18  00:59:16  jim
-// Addition of HUD
-//
-// Revision 1.2  1998/01/26  19:27:55  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:03  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------
-

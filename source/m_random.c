@@ -129,26 +129,3 @@ void M_ClearRandom(void)
     rng.seed[i] = seed *= 69069ul;     // each starting seed differently
   rng.prndindex = rng.rndindex = 0;    // clear two compatibility indices
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_random.c,v $
-// Revision 1.6  1998/05/03  23:13:18  killough
-// Fix #include
-//
-// Revision 1.5  1998/03/31  10:43:05  killough
-// Fix (supposed) RNG problems, add new demo_insurance
-//
-// Revision 1.4  1998/03/28  17:56:05  killough
-// Improve RNG by adding external seed
-//
-// Revision 1.3  1998/02/17  05:40:08  killough
-// Make RNGs local to each calling block, for demo sync
-//
-// Revision 1.2  1998/01/26  19:23:51  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

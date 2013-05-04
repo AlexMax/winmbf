@@ -56,27 +56,3 @@ void R_InitColormaps(void);   // killough 8/9/98
 extern byte* main_tranmap, *tranmap;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_data.h,v $
-// Revision 1.6  1998/05/03  22:55:43  killough
-// Add tranmap external declarations
-//
-// Revision 1.5  1998/04/06  04:48:25  killough
-// Add R_ColormapNumForName() prototype
-//
-// Revision 1.4  1998/03/09  07:26:34  killough
-// Add translucency map caching
-//
-// Revision 1.3  1998/03/02  12:10:05  killough
-// Add R_InitTranMap prototype
-//
-// Revision 1.2  1998/01/26  19:27:34  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

@@ -220,33 +220,3 @@ int main(int argc, char** argv)
 
   return 0;
 }
-
-
-//----------------------------------------------------------------------------
-//
-// $Log: i_main.c,v $
-// Revision 1.8  1998/05/15  00:34:03  killough
-// Remove unnecessary crash hack
-//
-// Revision 1.7  1998/05/13  22:58:04  killough
-// Restore Doom bug compatibility for demos
-//
-// Revision 1.6  1998/05/03  22:38:36  killough
-// beautification
-//
-// Revision 1.5  1998/04/27  02:03:11  killough
-// Improve signal handling, to use Z_DumpHistory()
-//
-// Revision 1.4  1998/03/09  07:10:47  killough
-// Allow CTRL-BRK during game init
-//
-// Revision 1.3  1998/02/03  01:32:58  stan
-// Moved __djgpp_nearptr_enable() call from I_video.c to i_main.c
-//
-// Revision 1.2  1998/01/26  19:23:24  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:57  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

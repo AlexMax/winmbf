@@ -47,18 +47,3 @@ typedef struct
 
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: d_textur.h,v $
-// Revision 1.3  1998/05/04  21:34:18  thldrmn
-// commenting and reformatting
-//
-// Revision 1.2  1998/01/26  19:26:33  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:54  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

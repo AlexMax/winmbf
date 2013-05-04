@@ -360,34 +360,3 @@ void STlib_updateBinIcon
     bi->oldval = *bi->val;
   }
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: st_lib.c,v $
-// Revision 1.8  1998/05/11  10:44:42  jim
-// formatted/documented st_lib
-//
-// Revision 1.7  1998/05/03  22:58:17  killough
-// Fix header #includes at top, nothing else
-//
-// Revision 1.6  1998/02/23  04:56:34  killough
-// Fix percent sign problems
-//
-// Revision 1.5  1998/02/19  16:55:09  jim
-// Optimized HUD and made more configurable
-//
-// Revision 1.4  1998/02/18  00:59:13  jim
-// Addition of HUD
-//
-// Revision 1.3  1998/02/17  06:17:03  killough
-// Add support for erasing keys in status bar
-//
-// Revision 1.2  1998/01/26  19:24:56  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:03  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------
-

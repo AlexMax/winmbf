@@ -59,20 +59,3 @@ extern int disk_icon;  // killough 10/98
 extern int hires;      // killough 11/98
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: i_video.h,v $
-// Revision 1.4  1998/05/03  22:40:58  killough
-// beautification
-//
-// Revision 1.3  1998/02/09  03:01:51  killough
-// Add vsync for flicker-free blits
-//
-// Revision 1.2  1998/01/26  19:27:01  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

@@ -111,30 +111,3 @@ extern boolean setsizeneeded;
 void R_ExecuteSetViewSize(void);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_main.h,v $
-// Revision 1.7  1998/05/03  23:00:42  killough
-// beautification
-//
-// Revision 1.6  1998/04/06  04:43:17  killough
-// Make colormaps fully dynamic
-//
-// Revision 1.5  1998/03/23  03:37:44  killough
-// Add support for arbitrary number of colormaps
-//
-// Revision 1.4  1998/03/09  07:27:23  killough
-// Avoid using FP for point/line queries
-//
-// Revision 1.3  1998/02/02  13:29:10  killough
-// performance tuning
-//
-// Revision 1.2  1998/01/26  19:27:41  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

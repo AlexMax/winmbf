@@ -104,23 +104,3 @@ int flashing_hom;     // killough 10/98
 int doom_weapon_toggles; // killough 10/98
 
 int monkeys, default_monkeys;
-
-//----------------------------------------------------------------------------
-//
-// $Log: doomstat.c,v $
-// Revision 1.5  1998/05/12  12:46:12  phares
-// Removed OVER_UNDER code
-//
-// Revision 1.4  1998/05/05  16:29:01  phares
-// Removed RECOIL and OPT_BOBBING defines
-//
-// Revision 1.3  1998/05/03  23:12:13  killough
-// beautify, move most global switch variables here
-//
-// Revision 1.2  1998/01/26  19:23:10  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:06  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

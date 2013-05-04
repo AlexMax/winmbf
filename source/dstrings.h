@@ -75,21 +75,3 @@ extern const char* const endmsg[];   // killough 1/18/98 const added
 
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: dstrings.h,v $
-// Revision 1.5  1998/05/04  22:00:43  thldrmn
-// savegamename globalization
-//
-// Revision 1.3  1998/03/23  03:12:58  killough
-// Rename doomsav to boomsav
-//
-// Revision 1.2  1998/01/26  19:26:45  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:51  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

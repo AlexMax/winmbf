@@ -124,18 +124,3 @@ weaponinfo_t    weaponinfo[NUMWEAPONS] =
     S_DSGUNFLASH1
   },
 };
-
-//----------------------------------------------------------------------------
-//
-// $Log: d_items.c,v $
-// Revision 1.4  1998/05/04  21:34:09  thldrmn
-// commenting and reformatting
-//
-// Revision 1.2  1998/01/26  19:23:03  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:07  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

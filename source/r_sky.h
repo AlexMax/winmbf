@@ -42,21 +42,3 @@ extern int skytexturemid;
 void R_InitSkyMap(void);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_sky.h,v $
-// Revision 1.4  1998/05/03  22:56:25  killough
-// Add m_fixed.h #include
-//
-// Revision 1.3  1998/05/01  14:15:29  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:27:46  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:09  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

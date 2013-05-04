@@ -50,23 +50,3 @@ extern byte* save_p;
 void CheckSaveGame(size_t);              // killough
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_saveg.h,v $
-// Revision 1.5  1998/05/03  23:10:40  killough
-// beautification
-//
-// Revision 1.4  1998/02/23  04:50:09  killough
-// Add automap marks and properties to saved state
-//
-// Revision 1.3  1998/02/17  06:26:04  killough
-// Remove unnecessary plat archive/unarchive funcs
-//
-// Revision 1.2  1998/01/26  19:27:26  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:06  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

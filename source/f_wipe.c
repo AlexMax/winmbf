@@ -205,17 +205,3 @@ int wipe_ScreenWipe(int wipeno, int x, int y, int width, int height, int ticks)
   }
   return !go;
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: f_wipe.c,v $
-// Revision 1.3  1998/05/03  22:11:24  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:23:16  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:54  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

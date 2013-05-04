@@ -78,17 +78,3 @@ extern const angle_t tantoangle[SLOPERANGE + 1];
 int SlopeDiv(unsigned num, unsigned den);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: tables.h,v $
-// Revision 1.3  1998/05/03  22:58:56  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:27:58  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:05  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

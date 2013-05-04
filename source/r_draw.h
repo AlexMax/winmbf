@@ -92,24 +92,3 @@ extern byte* main_tranmap;    // killough 4/11/98
 extern byte* ylookup[];       // killough 11/98
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_draw.h,v $
-// Revision 1.5  1998/05/03  22:42:23  killough
-// beautification, extra declarations
-//
-// Revision 1.4  1998/04/12  01:58:11  killough
-// Add main_tranmap
-//
-// Revision 1.3  1998/03/02  11:51:55  killough
-// Add translucency declarations
-//
-// Revision 1.2  1998/01/26  19:27:38  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:09  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

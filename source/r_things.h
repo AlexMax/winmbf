@@ -53,21 +53,3 @@ void R_DrawMasked(void);
 void R_ClipVisSprite(vissprite_t* vis, int xl, int xh);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_things.h,v $
-// Revision 1.4  1998/05/03  22:46:19  killough
-// beautification
-//
-// Revision 1.3  1998/02/09  03:23:27  killough
-// Change array decl to use MAX screen width/height
-//
-// Revision 1.2  1998/01/26  19:27:49  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:09  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

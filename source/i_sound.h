@@ -111,20 +111,3 @@ extern  int mus_card, default_mus_card;
 extern  int detect_voices; // jff 3/4/98 option to disable voice detection
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: i_sound.h,v $
-// Revision 1.4  1998/05/03  22:31:58  killough
-// beautification, add some external declarations
-//
-// Revision 1.3  1998/02/23  04:27:08  killough
-// Add variable pitched sound support
-//
-// Revision 1.2  1998/01/26  19:26:57  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

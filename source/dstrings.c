@@ -73,22 +73,3 @@ const char* const endmsg[] =
 
 // killough 1/18/98: remove hardcoded limit and replace with var (silly hack):
 const size_t NUM_QUITMESSAGES = sizeof(endmsg) / sizeof(*endmsg) - 1;
-
-
-//----------------------------------------------------------------------------
-//
-// $Log: dstrings.c,v $
-// Revision 1.5  1998/05/04  21:34:24  thldrmn
-// commenting and reformatting
-//
-// Revision 1.3  1998/01/27  21:11:17  phares
-// Commented out last section of end msgs.
-//
-// Revision 1.2  1998/01/26  19:23:13  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:07  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

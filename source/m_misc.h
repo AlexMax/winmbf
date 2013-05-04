@@ -82,21 +82,3 @@ typedef struct default_s
 #define UL (-123456789) /* magic number for no min or max for parameter */
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_misc.h,v $
-// Revision 1.4  1998/05/05  19:56:06  phares
-// Formatting and Doc changes
-//
-// Revision 1.3  1998/04/22  13:46:17  phares
-// Added Setup screen Reset to Defaults
-//
-// Revision 1.2  1998/01/26  19:27:12  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

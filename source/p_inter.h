@@ -67,18 +67,3 @@ extern int bfgcells;
 extern int maxammo[], clipammo[];
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_inter.h,v $
-// Revision 1.3  1998/05/03  23:08:57  killough
-// beautification, add of the DEH parameter declarations
-//
-// Revision 1.2  1998/01/26  19:27:19  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

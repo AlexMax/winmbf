@@ -59,18 +59,3 @@ static long SwapLong(long x)
 }
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_swap.h,v $
-// Revision 1.3  1998/05/03  23:14:03  killough
-// Make endian independent, beautify
-//
-// Revision 1.2  1998/01/26  19:27:15  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

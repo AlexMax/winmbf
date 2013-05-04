@@ -1167,4 +1167,3 @@ void I_GetScaler(int sw, int sh, int ar, int scale, int* nw, int* nh,
 }
 
 // EOF
-

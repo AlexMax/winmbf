@@ -30,17 +30,3 @@
 
 // Location for any defines turned variables.
 // None.
-
-//----------------------------------------------------------------------------
-//
-// $Log: doomdef.c,v $
-// Revision 1.3  1998/05/03  22:40:02  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:23:09  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:06  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

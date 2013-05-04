@@ -424,32 +424,3 @@ void R_DrawPlanes(void)
     for (pl = visplanes[i]; pl; pl = pl->next)
       do_draw_plane(pl);
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_plane.c,v $
-// Revision 1.8  1998/05/03  23:09:53  killough
-// Fix #includes at the top
-//
-// Revision 1.7  1998/04/27  01:48:31  killough
-// Program beautification
-//
-// Revision 1.6  1998/03/23  03:38:26  killough
-// Use 'fullcolormap' for fully-bright F_SKY1
-//
-// Revision 1.5  1998/03/02  11:47:13  killough
-// Add support for general flats xy offsets
-//
-// Revision 1.4  1998/02/09  03:16:03  killough
-// Change arrays to use MAX height/width
-//
-// Revision 1.3  1998/02/02  13:28:40  killough
-// performance tuning
-//
-// Revision 1.2  1998/01/26  19:24:45  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:03  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------
