@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -65,14 +65,14 @@ int  default_weapon_recoil;      // killough 3/1/98: make local to each game
 int player_bobbing;  // whether player bobs or not          // phares 2/25/98
 int default_player_bobbing;      // killough 3/1/98: make local to each game
 
-int monsters_remember=1;        // killough 3/1/98
-int default_monsters_remember=1;
+int monsters_remember = 1;      // killough 3/1/98
+int default_monsters_remember = 1;
 
-int monster_infighting=1;       // killough 7/19/98: monster<=>monster attacks
-int default_monster_infighting=1;
+int monster_infighting = 1;     // killough 7/19/98: monster<=>monster attacks
+int default_monster_infighting = 1;
 
-int monster_friction=1;       // killough 10/98: monsters affected by friction 
-int default_monster_friction=1;
+int monster_friction = 1;     // killough 10/98: monsters affected by friction
+int default_monster_friction = 1;
 
 #ifdef BETA
 // killough 7/19/98: classic Doom BFG
@@ -104,23 +104,3 @@ int flashing_hom;     // killough 10/98
 int doom_weapon_toggles; // killough 10/98
 
 int monkeys, default_monkeys;
-
-//----------------------------------------------------------------------------
-//
-// $Log: doomstat.c,v $
-// Revision 1.5  1998/05/12  12:46:12  phares
-// Removed OVER_UNDER code
-//
-// Revision 1.4  1998/05/05  16:29:01  phares
-// Removed RECOIL and OPT_BOBBING defines
-//
-// Revision 1.3  1998/05/03  23:12:13  killough
-// beautify, move most global switch variables here
-//
-// Revision 1.2  1998/01/26  19:23:10  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:06  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

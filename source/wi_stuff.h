@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -41,11 +41,11 @@ typedef enum
 } stateenum_t;
 
 // Called by main loop, animate the intermission.
-void WI_Ticker (void);
+void WI_Ticker(void);
 
 // Called by main loop,
 // draws the intermission directly into the screen buffer.
-void WI_Drawer (void);
+void WI_Drawer(void);
 
 // Setup for an intermission screen.
 void WI_Start(wbstartstruct_t*   wbstartstruct);
@@ -55,18 +55,3 @@ void WI_checkForAccelerate(void);      // killough 11/98
 void WI_DrawBackground(void);          // killough 11/98
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: wi_stuff.h,v $
-// Revision 1.3  1998/05/04  21:36:12  thldrmn
-// commenting and reformatting
-//
-// Revision 1.2  1998/01/26  19:28:03  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:05  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -59,20 +59,21 @@
 // PU - purge tags.
 
 enum {PU_FREE, PU_STATIC, PU_SOUND, PU_MUSIC, PU_LEVEL, PU_LEVSPEC, PU_CACHE,
-      /* Must always be last -- killough */ PU_MAX};
+      /* Must always be last -- killough */ PU_MAX
+     };
 
 #define PU_PURGELEVEL PU_CACHE        /* First purgable tag's level */
 
-void *(Z_Malloc)(size_t size, int tag, void **ptr, const char *, int);
-void (Z_Free)(void *ptr, const char *, int);
-void (Z_FreeTags)(int lowtag, int hightag, const char *, int);
-void (Z_ChangeTag)(void *ptr, int tag, const char *, int);
+void* (Z_Malloc)(size_t size, int tag, void** ptr, const char*, int);
+void (Z_Free)(void* ptr, const char*, int);
+void (Z_FreeTags)(int lowtag, int hightag, const char*, int);
+void (Z_ChangeTag)(void* ptr, int tag, const char*, int);
 void (Z_Init)(void);
-void *(Z_Calloc)(size_t n, size_t n2, int tag, void **user, const char *, int);
-void *(Z_Realloc)(void *p, size_t n, int tag, void **user, const char *, int);
-char *(Z_Strdup)(const char *s, int tag, void **user, const char *, int);
-void (Z_CheckHeap)(const char *,int);   // killough 3/22/98: add file/line info
-void Z_DumpHistory(char *);
+void* (Z_Calloc)(size_t n, size_t n2, int tag, void** user, const char*, int);
+void* (Z_Realloc)(void* p, size_t n, int tag, void** user, const char*, int);
+char* (Z_Strdup)(const char* s, int tag, void** user, const char*, int);
+void (Z_CheckHeap)(const char*, int);   // killough 3/22/98: add file/line info
+void Z_DumpHistory(char*);
 
 #define Z_Free(a)          (Z_Free)     (a,      __FILE__,__LINE__)
 #define Z_FreeTags(a,b)    (Z_FreeTags) (a,b,    __FILE__,__LINE__)
@@ -98,9 +99,9 @@ void Z_DumpHistory(char *);
 #define strdup(s)          Z_Strdup(s,PU_STATIC,0)
 
 // Doom-style printf
-void doom_printf(const char *, ...) __attribute__((format(printf,1,2)));
+void doom_printf(const char*, ...) __attribute__((format(printf, 1, 2)));
 
-void Z_ZoneHistory(char *);
+void Z_ZoneHistory(char*);
 
 #ifdef INSTRUMENTED
 extern int printstats;        // killough 8/23/98
@@ -108,30 +109,3 @@ void Z_PrintStats(void);      // killough 8/23/98
 #endif
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: z_zone.h,v $
-// Revision 1.7  1998/05/08  20:32:12  killough
-// fix __attribute__ redefinition
-//
-// Revision 1.6  1998/05/03  22:38:11  killough
-// Remove unnecessary #include
-//
-// Revision 1.5  1998/04/27  01:49:42  killough
-// Add history of malloc/free and scrambler (INSTRUMENTED only)
-//
-// Revision 1.4  1998/03/23  03:43:54  killough
-// Make Z_CheckHeap() more diagnostic
-//
-// Revision 1.3  1998/02/02  13:28:06  killough
-// Add doom_printf
-//
-// Revision 1.2  1998/01/26  19:28:04  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:06  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

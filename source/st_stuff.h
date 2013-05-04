@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -90,21 +90,3 @@ extern int sts_pct_always_gray;// status percents do not change colors
 extern int sts_traditional_keys;  // display keys the traditional way
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: st_stuff.h,v $
-// Revision 1.4  1998/05/03  22:50:55  killough
-// beautification, move external declarations, remove cheats
-//
-// Revision 1.3  1998/04/19  01:10:39  killough
-// Generalize cheat engine to add deh support
-//
-// Revision 1.2  1998/01/26  19:27:56  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:04  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

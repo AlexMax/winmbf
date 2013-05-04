@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -44,7 +44,7 @@ int leveltime;
 thinker_t thinkercap;
 
 // killough 8/29/98: we maintain several separate threads, each containing
-// a special class of thinkers, to allow more efficient searches. 
+// a special class of thinkers, to allow more efficient searches.
 
 thinker_t thinkerclasscap[NUMTHCLASS];
 
@@ -56,7 +56,7 @@ void P_InitThinkers(void)
 {
   int i;
 
-  for (i=0; i<NUMTHCLASS; i++)  // killough 8/29/98: initialize threaded lists
+  for (i = 0; i < NUMTHCLASS; i++) // killough 8/29/98: initialize threaded lists
     thinkerclasscap[i].cprev = thinkerclasscap[i].cnext = &thinkerclasscap[i];
 
   thinkercap.prev = thinkercap.next  = &thinkercap;
@@ -66,7 +66,7 @@ void P_InitThinkers(void)
 // P_UpdateThinker
 //
 // killough 8/29/98:
-// 
+//
 // We maintain separate threads of friends and enemies, to permit more
 // efficient searches.
 //
@@ -75,31 +75,31 @@ void P_InitThinkers(void)
 // code due to corruption of the th_enemies/th_friends lists when monsters get
 // removed at an inopportune moment.
 //
-void P_UpdateThinker(thinker_t *thinker)
+void P_UpdateThinker(thinker_t* thinker)
 {
-   register thinker_t *th;
+  register thinker_t* th;
 
-   // find the class the thinker belongs to
-  
-   // haleyjd 07/12/03: don't use "class" as a variable name
-   int tclass = thinker->function == P_RemoveThinkerDelayed ? th_delete :
-     thinker->function == P_MobjThinker && 
-     ((mobj_t *) thinker)->health > 0 && 
-     (((mobj_t *) thinker)->flags & MF_COUNTKILL ||
-      ((mobj_t *) thinker)->type == MT_SKULL) ?
-     ((mobj_t *) thinker)->flags & MF_FRIEND ?
-     th_friends : th_enemies : th_misc;
+  // find the class the thinker belongs to
 
-   // Remove from current thread, if in one -- haleyjd: from PrBoom
-   if((th = thinker->cnext) != NULL)
-      (th->cprev = thinker->cprev)->cnext = th;
-  
-   // Add to appropriate thread
-   th = &thinkerclasscap[tclass];
-   th->cprev->cnext = thinker;
-   thinker->cnext = th;
-   thinker->cprev = th->cprev;
-   th->cprev = thinker;
+  // haleyjd 07/12/03: don't use "class" as a variable name
+  int tclass = thinker->function == P_RemoveThinkerDelayed ? th_delete :
+               thinker->function == P_MobjThinker &&
+               ((mobj_t*) thinker)->health > 0 &&
+               (((mobj_t*) thinker)->flags & MF_COUNTKILL ||
+                ((mobj_t*) thinker)->type == MT_SKULL) ?
+               ((mobj_t*) thinker)->flags & MF_FRIEND ?
+             th_friends : th_enemies : th_misc;
+
+  // Remove from current thread, if in one -- haleyjd: from PrBoom
+  if ((th = thinker->cnext) != NULL)
+    (th->cprev = thinker->cprev)->cnext = th;
+
+  // Add to appropriate thread
+  th = &thinkerclasscap[tclass];
+  th->cprev->cnext = thinker;
+  thinker->cnext = th;
+  thinker->cprev = th->cprev;
+  th->cprev = thinker;
 }
 
 //
@@ -127,7 +127,7 @@ void P_AddThinker(thinker_t* thinker)
 // Make currentthinker external, so that P_RemoveThinkerDelayed
 // can adjust currentthinker when thinkers self-remove.
 
-static thinker_t *currentthinker;
+static thinker_t* currentthinker;
 
 //
 // P_RemoveThinkerDelayed()
@@ -139,18 +139,18 @@ static thinker_t *currentthinker;
 // remove it, and set currentthinker to one node preceeding it, so
 // that the next step in P_RunThinkers() will get its successor.
 //
-void P_RemoveThinkerDelayed(thinker_t *thinker)
+void P_RemoveThinkerDelayed(thinker_t* thinker)
 {
-   if(!thinker->references)
-   {
-      thinker_t *next = thinker->next;
-      (next->prev = currentthinker = thinker->prev)->next = next;
+  if (!thinker->references)
+  {
+    thinker_t* next = thinker->next;
+    (next->prev = currentthinker = thinker->prev)->next = next;
 
-      // haleyjd 6/17/08: remove from threaded list now
-      (thinker->cnext->cprev = thinker->cprev)->cnext = thinker->cnext;
+    // haleyjd 6/17/08: remove from threaded list now
+    (thinker->cnext->cprev = thinker->cprev)->cnext = thinker->cnext;
 
-      Z_Free(thinker);
-   }
+    Z_Free(thinker);
+  }
 }
 
 //
@@ -165,31 +165,31 @@ void P_RemoveThinkerDelayed(thinker_t *thinker)
 // set the function to P_RemoveThinkerDelayed(), so that later, it will be
 // removed automatically as part of the thinker process.
 //
-void P_RemoveThinker(thinker_t *thinker)
+void P_RemoveThinker(thinker_t* thinker)
 {
-   thinker->function = P_RemoveThinkerDelayed;
-   
-   // killough 8/29/98: remove immediately from threaded list
+  thinker->function = P_RemoveThinkerDelayed;
 
-   // haleyjd 06/17/08: Import from EE:
-   // NO! Doing this here was always suspect to me, and
-   // sure enough: if a monster's removed at the wrong time, it gets put
-   // back into the list improperly and starts causing an infinite loop in
-   // the AI code. We'll follow PrBoom's lead and create a th_delete class
-   // for thinkers awaiting deferred removal.
-   
-   // Old code:
-   //(thinker->cnext->cprev = thinker->cprev)->cnext = thinker->cnext;
-   
-   // Move to th_delete class.
-   P_UpdateThinker(thinker);
+  // killough 8/29/98: remove immediately from threaded list
+
+  // haleyjd 06/17/08: Import from EE:
+  // NO! Doing this here was always suspect to me, and
+  // sure enough: if a monster's removed at the wrong time, it gets put
+  // back into the list improperly and starts causing an infinite loop in
+  // the AI code. We'll follow PrBoom's lead and create a th_delete class
+  // for thinkers awaiting deferred removal.
+
+  // Old code:
+  //(thinker->cnext->cprev = thinker->cprev)->cnext = thinker->cnext;
+
+  // Move to th_delete class.
+  P_UpdateThinker(thinker);
 }
 
 //
 // P_SetTarget
 //
 // This function is used to keep track of pointer references to mobj thinkers.
-// In Doom, objects such as lost souls could sometimes be removed despite 
+// In Doom, objects such as lost souls could sometimes be removed despite
 // their still being referenced. In Boom, 'target' mobj fields were tested
 // during each gametic, and any objects pointed to by them would be prevented
 // from being removed. But this was incomplete, and was slow (every mobj was
@@ -197,7 +197,7 @@ void P_RemoveThinker(thinker_t *thinker)
 // references, and delay removal until the count is 0.
 //
 
-void P_SetTarget(mobj_t **mop, mobj_t *targ)
+void P_SetTarget(mobj_t** mop, mobj_t* targ)
 {
   if (*mop)             // If there was a target already, decrease its refcount
     (*mop)->thinker.references--;
@@ -228,7 +228,7 @@ void P_SetTarget(mobj_t **mop, mobj_t *targ)
 // external and using P_RemoveThinkerDelayed() implicitly.
 //
 
-static void P_RunThinkers (void)
+static void P_RunThinkers(void)
 {
   for (currentthinker = thinkercap.next;
        currentthinker != &thinkercap;
@@ -241,7 +241,7 @@ static void P_RunThinkers (void)
 // P_Ticker
 //
 
-void P_Ticker (void)
+void P_Ticker(void)
 {
   int i;
 
@@ -250,14 +250,14 @@ void P_Ticker (void)
   // killough 9/29/98: note that this ties in with basetic,
   // since G_Ticker does the pausing during recording or
   // playback, and compensates by incrementing basetic.
-  // 
+  //
   // All of this complicated mess is used to preserve demo sync.
 
   if (paused || (menuactive && !demoplayback && !netgame &&
-		 players[consoleplayer].viewz != 1))
+                 players[consoleplayer].viewz != 1))
     return;
 
-  for (i=0; i<MAXPLAYERS; i++)
+  for (i = 0; i < MAXPLAYERS; i++)
     if (playeringame[i])
       P_PlayerThink(&players[i]);
 
@@ -266,29 +266,3 @@ void P_Ticker (void)
   P_RespawnSpecials();
   leveltime++;                       // for par times
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_tick.c,v $
-// Revision 1.7  1998/05/15  00:37:56  killough
-// Remove unnecessary crash hack, fix demo sync
-//
-// Revision 1.6  1998/05/13  22:57:59  killough
-// Restore Doom bug compatibility for demos
-//
-// Revision 1.5  1998/05/03  22:49:01  killough
-// Get minimal includes at top
-//
-// Revision 1.4  1998/04/29  16:19:16  killough
-// Fix typo causing game to not pause correctly
-//
-// Revision 1.3  1998/04/27  01:59:58  killough
-// Fix crashes caused by thinkers being used after freed
-//
-// Revision 1.2  1998/01/26  19:24:32  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:01  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

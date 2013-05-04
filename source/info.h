@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -35,7 +35,7 @@
 // ********************************************************************
 // Sprite name enumeration - must match info.c
 // ********************************************************************
-typedef enum                                  
+typedef enum
 {
   SPR_TROO,
   SPR_SHTG,
@@ -1163,12 +1163,12 @@ typedef enum
   S_TECH2LAMP2,
   S_TECH2LAMP3,
   S_TECH2LAMP4,
-  S_TNT1, // add state for invisible sprite         // phares 3/8/98 
+  S_TNT1, // add state for invisible sprite         // phares 3/8/98
 
   S_GRENADE,   // killough 8/9/98: grenade launcher
   S_DETONATE,  // killough 8/9/98: detonation of objects
   S_DETONATE2,
-  S_DETONATE3, 
+  S_DETONATE3,
 
 #ifdef DOGS
   S_DOGS_STND,      // killough 7/19/98: Marine's best friend :)
@@ -1202,7 +1202,7 @@ typedef enum
 
 #ifdef BETA
   S_OLDBFG1,  // killough 7/11/98: the old BFG's 43 firing frames
-  S_OLDBFG42 = S_OLDBFG1+41,
+  S_OLDBFG42 = S_OLDBFG1 + 41,
   S_OLDBFG43,
 
   S_PLS1BALL,      // killough 7/19/98: first plasma fireball in the beta
@@ -1256,21 +1256,22 @@ typedef struct
   spritenum_t sprite;       // sprite number to show
   long        frame;        // which frame/subframe of the sprite is shown
   long        tics;         // number of gametics this frame should last
-  void        (*action)();  // code pointer to function for action if any
+  void (*action)();         // code pointer to function for action if any
   statenum_t  nextstate;    // linked list pointer to next state or zero
   long        misc1, misc2; // used for psprite positioning
 } state_t;
 
 // these are in info.c
 extern state_t  states[NUMSTATES];
-extern char *sprnames[];             // 1/17/98 killough
+extern char* sprnames[];             // 1/17/98 killough
 
 // ********************************************************************
 // Thing enumeration -- must match info.c
 // ********************************************************************
 // Note that many of these are generically named for the ornamentals
 //
-typedef enum {
+typedef enum
+{
   MT_PLAYER,
   MT_POSSESSED,
   MT_SHOTGUY,
@@ -1435,87 +1436,52 @@ typedef enum {
 
 typedef struct
 {
-    int doomednum;    // Thing number used in id's editor, and now
-                      //  probably by every other editor too
-    int spawnstate;   // The state (frame) index when this Thing is
-                      //  first created
-    int spawnhealth;  // The initial hit points for this Thing
-    int seestate;     // The state when it sees you or wakes up
-    int seesound;     // The sound it makes when waking
-    int reactiontime; // How many tics it waits after it wakes up
-                      //  before it will start to attack, in normal
-                      //  skills (halved for nightmare)
-    int attacksound;  // The sound it makes when it attacks
-    int painstate;    // The state to indicate pain
-    int painchance;   // A number that is checked against a random
-                      //  number 0-255 to see if the Thing is supposed
-                      //  to go to its painstate or not.  Note this
-                      //  has absolutely nothing to do with the chance
-                      //  it will get hurt, just the chance of it
-                      //  reacting visibly.
-    int painsound;    // The sound it emits when it feels pain
-    int meleestate;   // Melee==close attack
-    int missilestate; // What states to use when it's in the air, if
-                      //  in fact it is ever used as a missile
-    int deathstate;   // What state begins the death sequence
-    int xdeathstate;  // What state begins the horrible death sequence
-                      //  like when a rocket takes out a trooper
-    int deathsound;   // The death sound.  See also A_Scream() in
-                      //  p_enemy.c for some tweaking that goes on
-                      //  for certain monsters
-    int speed;        // How fast it moves.  Too fast and it can miss
-                      //  collision logic.
-    int radius;       // An often incorrect radius
-    int height;       // An often incorrect height, used only to see
-                      //  if a monster can enter a sector
-    int mass;         // How much an impact will move it.  Cacodemons
-                      //  seem to retreat when shot because they have
-                      //  very little mass and are moved by impact
-    int damage;       // If this is a missile, how much does it hurt?
-    int activesound;  // What sound it makes wandering around, once
-                      //  in a while.  Chance is 3/256 it will.
-    int flags;        // Bit masks for lots of things.  See p_mobj.h
-    int raisestate;   // The first state for an Archvile or respawn
-                      //  resurrection.  Zero means it won't come
-                      //  back to life.
+  int doomednum;    // Thing number used in id's editor, and now
+  //  probably by every other editor too
+  int spawnstate;   // The state (frame) index when this Thing is
+  //  first created
+  int spawnhealth;  // The initial hit points for this Thing
+  int seestate;     // The state when it sees you or wakes up
+  int seesound;     // The sound it makes when waking
+  int reactiontime; // How many tics it waits after it wakes up
+  //  before it will start to attack, in normal
+  //  skills (halved for nightmare)
+  int attacksound;  // The sound it makes when it attacks
+  int painstate;    // The state to indicate pain
+  int painchance;   // A number that is checked against a random
+  //  number 0-255 to see if the Thing is supposed
+  //  to go to its painstate or not.  Note this
+  //  has absolutely nothing to do with the chance
+  //  it will get hurt, just the chance of it
+  //  reacting visibly.
+  int painsound;    // The sound it emits when it feels pain
+  int meleestate;   // Melee==close attack
+  int missilestate; // What states to use when it's in the air, if
+  //  in fact it is ever used as a missile
+  int deathstate;   // What state begins the death sequence
+  int xdeathstate;  // What state begins the horrible death sequence
+  //  like when a rocket takes out a trooper
+  int deathsound;   // The death sound.  See also A_Scream() in
+  //  p_enemy.c for some tweaking that goes on
+  //  for certain monsters
+  int speed;        // How fast it moves.  Too fast and it can miss
+  //  collision logic.
+  int radius;       // An often incorrect radius
+  int height;       // An often incorrect height, used only to see
+  //  if a monster can enter a sector
+  int mass;         // How much an impact will move it.  Cacodemons
+  //  seem to retreat when shot because they have
+  //  very little mass and are moved by impact
+  int damage;       // If this is a missile, how much does it hurt?
+  int activesound;  // What sound it makes wandering around, once
+  //  in a while.  Chance is 3/256 it will.
+  int flags;        // Bit masks for lots of things.  See p_mobj.h
+  int raisestate;   // The first state for an Archvile or respawn
+  //  resurrection.  Zero means it won't come
+  //  back to life.
 } mobjinfo_t;
 
 // See p_mobj_h for addition more technical info
 extern mobjinfo_t mobjinfo[NUMMOBJTYPES];
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: info.h,v $
-// Revision 1.10  1998/05/12  12:47:31  phares
-// Removed OVER_UNDER code
-//
-// Revision 1.9  1998/05/06  11:31:53  jim
-// Moved predefined lump writer info->w_wad
-//
-// Revision 1.8  1998/05/04  21:35:54  thldrmn
-// commenting and reformatting
-//
-// Revision 1.7  1998/04/22  06:33:58  killough
-// Add const to WritePredefinedLumpWad() parm
-//
-// Revision 1.6  1998/04/21  23:47:10  jim
-// Predefined lump dumper option
-//
-// Revision 1.5  1998/03/23  15:24:09  phares
-// Changed pushers to linedef control
-//
-// Revision 1.4  1998/03/09  18:30:43  phares
-// Added invisible sprite for MT_PUSH
-//
-// Revision 1.3  1998/02/24  08:45:53  phares
-// Pushers, recoil, new friction, and over/under work
-//
-// Revision 1.2  1998/01/26  19:27:02  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:57  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

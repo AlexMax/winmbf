@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //
@@ -56,10 +56,10 @@ void I_ShutdownSound(void);
 void I_SetChannels(void);
 
 // Get raw data lump index for sound descriptor.
-int I_GetSfxLumpNum(sfxinfo_t *sfxinfo);
+int I_GetSfxLumpNum(sfxinfo_t* sfxinfo);
 
 // Starts a sound in a particular sound channel.
-int I_StartSound(sfxinfo_t *sound, int cnum, int vol, int sep, int pitch, 
+int I_StartSound(sfxinfo_t* sound, int cnum, int vol, int sep, int pitch,
                  int pri);
 
 // Stops a sound channel.
@@ -91,7 +91,7 @@ void I_PauseSong(int handle);
 void I_ResumeSong(int handle);
 
 // Registers a song handle to song data.
-int I_RegisterSong(void *data, int size);
+int I_RegisterSong(void* data, int size);
 
 // Called by anything that wishes to start music.
 //  plays a song, and when the song is done,
@@ -111,20 +111,3 @@ extern  int mus_card, default_mus_card;
 extern  int detect_voices; // jff 3/4/98 option to disable voice detection
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: i_sound.h,v $
-// Revision 1.4  1998/05/03  22:31:58  killough
-// beautification, add some external declarations
-//
-// Revision 1.3  1998/02/23  04:27:08  killough
-// Add variable pitched sound support
-//
-// Revision 1.2  1998/01/26  19:26:57  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

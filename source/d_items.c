@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -50,7 +50,7 @@ weaponinfo_t    weaponinfo[NUMWEAPONS] =
     S_PUNCH,
     S_PUNCH1,
     S_NULL
-  },  
+  },
   {
     // pistol
     am_clip,
@@ -59,7 +59,7 @@ weaponinfo_t    weaponinfo[NUMWEAPONS] =
     S_PISTOL,
     S_PISTOL1,
     S_PISTOLFLASH
-  },  
+  },
   {
     // shotgun
     am_shell,
@@ -122,20 +122,5 @@ weaponinfo_t    weaponinfo[NUMWEAPONS] =
     S_DSGUN,
     S_DSGUN1,
     S_DSGUNFLASH1
-  },  
+  },
 };
-
-//----------------------------------------------------------------------------
-//
-// $Log: d_items.c,v $
-// Revision 1.4  1998/05/04  21:34:09  thldrmn
-// commenting and reformatting
-//
-// Revision 1.2  1998/01/26  19:23:03  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:07  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

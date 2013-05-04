@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,12 +16,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
 //   Menu widget stuff, episode selection and such.
-//    
+//
 //-----------------------------------------------------------------------------
 
 #ifndef __M_MENU__
@@ -38,29 +38,29 @@
 // this can resize the view and change game parameters.
 // Does all the real work of the menu interaction.
 
-boolean M_Responder (event_t *ev);
+boolean M_Responder(event_t* ev);
 
 // Called by main loop,
 // only used for menu (skull cursor) animation.
 
-void M_Ticker (void);
+void M_Ticker(void);
 
 // Called by main loop,
 // draws the menus directly into the screen buffer.
 
-void M_Drawer (void);
+void M_Drawer(void);
 
 // Called by D_DoomMain,
 // loads the config file.
 
-void M_Init (void);
+void M_Init(void);
 
 // Called by intro code to force menu up upon a keypress,
 // does nothing if menu is already up.
 
-void M_StartControlPanel (void);
+void M_StartControlPanel(void);
 
-void M_ForcedLoadGame(const char *msg); // killough 5/15/98: forced loadgames
+void M_ForcedLoadGame(const char* msg); // killough 5/15/98: forced loadgames
 
 extern int traditional_menu;  // display the menu traditional way
 
@@ -68,13 +68,13 @@ void M_Trans(void);          // killough 11/98: reset translucency
 
 void M_ResetMenu(void);      // killough 11/98: reset main menu ordering
 
-void M_DrawBackground(char *patch, byte *screen);  // killough 11/98
+void M_DrawBackground(char* patch, byte* screen);  // killough 11/98
 
 void M_DrawCredits(void);    // killough 11/98
 
 // killough 8/15/98: warn about changes not being committed until next game
 #define warn_about_changes(x) (warning_about_changes=(x), \
-			       print_warning_about_changes = 2)
+             print_warning_about_changes = 2)
 
 extern int warning_about_changes, print_warning_about_changes;
 
@@ -125,7 +125,8 @@ extern int warning_about_changes, print_warning_about_changes;
 // The setup_group enum is used to show which 'groups' keys fall into so
 // that you can bind a key differently in each 'group'.
 
-typedef enum {
+typedef enum
+{
   m_null,       // Has no meaning; not applicable
   m_scrn,       // A key can not be assigned to more than one action
   m_map,        // in the same group. A key can be assigned to one
@@ -144,48 +145,30 @@ typedef enum {
 //
 // killough 11/98:
 //
-// Restructured to allow simpler table entries, 
+// Restructured to allow simpler table entries,
 // and to Xref with defaults[] array in m_misc.c.
 // Moved from m_menu.c to m_menu.h so that m_misc.c can use it.
 
 typedef struct setup_menu_s
 {
-  const char  *m_text;  // text to display
+  const char*  m_text;  // text to display
   int         m_flags;  // phares 4/17/98: flag bits S_* (defined above)
   setup_group m_group;  // Group
   short       m_x;      // screen x position (left is 0)
   short       m_y;      // screen y position (top is 0)
 
   union  // killough 11/98: The first field is a union of several types
-   {
-     void      *var;    // generic variable
-     int       *m_key;  // key value, or 0 if not shown
-     char      *name;   // name
-     struct default_s *def;      // default[] table entry
-     struct setup_menu_s *menu;  // next or prev menu
+  {
+    void*      var;    // generic variable
+    int*       m_key;  // key value, or 0 if not shown
+    char*      name;   // name
+    struct default_s* def;      // default[] table entry
+    struct setup_menu_s* menu;  // next or prev menu
   } var;
 
-  int         *m_mouse; // mouse button value, or 0 if not shown
-  int         *m_joy;   // joystick button value, or 0 if not shown
+  int*         m_mouse; // mouse button value, or 0 if not shown
+  int*         m_joy;   // joystick button value, or 0 if not shown
   void (*action)(void); // killough 10/98: function to call after changing
 } setup_menu_t;
 
-#endif    
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_menu.h,v $
-// Revision 1.4  1998/05/16  09:17:18  killough
-// Make loadgame checksum friendlier
-//
-// Revision 1.3  1998/05/03  21:56:53  killough
-// Add traditional_menu declaration
-//
-// Revision 1.2  1998/01/26  19:27:11  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------
+#endif

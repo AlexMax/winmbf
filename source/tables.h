@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -49,13 +49,13 @@
 #define ANGLETOFINESHIFT        19
 
 // Effective size is 10240.
-extern const fixed_t finesine[5*FINEANGLES/4];
+extern const fixed_t finesine[5 * FINEANGLES / 4];
 
 // Re-use data, is just PI/2 pahse shift.
-extern const fixed_t *const finecosine;
+extern const fixed_t* const finecosine;
 
 // Effective size is 4096.
-extern const fixed_t finetangent[FINEANGLES/2];
+extern const fixed_t finetangent[FINEANGLES / 2];
 
 // Binary Angle Measument, BAM.
 #define ANG45   0x20000000
@@ -72,23 +72,9 @@ typedef unsigned angle_t;
 // Effective size is 2049;
 // The +1 size is to handle the case when x==y without additional checking.
 
-extern const angle_t tantoangle[SLOPERANGE+1];
+extern const angle_t tantoangle[SLOPERANGE + 1];
 
 // Utility function, called by R_PointToAngle.
 int SlopeDiv(unsigned num, unsigned den);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: tables.h,v $
-// Revision 1.3  1998/05/03  22:58:56  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:27:58  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:05  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

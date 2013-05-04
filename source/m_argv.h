@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,12 +16,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
 //  Nil.
-//    
+//
 //-----------------------------------------------------------------------------
 
 
@@ -32,24 +32,9 @@
 // MISC
 //
 extern int  myargc;
-extern char **myargv;
+extern char** myargv;
 
 // Returns the position of the given parameter in the arg list (0 if not found).
-int M_CheckParm(const char *check);
+int M_CheckParm(const char* check);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: m_argv.h,v $
-// Revision 1.3  1998/05/01  14:26:18  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:27:05  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:02:58  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

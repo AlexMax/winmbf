@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -31,21 +31,10 @@
 
 #include "d_player.h"
 
-void P_PlayerThink(player_t *player);
-void P_CalcHeight(player_t *player);
-void P_DeathThink(player_t *player);
-void P_MovePlayer(player_t *player);
-void P_Thrust(player_t *player, angle_t angle, fixed_t move);
+void P_PlayerThink(player_t* player);
+void P_CalcHeight(player_t* player);
+void P_DeathThink(player_t* player);
+void P_MovePlayer(player_t* player);
+void P_Thrust(player_t* player, angle_t angle, fixed_t move);
 
 #endif // __P_USER__
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_user.h,v $
-// Revision 1.2  1998/05/10  23:38:38  killough
-// Add more prototypes
-//
-// Revision 1.1  1998/05/03  23:19:24  killough
-// Move from obsolete p_local.h
-//
-//----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,11 +16,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
-//	System specific interface stuff.
+//  System specific interface stuff.
 //
 //-----------------------------------------------------------------------------
 
@@ -35,24 +35,12 @@
 // plus a checksum for internal state consistency.
 typedef struct
 {
-    char	forwardmove;	// *2048 for move
-    char	sidemove;	// *2048 for move
-    short	angleturn;	// <<16 for angle delta
-    short	consistancy;	// checks for net game
-    byte	chatchar;
-    byte	buttons;
+  char  forwardmove;  // *2048 for move
+  char  sidemove; // *2048 for move
+  short angleturn;  // <<16 for angle delta
+  short consistancy;  // checks for net game
+  byte  chatchar;
+  byte  buttons;
 } ticcmd_t;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: d_ticcmd.h,v $
-// Revision 1.2  1998/01/26  19:26:36  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

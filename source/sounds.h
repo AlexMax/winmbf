@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -36,10 +36,11 @@ struct sfxinfo_struct;
 
 typedef struct sfxinfo_struct sfxinfo_t;
 
-struct sfxinfo_struct {
+struct sfxinfo_struct
+{
 
   // up to 6-character name
-  char *name;
+  char* name;
 
   // Sfx singularity (only one at a time)
   // killough 12/98: implement separate classes of singularity
@@ -57,7 +58,7 @@ struct sfxinfo_struct {
   int priority;
 
   // referenced sound if a link
-  sfxinfo_t *link;
+  sfxinfo_t* link;
 
   // pitch if a link
   int pitch;
@@ -66,7 +67,7 @@ struct sfxinfo_struct {
   int volume;
 
   // sound data
-  void *data;
+  void* data;
 
   // this is checked every second to see if sound
   // can be thrown out (if 0, then decrement, if -1,
@@ -84,15 +85,16 @@ struct sfxinfo_struct {
 // MusicInfo struct.
 //
 
-typedef struct {
+typedef struct
+{
   // up to 6-character name
-  char *name;
+  char* name;
 
   // lump number of music
   int lumpnum;
 
   // music data
-  void *data;
+  void* data;
 
   // music handle once registered
   int handle;
@@ -108,7 +110,8 @@ extern musicinfo_t  S_music[];
 // Identifiers for all music in game.
 //
 
-typedef enum {
+typedef enum
+{
   mus_None,
   mus_e1m1,
   mus_e1m2,
@@ -184,7 +187,8 @@ typedef enum {
 // Identifiers for all sfx in game.
 //
 
-typedef enum {
+typedef enum
+{
   sfx_None,
   sfx_pistol,
   sfx_shotgn,
@@ -308,17 +312,3 @@ typedef enum {
 } sfxenum_t;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: sounds.h,v $
-// Revision 1.3  1998/05/03  22:44:30  killough
-// beautification
-//
-// Revision 1.2  1998/01/26  19:27:53  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:03  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

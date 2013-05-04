@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -31,20 +31,12 @@
 
 #include "p_mobj.h"
 
-void P_NoiseAlert (mobj_t *target, mobj_t *emmiter);
+void P_NoiseAlert(mobj_t* target, mobj_t* emmiter);
 void P_SpawnBrainTargets(void); // killough 3/26/98: spawn icon landings
 
-extern struct brain_s {         // killough 3/26/98: global state of boss brain
+extern struct brain_s           // killough 3/26/98: global state of boss brain
+{
   int easy, targeton;
 } brain;
 
 #endif // __P_ENEMY__
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_enemy.h,v $
-// Revision 1.1  1998/05/03  22:29:32  killough
-// External declarations formerly in p_local.h
-//
-//
-//----------------------------------------------------------------------------

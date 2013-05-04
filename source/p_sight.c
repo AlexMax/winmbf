@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -36,7 +36,8 @@
 // killough 4/19/98:
 // Convert LOS info to struct for reentrancy and efficiency of data locality
 
-typedef struct {
+typedef struct
+{
   fixed_t sightzstart, t2x, t2y;   // eye z of looker
   divline_t strace;                // from t1 to t2
   fixed_t topslope, bottomslope;   // slopes to top and bottom of target
@@ -50,12 +51,12 @@ typedef struct {
 // killough 4/19/98: made static, cleaned up
 // killough 12/98: made external
 
-int P_DivlineSide(fixed_t x, fixed_t y, const divline_t *node)
+int P_DivlineSide(fixed_t x, fixed_t y, const divline_t* node)
 {
   fixed_t left, right;
   return
-    !node->dx ? x == node->x ? 2 : x <= node->x ? node->dy > 0 : node->dy < 0 :
-    !node->dy ? x == node->y ? 2 : y <= node->y ? node->dx < 0 : node->dx > 0 :
+  !node->dx ? x == node->x ? 2 : x <= node->x ? node->dy > 0 : node->dy < 0 :
+  !node->dy ? x == node->y ? 2 : y <= node->y ? node->dx < 0 : node->dx > 0 :
     (right = ((y - node->y) >> FRACBITS) * (node->dx >> FRACBITS)) <
     (left  = ((x - node->x) >> FRACBITS) * (node->dy >> FRACBITS)) ? 0 :
     right == left ? 2 : 1;
@@ -68,12 +69,12 @@ int P_DivlineSide(fixed_t x, fixed_t y, const divline_t *node)
 //
 // killough 4/19/98: made static, cleaned up
 
-static fixed_t P_InterceptVector2(const divline_t *v2, const divline_t *v1)
+static fixed_t P_InterceptVector2(const divline_t* v2, const divline_t* v1)
 {
   fixed_t den;
-  return (den = FixedMul(v1->dy>>8, v2->dx) - FixedMul(v1->dx>>8, v2->dy)) ?
-    FixedDiv(FixedMul((v1->x - v2->x)>>8, v1->dy) +
-             FixedMul((v2->y - v1->y)>>8, v1->dx), den) : 0;
+  return (den = FixedMul(v1->dy >> 8, v2->dx) - FixedMul(v1->dx >> 8, v2->dy)) ?
+         FixedDiv(FixedMul((v1->x - v2->x) >> 8, v1->dy) +
+                  FixedMul((v2->y - v1->y) >> 8, v1->dx), den) : 0;
 }
 
 //
@@ -83,9 +84,9 @@ static fixed_t P_InterceptVector2(const divline_t *v2, const divline_t *v1)
 //
 // killough 4/19/98: made static and cleaned up
 
-static boolean P_CrossSubsector(int num, register los_t *los)
+static boolean P_CrossSubsector(int num, register los_t* los)
 {
-  seg_t *seg = segs + subsectors[num].firstline;
+  seg_t* seg = segs + subsectors[num].firstline;
   int count;
 
 #ifdef RANGECHECK
@@ -94,87 +95,87 @@ static boolean P_CrossSubsector(int num, register los_t *los)
 #endif
 
   for (count = subsectors[num].numlines; --count >= 0; seg++)  // check lines
+  {
+    line_t* line = seg->linedef;
+    divline_t divl;
+    fixed_t opentop, openbottom;
+    const sector_t* front, *back;
+    const vertex_t* v1, *v2;
+    fixed_t frac;
+
+    // allready checked other side?
+    if (line->validcount == validcount)
+      continue;
+
+    line->validcount = validcount;
+
+    // OPTIMIZE: killough 4/20/98: Added quick bounding-box rejection test
+
+    if (line->bbox[BOXLEFT  ] > los->bbox[BOXRIGHT ] ||
+        line->bbox[BOXRIGHT ] < los->bbox[BOXLEFT  ] ||
+        line->bbox[BOXBOTTOM] > los->bbox[BOXTOP   ] ||
+        line->bbox[BOXTOP]    < los->bbox[BOXBOTTOM])
+      continue;
+
+    v1 = line->v1;
+    v2 = line->v2;
+
+    // line isn't crossed?
+    if (P_DivlineSide(v1->x, v1->y, &los->strace) ==
+        P_DivlineSide(v2->x, v2->y, &los->strace))
+      continue;
+
+    divl.dx = v2->x - (divl.x = v1->x);
+    divl.dy = v2->y - (divl.y = v1->y);
+
+    // line isn't crossed?
+    if (P_DivlineSide(los->strace.x, los->strace.y, &divl) ==
+        P_DivlineSide(los->t2x, los->t2y, &divl))
+      continue;
+
+    // stop because it is not two sided anyway
+    if (!(line->flags & ML_TWOSIDED))
+      return false;
+
+    // crosses a two sided line
+    // no wall to block sight with?
+    if ((front = seg->frontsector)->floorheight ==
+        (back = seg->backsector)->floorheight   &&
+        front->ceilingheight == back->ceilingheight)
+      continue;
+
+    // possible occluder
+    // because of ceiling height differences
+    opentop = front->ceilingheight < back->ceilingheight ?
+              front->ceilingheight : back->ceilingheight ;
+
+    // because of floor height differences
+    openbottom = front->floorheight > back->floorheight ?
+                 front->floorheight : back->floorheight ;
+
+    // quick test for totally closed doors
+    if (openbottom >= opentop)
+      return false;               // stop
+
+    frac = P_InterceptVector2(&los->strace, &divl);
+
+    if (front->floorheight != back->floorheight)
     {
-      line_t *line = seg->linedef;
-      divline_t divl;
-      fixed_t opentop, openbottom;
-      const sector_t *front, *back;
-      const vertex_t *v1,*v2;
-      fixed_t frac;
-
-      // allready checked other side?
-      if (line->validcount == validcount)
-        continue;
-
-      line->validcount = validcount;
-
-      // OPTIMIZE: killough 4/20/98: Added quick bounding-box rejection test
-
-      if (line->bbox[BOXLEFT  ] > los->bbox[BOXRIGHT ] ||
-          line->bbox[BOXRIGHT ] < los->bbox[BOXLEFT  ] ||
-          line->bbox[BOXBOTTOM] > los->bbox[BOXTOP   ] ||
-          line->bbox[BOXTOP]    < los->bbox[BOXBOTTOM])
-          continue;
-
-      v1 = line->v1;
-      v2 = line->v2;
-
-      // line isn't crossed?
-      if (P_DivlineSide(v1->x, v1->y, &los->strace) ==
-          P_DivlineSide(v2->x, v2->y, &los->strace))
-        continue;
-
-      divl.dx = v2->x - (divl.x = v1->x);
-      divl.dy = v2->y - (divl.y = v1->y);
-
-      // line isn't crossed?
-      if (P_DivlineSide(los->strace.x, los->strace.y, &divl) ==
-          P_DivlineSide(los->t2x, los->t2y, &divl))
-        continue;
-
-      // stop because it is not two sided anyway
-      if (!(line->flags & ML_TWOSIDED))
-        return false;
-
-      // crosses a two sided line
-      // no wall to block sight with?
-      if ((front = seg->frontsector)->floorheight ==
-          (back = seg->backsector)->floorheight   &&
-          front->ceilingheight == back->ceilingheight)
-        continue;
-
-      // possible occluder
-      // because of ceiling height differences
-      opentop = front->ceilingheight < back->ceilingheight ?
-        front->ceilingheight : back->ceilingheight ;
-
-      // because of floor height differences
-      openbottom = front->floorheight > back->floorheight ?
-        front->floorheight : back->floorheight ;
-
-      // quick test for totally closed doors
-      if (openbottom >= opentop)
-        return false;               // stop
-
-      frac = P_InterceptVector2(&los->strace, &divl);
-
-      if (front->floorheight != back->floorheight)
-        {
-          fixed_t slope = FixedDiv(openbottom - los->sightzstart , frac);
-          if (slope > los->bottomslope)
-            los->bottomslope = slope;
-        }
-
-      if (front->ceilingheight != back->ceilingheight)
-        {
-          fixed_t slope = FixedDiv(opentop - los->sightzstart , frac);
-          if (slope < los->topslope)
-            los->topslope = slope;
-        }
-
-      if (los->topslope <= los->bottomslope)
-        return false;               // stop
+      fixed_t slope = FixedDiv(openbottom - los->sightzstart , frac);
+      if (slope > los->bottomslope)
+        los->bottomslope = slope;
     }
+
+    if (front->ceilingheight != back->ceilingheight)
+    {
+      fixed_t slope = FixedDiv(opentop - los->sightzstart , frac);
+      if (slope < los->topslope)
+        los->topslope = slope;
+    }
+
+    if (los->topslope <= los->bottomslope)
+      return false;               // stop
+  }
   // passed the subsector ok
   return true;
 }
@@ -186,20 +187,20 @@ static boolean P_CrossSubsector(int num, register los_t *los)
 //
 // killough 4/20/98: rewritten to remove tail recursion, clean up, and optimize
 
-static boolean P_CrossBSPNode(int bspnum, register los_t *los)
+static boolean P_CrossBSPNode(int bspnum, register los_t* los)
 {
   while (!(bspnum & NF_SUBSECTOR))
-    {
-      register const node_t *bsp = nodes + bspnum;
-      int side = P_DivlineSide(los->strace.x,los->strace.y,(divline_t *)bsp)&1;
-      if (side == P_DivlineSide(los->t2x, los->t2y, (divline_t *) bsp))
-         bspnum = bsp->children[side]; // doesn't touch the other side
-      else         // the partition plane is crossed here
-        if (!P_CrossBSPNode(bsp->children[side], los))
-          return 0;  // cross the starting side
-        else
-          bspnum = bsp->children[side^1];  // cross the ending side
-    }
+  {
+    register const node_t* bsp = nodes + bspnum;
+    int side = P_DivlineSide(los->strace.x, los->strace.y, (divline_t*)bsp) & 1;
+    if (side == P_DivlineSide(los->t2x, los->t2y, (divline_t*) bsp))
+      bspnum = bsp->children[side]; // doesn't touch the other side
+    else         // the partition plane is crossed here
+      if (!P_CrossBSPNode(bsp->children[side], los))
+        return 0;  // cross the starting side
+      else
+        bspnum = bsp->children[side ^ 1]; // cross the ending side
+  }
   return P_CrossSubsector(bspnum == -1 ? 0 : bspnum & ~NF_SUBSECTOR, los);
 }
 
@@ -211,11 +212,11 @@ static boolean P_CrossBSPNode(int bspnum, register los_t *los)
 //
 // killough 4/20/98: cleaned up, made to use new LOS struct
 
-boolean P_CheckSight(mobj_t *t1, mobj_t *t2)
+boolean P_CheckSight(mobj_t* t1, mobj_t* t2)
 {
-  const sector_t *s1 = t1->subsector->sector;
-  const sector_t *s2 = t2->subsector->sector;
-  int pnum = (s1-sectors)*numsectors + (s2-sectors);
+  const sector_t* s1 = t1->subsector->sector;
+  const sector_t* s2 = t2->subsector->sector;
+  int pnum = (s1 - sectors) * numsectors + (s2 - sectors);
   los_t los;
 
   // First check for trivial rejection.
@@ -223,7 +224,7 @@ boolean P_CheckSight(mobj_t *t1, mobj_t *t2)
   //
   // Check in REJECT table.
 
-  if (rejectmatrix[pnum>>3] & (1 << (pnum&7)))   // can't possibly be connected
+  if (rejectmatrix[pnum >> 3] & (1 << (pnum & 7))) // can't possibly be connected
     return false;
 
   // killough 4/19/98: make fake floors and ceilings block monster view
@@ -250,8 +251,8 @@ boolean P_CheckSight(mobj_t *t1, mobj_t *t2)
   validcount++;
 
   los.topslope = (los.bottomslope = t2->z - (los.sightzstart =
-                                             t1->z + t1->height -
-                                             (t1->height>>2))) + t2->height;
+                                      t1->z + t1->height -
+                                      (t1->height >> 2))) + t2->height;
   los.strace.dx = (los.t2x = t2->x) - (los.strace.x = t1->x);
   los.strace.dy = (los.t2y = t2->y) - (los.strace.y = t1->y);
 
@@ -266,31 +267,5 @@ boolean P_CheckSight(mobj_t *t1, mobj_t *t2)
     los.bbox[BOXTOP] = t2->y, los.bbox[BOXBOTTOM] = t1->y;
 
   // the head node is the last node output
-  return P_CrossBSPNode(numnodes-1, &los);
+  return P_CrossBSPNode(numnodes - 1, &los);
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_sight.c,v $
-// Revision 1.7  1998/05/07  00:55:55  killough
-// Make monsters directly tangent to water surface blind
-//
-// Revision 1.6  1998/05/03  22:34:33  killough
-// beautification, header cleanup
-//
-// Revision 1.5  1998/05/01  14:52:09  killough
-// beautification
-//
-// Revision 1.4  1998/04/24  11:43:08  killough
-// minor optimization
-//
-// Revision 1.3  1998/04/20  11:13:41  killough
-// Fix v1.9 demo sync probs, make monsters blind across water
-//
-// Revision 1.2  1998/01/26  19:24:24  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:00  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

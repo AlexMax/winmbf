@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //
@@ -43,30 +43,7 @@ int skytexturemid;
 // R_InitSkyMap
 // Called whenever the view size changes.
 //
-void R_InitSkyMap (void)
+void R_InitSkyMap(void)
 {
-  skytexturemid = 100*FRACUNIT;
+  skytexturemid = 100 * FRACUNIT;
 }
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_sky.c,v $
-// Revision 1.6  1998/05/03  23:01:06  killough
-// beautification
-//
-// Revision 1.5  1998/05/01  14:14:24  killough
-// beautification
-//
-// Revision 1.4  1998/02/05  12:14:31  phares
-// removed dummy comment
-//
-// Revision 1.3  1998/01/26  19:24:49  phares
-// First rev with no ^Ms
-//
-// Revision 1.2  1998/01/19  16:17:59  rand
-// Added dummy line to be removed later.
-//
-// Revision 1.1.1.1  1998/01/19  14:03:07  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

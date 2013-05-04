@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -45,10 +45,10 @@ void S_Start(void);
 // Start sound for thing at <origin>
 //  using <sound_id> from sounds.h
 //
-void S_StartSound(const mobj_t *origin, int sound_id);
+void S_StartSound(const mobj_t* origin, int sound_id);
 
 // Stop sound for thing at <origin>
-void S_StopSound(const mobj_t *origin);
+void S_StopSound(const mobj_t* origin);
 
 // Start music using <music_id> from sounds.h
 void S_StartMusic(int music_id);
@@ -66,7 +66,7 @@ void S_ResumeSound(void);
 //
 // Updates music & sounds
 //
-void S_UpdateSounds(const mobj_t *listener);
+void S_UpdateSounds(const mobj_t* listener);
 void S_SetMusicVolume(int volume);
 void S_SetSfxVolume(int volume);
 
@@ -78,20 +78,3 @@ extern int default_numChannels;  // killough 10/98
 extern int idmusnum;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: s_sound.h,v $
-// Revision 1.4  1998/05/03  22:57:36  killough
-// beautification, add external declarations
-//
-// Revision 1.3  1998/04/27  01:47:32  killough
-// Fix pickups silencing player weapons
-//
-// Revision 1.2  1998/01/26  19:27:51  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:09  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

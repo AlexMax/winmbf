@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -30,15 +30,16 @@
 #include "d_player.h"
 #include "p_mobj.h"
 
-// Ty 03/09/98 Moved to an int in p_inter.c for deh and externalization 
+// Ty 03/09/98 Moved to an int in p_inter.c for deh and externalization
 #define MAXHEALTH maxhealth
 
 // follow a player exlusively for 3 seconds
 #define BASETHRESHOLD   (100)
 
-boolean P_GivePower(player_t *, int);
-void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher);
-void P_DamageMobj(mobj_t *target,mobj_t *inflictor,mobj_t *source,int damage);
+boolean P_GivePower(player_t*, int);
+void P_TouchSpecialThing(mobj_t* special, mobj_t* toucher);
+void P_DamageMobj(mobj_t* target, mobj_t* inflictor, mobj_t* source,
+                  int damage);
 
 // killough 5/2/98: moved from d_deh.c, g_game.c, m_misc.c, others:
 
@@ -66,18 +67,3 @@ extern int bfgcells;
 extern int maxammo[], clipammo[];
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: p_inter.h,v $
-// Revision 1.3  1998/05/03  23:08:57  killough
-// beautification, add of the DEH parameter declarations
-//
-// Revision 1.2  1998/01/26  19:27:19  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:08  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

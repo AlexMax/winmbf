@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -48,8 +48,8 @@
 
 typedef enum
 {
-    CMD_SEND    = 1,
-    CMD_GET     = 2
+  CMD_SEND    = 1,
+  CMD_GET     = 2
 } command_t;
 
 
@@ -58,15 +58,15 @@ typedef enum
 //
 typedef struct
 {
-    // High bit is retransmit request.
-    unsigned            checksum;
-    // Only valid if NCMD_RETRANSMIT.
-    byte                retransmitfrom;
-    
-    byte                starttic;
-    byte                player;
-    byte                numtics;
-    ticcmd_t            cmds[BACKUPTICS];
+  // High bit is retransmit request.
+  unsigned            checksum;
+  // Only valid if NCMD_RETRANSMIT.
+  byte                retransmitfrom;
+
+  byte                starttic;
+  byte                player;
+  byte                numtics;
+  ticcmd_t            cmds[BACKUPTICS];
 } doomdata_t;
 
 //
@@ -108,99 +108,67 @@ typedef struct
   byte fastparm;
   byte demo_insurance;
   unsigned long rngseed;
-  char filler[sizeof(ticcmd_t)*BACKUPTICS-STARTUPLEN];
+  char filler[sizeof(ticcmd_t)*BACKUPTICS - STARTUPLEN];
 } startup_t;
 
 typedef struct
 {
-    // Supposed to be DOOMCOM_ID?
-    long                id;
-    
-    // DOOM executes an int to execute commands.
-    short               intnum;         
-    // Communication between DOOM and the driver.
-    // Is CMD_SEND or CMD_GET.
-    short               command;
-    // Is dest for send, set by get (-1 = no packet).
-    short               remotenode;
-    
-    // Number of bytes in doomdata to be sent
-    short               datalength;
+  // Supposed to be DOOMCOM_ID?
+  long                id;
 
-    // Info common to all nodes.
-    // Console is allways node 0.
-    short               numnodes;
-    // Flag: 1 = no duplication, 2-5 = dup for slow nets.
-    short               ticdup;
-    // Flag: 1 = send a backup tic in every packet.
-    short               extratics;
-    // Flag: 1 = deathmatch.
-    short               deathmatch;
-    // Flag: -1 = new game, 0-5 = load savegame
-    short               savegame;
-    short               episode;        // 1-3
-    short               map;            // 1-9
-    short               skill;          // 1-5
+  // DOOM executes an int to execute commands.
+  short               intnum;
+  // Communication between DOOM and the driver.
+  // Is CMD_SEND or CMD_GET.
+  short               command;
+  // Is dest for send, set by get (-1 = no packet).
+  short               remotenode;
 
-    // Info specific to this node.
-    short               consoleplayer;
-    short               numplayers;
-    
-    // These are related to the 3-display mode,
-    //  in which two drones looking left and right
-    //  were used to render two additional views
-    //  on two additional computers.
-    // Probably not operational anymore.
-    // 1 = left, 0 = center, -1 = right
-    short               angleoffset;
-    // 1 = drone
-    short               drone;          
+  // Number of bytes in doomdata to be sent
+  short               datalength;
 
-    // The packet data to be sent.
-    doomdata_t          data;
-    
+  // Info common to all nodes.
+  // Console is allways node 0.
+  short               numnodes;
+  // Flag: 1 = no duplication, 2-5 = dup for slow nets.
+  short               ticdup;
+  // Flag: 1 = send a backup tic in every packet.
+  short               extratics;
+  // Flag: 1 = deathmatch.
+  short               deathmatch;
+  // Flag: -1 = new game, 0-5 = load savegame
+  short               savegame;
+  short               episode;        // 1-3
+  short               map;            // 1-9
+  short               skill;          // 1-5
+
+  // Info specific to this node.
+  short               consoleplayer;
+  short               numplayers;
+
+  // These are related to the 3-display mode,
+  //  in which two drones looking left and right
+  //  were used to render two additional views
+  //  on two additional computers.
+  // Probably not operational anymore.
+  // 1 = left, 0 = center, -1 = right
+  short               angleoffset;
+  // 1 = drone
+  short               drone;
+
+  // The packet data to be sent.
+  doomdata_t          data;
+
 } doomcom_t;
 
 // Create any new ticcmds and broadcast to other players.
-void NetUpdate (void);
+void NetUpdate(void);
 
 // Broadcasts special packets to other players
 //  to notify of game exit
-void D_QuitNetGame (void);
+void D_QuitNetGame(void);
 
 //? how many ticks to run?
-void TryRunTics (void);
+void TryRunTics(void);
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: d_net.h,v $
-// Revision 1.8  1998/05/21  12:12:16  jim
-// Removed conditional from net code
-//
-// Revision 1.7  1998/05/16  09:52:21  jim
-// add temporary switch for Lee/Stan's code in d_net.c
-//
-// Revision 1.6  1998/05/03  23:40:38  killough
-// Fix net consistency problems, using G_WriteOptions/G_Readoptions
-//
-// Revision 1.5  1998/04/13  10:40:53  stan
-// Now synch up all items identified by Lee Killough as essential to
-// game synch (including bobbing, recoil, rngseed).  Commented out
-// code in g_game.c so rndseed is always set even in netgame.
-//
-// Revision 1.4  1998/02/05  12:14:33  phares
-// removed dummy comment
-//
-// Revision 1.3  1998/01/26  19:26:29  phares
-// First rev with no ^Ms
-//
-// Revision 1.2  1998/01/19  16:38:12  rand
-// Added dummy comments to be reomved later
-//
-// Revision 1.1.1.1  1998/01/19  14:03:07  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

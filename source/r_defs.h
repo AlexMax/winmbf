@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -90,29 +90,29 @@ typedef struct
   short special;
   short oldspecial;      //jff 2/16/98 remembers if sector WAS secret (automap)
   short tag;
-  int nexttag,firsttag;  // killough 1/30/98: improves searches for tags.
+  int nexttag, firsttag; // killough 1/30/98: improves searches for tags.
   int soundtraversed;    // 0 = untraversed, 1,2 = sndlines-1
-  mobj_t *soundtarget;   // thing that made a sound (or null)
+  mobj_t* soundtarget;   // thing that made a sound (or null)
   int blockbox[4];       // mapblock bounding box for height changes
   degenmobj_t soundorg;  // origin for any sounds played by the sector
   int validcount;        // if == validcount, already checked
-  mobj_t *thinglist;     // list of mobjs in sector
+  mobj_t* thinglist;     // list of mobjs in sector
 
   // killough 8/28/98: friction is a sector property, not an mobj property.
   // these fields used to be in mobj_t, but presented performance problems
   // when processed as mobj properties. Fix is to make them sector properties.
-  int friction,movefactor;
+  int friction, movefactor;
 
   // thinker_t for reversable actions
-  void *floordata;    // jff 2/22/98 make thinkers on
-  void *ceilingdata;  // floors, ceilings, lighting,
-  void *lightingdata; // independent of one another
+  void* floordata;    // jff 2/22/98 make thinkers on
+  void* ceilingdata;  // floors, ceilings, lighting,
+  void* lightingdata; // independent of one another
 
   // jff 2/26/98 lockout machinery for stairbuilding
   int stairlock;   // -2 on first locked -1 after thinker done 0 normally
   int prevsec;     // -1 or number of sector for previous step
   int nextsec;     // -1 or number of next step sector
-  
+
   // killough 3/7/98: floor and ceiling texture offsets
   fixed_t   floor_xoffs,   floor_yoffs;
   fixed_t ceiling_xoffs, ceiling_yoffs;
@@ -126,20 +126,20 @@ typedef struct
   int bottommap, midmap, topmap; // killough 4/4/98: dynamic colormaps
 
   // killough 10/98: support skies coming from sidedefs. Allows scrolling
-  // skies and other effects. No "level info" kind of lump is needed, 
+  // skies and other effects. No "level info" kind of lump is needed,
   // because you can use an arbitrary number of skies per level with this
   // method. This field only applies when skyflatnum is used for floorpic
   // or ceilingpic, because the rest of Doom needs to know which is sky
   // and which isn't, etc.
 
- int sky;
+  int sky;
 
   // list of mobjs that are at least partially in the sector
   // thinglist is a subset of touching_thinglist
-  struct msecnode_s *touching_thinglist;               // phares 3/14/98  
+  struct msecnode_s* touching_thinglist;               // phares 3/14/98
 
   int linecount;
-  struct line_s **lines;
+  struct line_s** lines;
 
 } sector_t;
 
@@ -151,7 +151,7 @@ typedef struct
 {
   fixed_t textureoffset; // add this to the calculated texture column
   fixed_t rowoffset;     // add this to the calculated texture top
-  short toptexture;      // Texture indices. We do not maintain names here. 
+  short toptexture;      // Texture indices. We do not maintain names here.
   short bottomtexture;
   short midtexture;
   sector_t* sector;      // Sector the SideDef is facing.
@@ -177,20 +177,20 @@ typedef enum
 
 typedef struct line_s
 {
-  vertex_t *v1, *v2;     // Vertices, from v1 to v2.
+  vertex_t* v1, *v2;     // Vertices, from v1 to v2.
   fixed_t dx, dy;        // Precalculated v2 - v1 for side checking.
   short flags;           // Animation related.
-  short special;         
+  short special;
   short tag;
   short sidenum[2];      // Visual appearance: SideDefs.
   fixed_t bbox[4];       // A bounding box, for the linedef's extent
   slopetype_t slopetype; // To aid move clipping.
-  sector_t *frontsector; // Front and back sector.
-  sector_t *backsector; 
+  sector_t* frontsector; // Front and back sector.
+  sector_t* backsector;
   int validcount;        // if == validcount, already checked
-  void *specialdata;     // thinker_t for reversable actions
+  void* specialdata;     // thinker_t for reversable actions
   int tranlump;          // killough 4/11/98: translucency filter, -1 == none
-  int firsttag,nexttag;  // killough 4/17/98: improves searches for tags.
+  int firsttag, nexttag; // killough 4/17/98: improves searches for tags.
 } line_t;
 
 //
@@ -203,7 +203,7 @@ typedef struct line_s
 
 typedef struct subsector_s
 {
-  sector_t *sector;
+  sector_t* sector;
   short numlines, firstline;
 } subsector_t;
 
@@ -225,12 +225,12 @@ typedef struct subsector_s
 
 typedef struct msecnode_s
 {
-  sector_t          *m_sector; // a sector containing this object
-  struct mobj_s     *m_thing;  // this object
-  struct msecnode_s *m_tprev;  // prev msecnode_t for this thing
-  struct msecnode_s *m_tnext;  // next msecnode_t for this thing
-  struct msecnode_s *m_sprev;  // prev msecnode_t for this sector
-  struct msecnode_s *m_snext;  // next msecnode_t for this sector
+  sector_t*          m_sector; // a sector containing this object
+  struct mobj_s*     m_thing;  // this object
+  struct msecnode_s* m_tprev;  // prev msecnode_t for this thing
+  struct msecnode_s* m_tnext;  // next msecnode_t for this thing
+  struct msecnode_s* m_sprev;  // prev msecnode_t for this sector
+  struct msecnode_s* m_snext;  // next msecnode_t for this sector
   boolean visited; // killough 4/4/98, 4/7/98: used in search algorithms
 } msecnode_t;
 
@@ -239,18 +239,18 @@ typedef struct msecnode_s
 //
 typedef struct
 {
-  vertex_t *v1, *v2;
+  vertex_t* v1, *v2;
   fixed_t offset;
   angle_t angle;
   side_t* sidedef;
   line_t* linedef;
-  
+
   // Sector references.
   // Could be retrieved from linedef, too
   // (but that would be slower -- killough)
   // backsector is NULL for one sided lines
 
-  sector_t *frontsector, *backsector;
+  sector_t* frontsector, *backsector;
 } seg_t;
 
 //
@@ -283,7 +283,7 @@ typedef post_t column_t;
 // from darkening PLAYPAL to all black.
 // Could use even more than 32 levels.
 
-typedef byte  lighttable_t; 
+typedef byte  lighttable_t;
 
 //
 // Masked 2s linedefs
@@ -291,7 +291,7 @@ typedef byte  lighttable_t;
 
 typedef struct drawseg_s
 {
-  seg_t *curline;
+  seg_t* curline;
   int x1, x2;
   fixed_t scale1, scale2, scalestep;
   int silhouette;                       // 0=none, 1=bottom, 2=top, 3=both
@@ -301,7 +301,7 @@ typedef struct drawseg_s
   // Pointers to lists for sprite clipping,
   // all three adjusted so [x1] is first value.
 
-  short *sprtopclip, *sprbottomclip, *maskedtexturecol;
+  short* sprtopclip, *sprbottomclip, *maskedtexturecol;
 } drawseg_t;
 
 //
@@ -312,11 +312,11 @@ typedef struct drawseg_s
 // of patches.
 //
 
-typedef struct 
-{ 
-  short width, height;  // bounding box size 
-  short leftoffset;     // pixels to the left of origin 
-  short topoffset;      // pixels below the origin 
+typedef struct
+{
+  short width, height;  // bounding box size
+  short leftoffset;     // pixels to the left of origin
+  short topoffset;      // pixels below the origin
   int columnofs[8];     // only [width] used
 } patch_t;
 
@@ -338,14 +338,14 @@ typedef struct vissprite_s
   int mobjflags;
 
   // for color translation and shadow draw, maxbright frames as well
-  lighttable_t *colormap;
-   
+  lighttable_t* colormap;
+
   // killough 3/27/98: height sector for underwater/fake ceiling support
   int heightsec;
 
 } vissprite_t;
 
-//  
+//
 // Sprites are patches with a special naming convention
 //  so they can be recognized by R_InitSprites.
 // The base name is NNNNFx or NNNNFxFx, with
@@ -384,7 +384,7 @@ typedef struct
 typedef struct
 {
   int numframes;
-  spriteframe_t *spriteframes;
+  spriteframe_t* spriteframes;
 } spritedef_t;
 
 //
@@ -395,7 +395,7 @@ typedef struct
 
 typedef struct visplane
 {
-  struct visplane *next;        // Next visplane in hash chain -- killough
+  struct visplane* next;        // Next visplane in hash chain -- killough
   int picnum, lightlevel, minx, maxx;
   fixed_t height;
   fixed_t xoffs, yoffs;         // killough 2/28/98: Support scrolling flats
@@ -407,63 +407,3 @@ typedef struct visplane
 } visplane_t;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: r_defs.h,v $
-// Revision 1.18  1998/04/27  02:12:59  killough
-// Program beautification
-//
-// Revision 1.17  1998/04/17  10:36:44  killough
-// Improve linedef tag searches (see p_spec.c)
-//
-// Revision 1.16  1998/04/12  02:08:31  killough
-// Add ceiling light property, translucent walls
-//
-// Revision 1.15  1998/04/07  06:52:40  killough
-// Simplify sector_thinglist traversal to use simpler markers
-//
-// Revision 1.14  1998/04/06  04:42:42  killough
-// Add dynamic colormaps, thinglist_validcount
-//
-// Revision 1.13  1998/03/28  18:03:26  killough
-// Add support for underwater sprite clipping
-//
-// Revision 1.12  1998/03/23  03:34:11  killough
-// Add support for an arbitrary number of colormaps
-//
-// Revision 1.11  1998/03/20  00:30:33  phares
-// Changed friction to linedef control
-//
-// Revision 1.10  1998/03/16  12:41:54  killough
-// Add support for floor lightlevel from other sector
-//
-// Revision 1.9  1998/03/09  07:33:44  killough
-// Add scroll effect fields, remove FP for point/line queries
-//
-// Revision 1.8  1998/03/02  11:49:58  killough
-// Support for flats scrolling
-//
-// Revision 1.7  1998/02/27  11:50:49  jim
-// Fixes for stairs
-//
-// Revision 1.6  1998/02/23  00:42:24  jim
-// Implemented elevators
-//
-// Revision 1.5  1998/02/17  22:58:30  jim
-// Fixed bug of vanishinb secret sectors in automap
-//
-// Revision 1.4  1998/02/09  03:21:20  killough
-// Allocate MAX screen height/width in arrays
-//
-// Revision 1.3  1998/02/02  14:19:49  killough
-// Improve searching of matching sector tags
-//
-// Revision 1.2  1998/01/26  19:27:36  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:09  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------

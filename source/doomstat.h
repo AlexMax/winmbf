@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -86,7 +86,8 @@ extern int demo_insurance, default_demo_insurance;      // killough 4/5/98
 // -------------------------------------------
 // killough 10/98: compatibility vector
 
-enum {
+enum
+{
   comp_telefrag,
   comp_dropoff,
   comp_vile,
@@ -106,7 +107,7 @@ enum {
   comp_stairs,
   comp_infcheat,
   comp_zerotags,
-  COMP_TOTAL=32  // Some extra room for additional variables
+  COMP_TOTAL = 32 // Some extra room for additional variables
 };
 
 extern int comp[COMP_TOTAL], default_comp[COMP_TOTAL];
@@ -240,10 +241,10 @@ extern  player_t  players[MAXPLAYERS];
 // Alive? Disconnected?
 extern  boolean    playeringame[];
 
-extern  mapthing_t *deathmatchstarts;     // killough
+extern  mapthing_t* deathmatchstarts;     // killough
 extern  size_t     num_deathmatchstarts; // killough
 
-extern  mapthing_t *deathmatch_p;
+extern  mapthing_t* deathmatch_p;
 
 // Player spawn spots.
 extern  mapthing_t playerstarts[];
@@ -262,7 +263,7 @@ extern int maxammo[];
 
 // File handling stuff.
 extern  char    basedefault[];
-extern  FILE   *debugfile;
+extern  FILE*   debugfile;
 
 // if true, load all graphics at level load
 extern  boolean precache;
@@ -285,8 +286,8 @@ extern  int             bodyqueslot;
 extern int    skyflatnum;
 
 // Netgame stuff (buffers and pointers, i.e. indices).
-extern  doomcom_t  *doomcom;
-extern  doomdata_t *netbuffer;  // This points inside doomcom.
+extern  doomcom_t*  doomcom;
+extern  doomdata_t* netbuffer;  // This points inside doomcom.
 
 extern  ticcmd_t   localcmds[];
 extern  int        rndindex;
@@ -352,44 +353,3 @@ extern int flashing_hom; // killough 10/98
 extern int doom_weapon_toggles;   // killough 10/98
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: doomstat.h,v $
-// Revision 1.13  1998/05/12  12:47:28  phares
-// Removed OVER_UNDER code
-//
-// Revision 1.12  1998/05/06  16:05:34  jim
-// formatting and documenting
-//
-// Revision 1.11  1998/05/05  16:28:51  phares
-// Removed RECOIL and OPT_BOBBING defines
-//
-// Revision 1.10  1998/05/03  23:12:52  killough
-// beautify, move most global switch variable decls here
-//
-// Revision 1.9  1998/04/06  04:54:55  killough
-// Add demo_insurance
-//
-// Revision 1.8  1998/03/02  11:26:25  killough
-// Remove now-dead monster_ai mask idea
-//
-// Revision 1.7  1998/02/23  04:17:38  killough
-// fix bad translucency flag
-//
-// Revision 1.5  1998/02/20  21:56:29  phares
-// Preliminarey sprite translucency
-//
-// Revision 1.4  1998/02/19  16:55:30  jim
-// Optimized HUD and made more configurable
-//
-// Revision 1.3  1998/02/18  00:58:54  jim
-// Addition of HUD
-//
-// Revision 1.2  1998/01/26  19:26:41  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:09  rand
-// Lee's Jan 19 sources
-//
-//----------------------------------------------------------------------------

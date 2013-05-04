@@ -15,7 +15,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 //-----------------------------------------------------------------------------
@@ -32,18 +32,3 @@ enum { VERSION =  203 };
 extern const char version_date[];
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: version.h,v $
-// Revision 1.3  1998/04/20  13:29:58  jim
-// Update BOOM version, BOOM.TXT
-//
-// Revision 1.2  1998/02/02  17:36:25  killough
-// fix comments
-//
-//
-// Revision 1.1  1998/02/02  13:22:00  killough
-// version information files
-//
-//----------------------------------------------------------------------------

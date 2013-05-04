@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 //  Copyright (C) 1999 by
@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:  none
@@ -59,17 +59,17 @@ typedef struct
 
   patch_t** f;                          // font
   int   sc;                             // start character
-  char *cr;                         //jff 2/16/52 output color range
+  char* cr;                         //jff 2/16/52 output color range
 
   // killough 1/23/98: Support multiple lines:
-  #define MAXLINES 25
+#define MAXLINES 25
 
   int   linelen;
-  char  l[HU_MAXLINELENGTH*MAXLINES+1]; // line of text
+  char  l[HU_MAXLINELENGTH * MAXLINES + 1]; // line of text
   int   len;                            // current line length
 
   // whether this line needs to be udpated
-  int   needsupdate;        
+  int   needsupdate;
 
 } hu_textline_t;
 
@@ -98,8 +98,8 @@ typedef struct
   int     nr;                          // total height in rows
   int     cl;                          // current line number
 
-  int x,y,w,h;                         // window position and size
-  patch_t **bg;                        // patches for background
+  int x, y, w, h;                      // window position and size
+  patch_t** bg;                        // patches for background
 
   // pointer to boolean stating whether to update window
   boolean*    on;
@@ -119,7 +119,7 @@ typedef struct
   int     lm;
 
   // pointer to boolean stating whether to update window
-  boolean*    on; 
+  boolean*    on;
   boolean   laston;   // last value of *->on;
 
 } hu_itext_t;
@@ -137,29 +137,29 @@ void HUlib_init(void);
 //
 
 // clear a line of text
-void HUlib_clearTextLine(hu_textline_t *t);
+void HUlib_clearTextLine(hu_textline_t* t);
 
 void HUlib_initTextLine
 (
-  hu_textline_t *t,
+  hu_textline_t* t,
   int x,
   int y,
-  patch_t **f,
+  patch_t** f,
   int sc,
-  char *cr    //jff 2/16/98 add color range parameter
+  char* cr    //jff 2/16/98 add color range parameter
 );
 
 // returns success
-boolean HUlib_addCharToTextLine(hu_textline_t *t, char ch);
+boolean HUlib_addCharToTextLine(hu_textline_t* t, char ch);
 
 // returns success
-boolean HUlib_delCharFromTextLine(hu_textline_t *t);
+boolean HUlib_delCharFromTextLine(hu_textline_t* t);
 
 // draws tline
-void HUlib_drawTextLine(hu_textline_t *l, boolean drawcursor);
+void HUlib_drawTextLine(hu_textline_t* l, boolean drawcursor);
 
 // erases text line
-void HUlib_eraseTextLine(hu_textline_t *l); 
+void HUlib_eraseTextLine(hu_textline_t* l);
 
 
 //
@@ -168,23 +168,23 @@ void HUlib_eraseTextLine(hu_textline_t *l);
 
 // initialize an stext widget
 void HUlib_initSText
-( hu_stext_t* s,
-  int   x,
-  int   y,
-  int   h,
-  patch_t** font,
-  int   startchar,
-  char *cr,   //jff 2/16/98 add color range parameter
-  boolean*  on );
+(hu_stext_t* s,
+ int   x,
+ int   y,
+ int   h,
+ patch_t** font,
+ int   startchar,
+ char* cr,   //jff 2/16/98 add color range parameter
+ boolean*  on);
 
 // add a new line
-void HUlib_addLineToSText(hu_stext_t* s);  
+void HUlib_addLineToSText(hu_stext_t* s);
 
 // add a text message to an stext widget
 void HUlib_addMessageToSText
-( hu_stext_t* s,
-  char*   prefix,
-  char*   msg );
+(hu_stext_t* s,
+ char*   prefix,
+ char*   msg);
 
 // draws stext
 void HUlib_drawSText(hu_stext_t* s);
@@ -195,38 +195,38 @@ void HUlib_eraseSText(hu_stext_t* s);
 //jff 2/26/98 message refresh widget
 // initialize refresh text widget
 void HUlib_initMText
-( hu_mtext_t *m,
-  int x,
-  int y,
-  int w,
-  int h,
-  patch_t** font,
-  int startchar,
-  char *cr, 
-  patch_t** bgfont,
-  boolean *on
+(hu_mtext_t* m,
+ int x,
+ int y,
+ int w,
+ int h,
+ patch_t** font,
+ int startchar,
+ char* cr,
+ patch_t** bgfont,
+ boolean* on
 );
 
 //jff 2/26/98 message refresh widget
 // add a text line to refresh text widget
 void HUlib_addLineToMText
-( hu_mtext_t* m );
+(hu_mtext_t* m);
 
 //jff 2/26/98 message refresh widget
 // add a text message to refresh text widget
 void HUlib_addMessageToMText
-( hu_mtext_t* m,
-  char*   prefix,
-  char*   msg );
+(hu_mtext_t* m,
+ char*   prefix,
+ char*   msg);
 
 //jff 2/26/98 new routine to display a background on which
 // the list of last hud_msg_lines are displayed
 void HUlib_drawMBg
-( int x,
-  int y,
-  int w,
-  int h,
-  patch_t** bgp
+(int x,
+ int y,
+ int w,
+ int h,
+ patch_t** bgp
 );
 
 //jff 2/26/98 message refresh widget
@@ -238,13 +238,13 @@ void HUlib_eraseMText(hu_mtext_t* m);
 
 // Input Text Line widget routines
 void HUlib_initIText
-( hu_itext_t* it,
-  int   x,
-  int   y,
-  patch_t** font,
-  int   startchar,
-  char *cr,   //jff 2/16/98 add color range parameter
-  boolean*  on );
+(hu_itext_t* it,
+ int   x,
+ int   y,
+ patch_t** font,
+ int   startchar,
+ char* cr,   //jff 2/16/98 add color range parameter
+ boolean*  on);
 
 // enforces left margin
 void HUlib_delCharFromIText(hu_itext_t* it);
@@ -257,52 +257,17 @@ void HUlib_resetIText(hu_itext_t* it);
 
 // left of left-margin
 void HUlib_addPrefixToIText
-( hu_itext_t* it,
-  char*   str );
+(hu_itext_t* it,
+ char*   str);
 
 // whether eaten
 boolean HUlib_keyInIText
-( hu_itext_t* it,
-  unsigned char ch );
+(hu_itext_t* it,
+ unsigned char ch);
 
 void HUlib_drawIText(hu_itext_t* it);
 
 // erases all itext lines
-void HUlib_eraseIText(hu_itext_t* it); 
+void HUlib_eraseIText(hu_itext_t* it);
 
 #endif
-
-
-//----------------------------------------------------------------------------
-//
-// $Log: hu_lib.h,v $
-// Revision 1.9  1998/05/11  10:13:31  jim
-// formatted/documented hu_lib
-//
-// Revision 1.8  1998/04/28  15:53:53  jim
-// Fix message list bug in small screen mode
-//
-// Revision 1.7  1998/02/26  22:58:44  jim
-// Added message review display to HUD
-//
-// Revision 1.6  1998/02/19  16:55:19  jim
-// Optimized HUD and made more configurable
-//
-// Revision 1.5  1998/02/18  00:58:58  jim
-// Addition of HUD
-//
-// Revision 1.4  1998/02/15  02:48:09  phares
-// User-defined keys
-//
-// Revision 1.3  1998/01/26  19:26:52  phares
-// First rev with no ^Ms
-//
-// Revision 1.2  1998/01/26  05:50:24  killough
-// Support more lines, and tab stops, in messages
-//
-// Revision 1.1.1.1  1998/01/19  14:02:55  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------
-

@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -54,7 +54,7 @@ extern int GetTime_Scale;
 // Can call D_PostEvent.
 //
 
-void I_StartFrame (void);
+void I_StartFrame(void);
 
 //
 // Called by D_DoomLoop,
@@ -62,7 +62,7 @@ void I_StartFrame (void);
 // Quick syncronous operations are performed here.
 // Can call D_PostEvent.
 
-void I_StartTic (void);
+void I_StartTic(void);
 
 // Asynchronous interrupt functions should maintain private queues
 // that are read by the synchronous functions
@@ -73,11 +73,11 @@ void I_StartTic (void);
 // This ticcmd will then be modified by the gameloop
 // for normal input.
 
-ticcmd_t* I_BaseTiccmd (void);
+ticcmd_t* I_BaseTiccmd(void);
 
 // atexit handler -- killough
 
-void I_Quit (void);
+void I_Quit(void);
 
 // Allocates from low memory under dos, just mallocs under unix
 
@@ -86,7 +86,7 @@ void I_Quit (void);
 
 // killough 3/20/98: add const
 // killough 4/25/98: add gcc attributes
-void I_Error(const char *error, ...) __attribute__((format(printf,1,2)));
+void I_Error(const char* error, ...) __attribute__((format(printf, 1, 2)));
 
 extern int mousepresent;                // killough
 
@@ -100,35 +100,9 @@ void I_EndDoom(void);         // killough 2/22/98: endgame screen
 
 #define KQSIZE 256
 
-extern struct keyboard_queue_s {
-  volatile int head,tail,queue[KQSIZE];
+extern struct keyboard_queue_s
+{
+  volatile int head, tail, queue[KQSIZE];
 } keyboard_queue;
 
 #endif
-
-//----------------------------------------------------------------------------
-//
-// $Log: i_system.h,v $
-// Revision 1.7  1998/05/03  22:33:43  killough
-// beautification, remove unnecessary #includes
-//
-// Revision 1.6  1998/04/27  01:52:47  killough
-// Add __attribute__ to I_Error for gcc checking
-//
-// Revision 1.5  1998/04/10  06:34:07  killough
-// Add adaptive gametic timer
-//
-// Revision 1.4  1998/03/23  03:17:19  killough
-// Add keyboard FIFO queue and make I_Error arg const
-//
-// Revision 1.3  1998/02/23  04:28:30  killough
-// Add ENDOOM support
-//
-// Revision 1.2  1998/01/26  19:26:59  phares
-// First rev with no ^Ms
-//
-// Revision 1.1.1.1  1998/01/19  14:03:10  rand
-// Lee's Jan 19 sources
-//
-//
-//----------------------------------------------------------------------------
