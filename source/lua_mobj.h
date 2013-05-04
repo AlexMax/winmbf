@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -29,6 +29,6 @@
 
 #include "lua.h"
 
-int luaopen_mobj(lua_State* L);
+int luaopen_mobj(lua_State *L);
 
 #endif

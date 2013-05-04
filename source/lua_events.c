@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -32,8 +32,9 @@
 
 static const char* registrykey = "eventslib";
 
-static const char* scripteventnames[MAXSEVENTS] = {
-	"open", "enter", "respawn", "death", "disconnect"
+static const char* scripteventnames[MAXSEVENTS] =
+{
+  "open", "enter", "respawn", "death", "disconnect"
 };
 
 /**
@@ -41,53 +42,53 @@ static const char* scripteventnames[MAXSEVENTS] = {
  */
 static int eventslib_addListener(lua_State* L)
 {
-	const char* event;
+  const char* event;
 
-	luaL_checkstring(L, 1);
-	luaL_checktype(L, 2, LUA_TFUNCTION);
+  luaL_checkstring(L, 1);
+  luaL_checktype(L, 2, LUA_TFUNCTION);
 
-	// Get the table of event types out of the registry.
-	lua_pushlightuserdata(L, (void*)&registrykey);
-	lua_gettable(L, LUA_REGISTRYINDEX);
-	if (lua_type(L, -1) != LUA_TTABLE)
-	{
-		// We don't have an event table yet.  Create one.
-		lua_pop(L, 1);
-		lua_pushlightuserdata(L, (void*)&registrykey);
-		lua_createtable(L, 0, 1);
-		lua_settable(L, LUA_REGISTRYINDEX);
+  // Get the table of event types out of the registry.
+  lua_pushlightuserdata(L, (void*)&registrykey);
+  lua_gettable(L, LUA_REGISTRYINDEX);
+  if (lua_type(L, -1) != LUA_TTABLE)
+  {
+    // We don't have an event table yet.  Create one.
+    lua_pop(L, 1);
+    lua_pushlightuserdata(L, (void*)&registrykey);
+    lua_createtable(L, 0, 1);
+    lua_settable(L, LUA_REGISTRYINDEX);
 
-		// Get the newly-minted table of event types.
-		lua_pushlightuserdata(L, (void*)&registrykey);
-		lua_gettable(L, LUA_REGISTRYINDEX);
-	}
+    // Get the newly-minted table of event types.
+    lua_pushlightuserdata(L, (void*)&registrykey);
+    lua_gettable(L, LUA_REGISTRYINDEX);
+  }
 
-	// Get the table of events for the given event type.
-	lua_pushvalue(L, 1); // [events][event]
-	lua_gettable(L, -2); // [events][table?]
-	if (lua_type(L, -1) != LUA_TTABLE)
-	{
-		// We don't have a table of events for this event type yet.  Create one.
-		lua_pop(L, 1);
-		lua_pushvalue(L, 1);
-		lua_createtable(L, 1, 0);
-		lua_settable(L, -3);
+  // Get the table of events for the given event type.
+  lua_pushvalue(L, 1); // [events][event]
+  lua_gettable(L, -2); // [events][table?]
+  if (lua_type(L, -1) != LUA_TTABLE)
+  {
+    // We don't have a table of events for this event type yet.  Create one.
+    lua_pop(L, 1);
+    lua_pushvalue(L, 1);
+    lua_createtable(L, 1, 0);
+    lua_settable(L, -3);
 
-		// Get the newly-minted table of events
-		lua_pushvalue(L, 1);
-		lua_gettable(L, -2);
-	}
+    // Get the newly-minted table of events
+    lua_pushvalue(L, 1);
+    lua_gettable(L, -2);
+  }
 
-	// Add one to the length, this is the key we'll put the listener in.
-	lua_len(L, -1);
-	lua_pushinteger(L, 1);
-	lua_arith(L, LUA_OPADD);
+  // Add one to the length, this is the key we'll put the listener in.
+  lua_len(L, -1);
+  lua_pushinteger(L, 1);
+  lua_arith(L, LUA_OPADD);
 
-	// Add listener to the table of event listeners.
-	lua_pushvalue(L, 2);
-	lua_settable(L, -3);
+  // Add listener to the table of event listeners.
+  lua_pushvalue(L, 2);
+  lua_settable(L, -3);
 
-	return 0;
+  return 0;
 }
 
 /**
@@ -95,10 +96,10 @@ static int eventslib_addListener(lua_State* L)
  */
 static int eventslib_removeListener(lua_State* L)
 {
-	luaL_checkstring(L, 1);
-	luaL_checktype(L, 2, LUA_TFUNCTION);
+  luaL_checkstring(L, 1);
+  luaL_checktype(L, 2, LUA_TFUNCTION);
 
-	return 0;
+  return 0;
 }
 
 /**
@@ -106,9 +107,9 @@ static int eventslib_removeListener(lua_State* L)
  */
 static int eventslib_removeAllListeners(lua_State* L)
 {
-	luaL_checkstring(L, 1);
+  luaL_checkstring(L, 1);
 
-	return 0;
+  return 0;
 }
 
 /**
@@ -116,9 +117,9 @@ static int eventslib_removeAllListeners(lua_State* L)
  */
 static int eventslib_listeners(lua_State* L)
 {
-	luaL_checkstring(L, 1);
+  luaL_checkstring(L, 1);
 
-	return 0;
+  return 0;
 }
 
 /**
@@ -126,46 +127,46 @@ static int eventslib_listeners(lua_State* L)
  */
 static int eventslib_emit(lua_State* L)
 {
-	int nargs, i;
+  int nargs, i;
 
-	luaL_checkstring(L, 1);
+  luaL_checkstring(L, 1);
 
-	// Number of arguments to be passed to all event functions.
-	nargs = lua_gettop(L) - 1;
+  // Number of arguments to be passed to all event functions.
+  nargs = lua_gettop(L) - 1;
 
-	// Get the table of event types out of the registry.
-	lua_pushlightuserdata(L, (void*)&registrykey);
-	lua_gettable(L, LUA_REGISTRYINDEX);
-	if (lua_type(L, -1) != LUA_TTABLE)
-		return 0;
+  // Get the table of event types out of the registry.
+  lua_pushlightuserdata(L, (void*)&registrykey);
+  lua_gettable(L, LUA_REGISTRYINDEX);
+  if (lua_type(L, -1) != LUA_TTABLE)
+    return 0;
 
-	// Get the table of events out of the table of event types.
-	lua_pushvalue(L, 1);
-	lua_gettable(L, -2);
-	if (lua_type(L, -1) != LUA_TTABLE)
-		return 0;
+  // Get the table of events out of the table of event types.
+  lua_pushvalue(L, 1);
+  lua_gettable(L, -2);
+  if (lua_type(L, -1) != LUA_TTABLE)
+    return 0;
 
-	// Loop through the table of events, executing every function in the table.
-	lua_pushnil(L);
-	while (lua_next(L, -2) != 0)
-	{
-		for (i = 1;i <= nargs;i++)
-			lua_pushvalue(L, 1 + i);
-		if (lua_pcall(L, nargs, 0, 0) != LUA_OK)
-			I_Error("Lua runtime error: %s", lua_tostring(lua, -1));
-	}
+  // Loop through the table of events, executing every function in the table.
+  lua_pushnil(L);
+  while (lua_next(L, -2) != 0)
+  {
+    for (i = 1; i <= nargs; i++)
+      lua_pushvalue(L, 1 + i);
+    if (lua_pcall(L, nargs, 0, 0) != LUA_OK)
+      I_Error("Lua runtime error: %s", lua_tostring(lua, -1));
+  }
 
-	return 0;
+  return 0;
 }
 
 static const luaL_Reg eventslib[] =
 {
-	{"addListener", eventslib_addListener},
-	{"removeListener", eventslib_removeListener},
-	{"removeAllListeners", eventslib_removeAllListeners},
-	{"listeners", eventslib_listeners},
-	{"emit", eventslib_emit},
-	{NULL, NULL},
+  {"addListener", eventslib_addListener},
+  {"removeListener", eventslib_removeListener},
+  {"removeAllListeners", eventslib_removeAllListeners},
+  {"listeners", eventslib_listeners},
+  {"emit", eventslib_emit},
+  {NULL, NULL},
 };
 
 /**
@@ -173,27 +174,27 @@ static const luaL_Reg eventslib[] =
  */
 int luaopen_events(lua_State* L)
 {
-	luaL_newlib(L, eventslib);
-	return 1;
+  luaL_newlib(L, eventslib);
+  return 1;
 }
 
 /**
  * Emit an event of a given type.
- * 
+ *
  * @param event    Type of event to emit.
  * @param lumpname Map lump to emit the event for.
  */
 void LUA_EmitEvent(scriptevent_t event, char* lumpname)
 {
-	// Call events.emit() for a specific class of events, passing the
-	// map lump in as its first argument to every event function and
-	// discarding the results of them.
-	lua_getglobal(lua, "events");
-	lua_getfield(lua, -1, "emit");
-	lua_pushstring(lua, scripteventnames[event]);
-	lua_pushstring(lua, lumpname);
-	lua_pcall(lua, 2, 0, 0);
+  // Call events.emit() for a specific class of events, passing the
+  // map lump in as its first argument to every event function and
+  // discarding the results of them.
+  lua_getglobal(lua, "events");
+  lua_getfield(lua, -1, "emit");
+  lua_pushstring(lua, scripteventnames[event]);
+  lua_pushstring(lua, lumpname);
+  lua_pcall(lua, 2, 0, 0);
 
-	// Balance the stack.
-	lua_pop(lua, 1);
+  // Balance the stack.
+  lua_pop(lua, 1);
 }

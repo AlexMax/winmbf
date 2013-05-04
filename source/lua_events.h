@@ -16,7 +16,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 //
 // DESCRIPTION:
@@ -31,15 +31,15 @@
 
 typedef enum
 {
-	SE_OPEN,
-	SE_ENTER,
-	SE_RESPAWN,
-	SE_DEATH,
-	SE_DISCONNECT,
-	MAXSEVENTS
+  SE_OPEN,
+  SE_ENTER,
+  SE_RESPAWN,
+  SE_DEATH,
+  SE_DISCONNECT,
+  MAXSEVENTS
 } scriptevent_t;
 
-int luaopen_events(lua_State* L);
-void LUA_EmitEvent(scriptevent_t event, char* lumpname);
+int luaopen_events(lua_State *L);
+void LUA_EmitEvent(scriptevent_t event, char *lumpname);
 
 #endif
