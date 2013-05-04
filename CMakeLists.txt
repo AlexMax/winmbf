@@ -4,6 +4,11 @@ project(WinMBF)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+if(MSVC)
+  add_definitions(/D _CRT_NONSTDC_NO_DEPRECATE)
+  add_definitions(/D _CRT_SECURE_NO_WARNINGS)
+endif()
+
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
 
