@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(WinMBF)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
 
@@ -44,8 +46,5 @@ add_executable(winmbf WIN32
   ${WINMBF_SOURCES} ${WINMBF_HEADERS})
 target_link_libraries(winmbf ${TEXTSCREEN_LIBRARY})
 target_link_libraries(winmbf ${SDL_LIBRARY})
-if(MSVC)
-  target_link_libraries(winmbf ${SDLMAIN_LIBRARY})
-endif()
 target_link_libraries(winmbf ${SDLMIXER_LIBRARY})
 target_link_libraries(winmbf ${SDLNET_LIBRARY})
