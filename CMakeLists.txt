@@ -4,6 +4,16 @@ project(WinMBF)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+# We need to provide a few modules for older CMake versions.  We want to use
+# the "old" behavior of prioritizing the version in the module path because the
+# version of FindSDL.cmake we provide relies on VERSION_VAR, which isn't in
+# older versions of CMake.
+if(${CMAKE_MAJOR_VERSION} EQUAL 2
+   AND ${CMAKE_MINOR_VERSION} EQUAL 8
+   AND ${CMAKE_PATCH_VERSION} GREATER 3)
+  cmake_policy(SET CMP0017 OLD)
+endif()
+
 if(MSVC)
   add_definitions(/D _CRT_NONSTDC_NO_DEPRECATE)
   add_definitions(/D _CRT_SECURE_NO_WARNINGS)
