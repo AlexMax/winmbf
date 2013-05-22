@@ -40,6 +40,16 @@ if(APPLE)
   set(WINMBF_SOURCES ${WINMBF_SOURCES} ${APPLE_SOURCES})
 endif()
 
+set(ANGELSCRIPT_LIBRARY "angelscript")
+set(ANGELSCRIPT_DIR angelscript)
+file(GLOB ANGELSCRIPT_HEADERS ${ANGELSCRIPT_DIR}/source/*.h)
+file(GLOB ANGELSCRIPT_SOURCES ${ANGELSCRIPT_DIR}/source/*.cpp)
+
+include_directories(${ANGELSCRIPT_DIR}/include)
+add_library(${ANGELSCRIPT_LIBRARY} STATIC ${ANGELSCRIPT_SOURCES} ${ANGELSCRIPT_HEADERS})
+set_target_properties(${ANGELSCRIPT_LIBRARY} PROPERTIES COMPILE_FLAGS "-DAS_C_INTERFACE")
+message(STATUS "Angelscript will be statically linked.")
+
 set(TEXTSCREEN_LIBRARY "textscreen")
 set(TEXTSCREEN_DIR textscreen)
 file(GLOB TEXTSCREEN_HEADERS ${TEXTSCREEN_DIR}/*.h)
@@ -59,6 +69,7 @@ include_directories(${SDLNET_INCLUDE_DIR})
 
 add_executable(winmbf WIN32
   ${WINMBF_SOURCES} ${WINMBF_HEADERS})
+target_link_libraries(winmbf ${ANGELSCRIPT_LIBRARY})
 target_link_libraries(winmbf ${TEXTSCREEN_LIBRARY})
 target_link_libraries(winmbf ${SDL_LIBRARY})
 target_link_libraries(winmbf ${SDLMIXER_LIBRARY})
