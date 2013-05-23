@@ -60,6 +60,7 @@
 #include "r_main.h"
 #include "d_main.h"
 #include "d_deh.h"  // Ty 04/08/98 - Externalizations
+#include "as_main.h"
 
 // DEHacked support - Ty 03/09/97
 // killough 10/98:
@@ -1407,6 +1408,8 @@ void D_DoomMain(void)
   // init subsystems
   puts("V_Init: allocate screens.");    // killough 11/98: moved down to here
   V_Init();
+
+  AS_Init();
 
   D_ProcessWadPreincludes(); // killough 10/98: add preincluded wads at the end
 
