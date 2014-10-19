@@ -41,7 +41,7 @@ include_directories(${TEXTSCREEN_DIR})
 add_library(${TEXTSCREEN_LIBRARY} STATIC ${TEXTSCREEN_SOURCES} ${TEXTSCREEN_HEADERS})
 message(STATUS "Textscreen will be statically linked.")
 
-set(LUA_LIBRARY "lua52")
+set(LUA_LIBRARY "lua53")
 set(LUA_DIR lua/src)
 set(LUA_CORE
   lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c lfunc.c lgc.c llex.c
@@ -50,7 +50,7 @@ set(LUA_CORE
 )
 set(LUA_LIB
   lauxlib.c lbaselib.c lbitlib.c lcorolib.c ldblib.c liolib.c
-  lmathlib.c loslib.c lstrlib.c ltablib.c loadlib.c linit.c
+  lmathlib.c loslib.c lstrlib.c ltablib.c lutf8lib.c loadlib.c linit.c
 )
 foreach(LUA_SOURCE IN LISTS LUA_CORE LUA_LIB)
   set(LUA_SOURCES ${LUA_SOURCES} ${LUA_DIR}/${LUA_SOURCE})

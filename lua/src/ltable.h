@@ -1,5 +1,5 @@
 /*
-** $Id: ltable.h,v 2.16 2011/08/17 20:26:47 roberto Exp $
+** $Id: ltable.h,v 2.19 2014/07/29 16:22:24 roberto Exp $
 ** Lua tables (hash)
 ** See Copyright Notice in lua.h
 */
@@ -11,15 +11,26 @@
 
 
 #define gnode(t,i)	(&(t)->node[i])
-#define gkey(n)		(&(n)->i_key.tvk)
 #define gval(n)		(&(n)->i_val)
 #define gnext(n)	((n)->i_key.nk.next)
+
+
+/* 'const' to avoid wrong writings that can mess up field 'next' */ 
+#define gkey(n)		cast(const TValue*, (&(n)->i_key.tvk))
+
+#define wgkey(n)		(&(n)->i_key.nk)
 
 #define invalidateTMcache(t)	((t)->flags = 0)
 
 
-LUAI_FUNC const TValue *luaH_getint (Table *t, int key);
-LUAI_FUNC void luaH_setint (lua_State *L, Table *t, int key, TValue *value);
+/* returns the key, given the value of a table entry */
+#define keyfromval(v) \
+  (gkey(cast(Node *, cast(char *, (v)) - offsetof(Node, i_val))))
+
+
+LUAI_FUNC const TValue *luaH_getint (Table *t, lua_Integer key);
+LUAI_FUNC void luaH_setint (lua_State *L, Table *t, lua_Integer key,
+                            TValue *value);
 LUAI_FUNC const TValue *luaH_getstr (Table *t, TString *key);
 LUAI_FUNC const TValue *luaH_get (Table *t, const TValue *key);
 LUAI_FUNC TValue *luaH_newkey (lua_State *L, Table *t, const TValue *key);
